@@ -1,0 +1,307 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+  
+  .metric-card {
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .metric-label {
+    line-height: 1.2;
+    word-break: keep-all;
+    white-space: nowrap;
+  }
+}
+
+/* Smooth theme transitions */
+* {
+  transition: none;
+}
+
+/* Material 3 inspired design system with light, muted palette
+All colors MUST be HSL for consistency and theming.
+*/
+
+@layer base {
+  :root {
+    /* Light mode colors - Default theme */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 8%;
+
+    /* Surface colors with gentle depth */
+    --surface: 0 0% 98%;
+    --surface-variant: 0 0% 96%;
+    --surface-container: 0 0% 94%;
+    
+    /* Cards and elevated surfaces */
+    --card: 0 0% 98%;
+    --card-foreground: 240 10% 8%;
+
+    /* Popover surfaces */
+    --popover: 0 0% 98%;
+    --popover-foreground: 240 10% 8%;
+
+    /* Primary brand colors - Refined Blue */
+    --primary: 210 80% 58%;
+    --primary-hover: 210 80% 62%;
+    --primary-subtle: 210 80% 18%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary colors - Soft Teal */
+    --secondary: 180 60% 52%;
+    --secondary-hover: 180 60% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted surface colors */
+    --muted: 0 0% 96%;
+    --muted-foreground: 240 6% 42%;
+
+    /* Accent colors - Gentle Purple */
+    --accent: 270 50% 60%;
+    --accent-hover: 270 50% 64%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Warm accent - Soft Orange */
+    --warm-accent: 25 70% 55%;
+    --warm-accent-foreground: 0 0% 100%;
+
+    /* Status colors */
+    --success: 120 60% 50%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 45 90% 60%;
+    --warning-foreground: 45 30% 15%;
+    
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Interactive elements */
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 210 100% 60%;
+
+    /* Border radius system */
+    --radius: 0.75rem;
+    --radius-sm: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(220 20% 13% / 0.05);
+    --shadow: 0 1px 3px 0 hsl(220 20% 13% / 0.1), 0 1px 2px 0 hsl(220 20% 13% / 0.06);
+    --shadow-md: 0 4px 6px -1px hsl(220 20% 13% / 0.1), 0 2px 4px -1px hsl(220 20% 13% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(220 20% 13% / 0.1), 0 4px 6px -2px hsl(220 20% 13% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(220 20% 13% / 0.1), 0 10px 10px -5px hsl(220 20% 13% / 0.04);
+
+    /* Subtle Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(210 70% 62%));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(180 50% 55%));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(270 40% 62%));
+    --gradient-warm: linear-gradient(135deg, hsl(var(--warm-accent)), hsl(25 60% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%), hsl(0 0% 98%));
+    --gradient-mesh: radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.15) 0%, transparent 50%), 
+                     radial-gradient(circle at 80% 20%, hsl(var(--accent) / 0.12) 0%, transparent 50%);
+    
+    /* Glassmorphism */
+    --glass-bg: hsla(0, 0%, 100%, 0.25);
+    --glass-border: hsla(220, 15%, 88%, 0.3);
+    --glass-blur: blur(10px);
+
+    /* Animation durations */
+    --duration-fast: 150ms;
+    --duration-normal: 250ms;
+    --duration-slow: 350ms;
+
+    /* Sidebar (if needed) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 220 20% 25%;
+    --sidebar-primary: 210 100% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 15% 94%;
+    --sidebar-accent-foreground: 220 20% 25%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 210 100% 60%;
+  }
+
+  .dark {
+    /* Dark mode colors */
+    --background: 240 10% 8%;
+    --foreground: 240 8% 92%;
+
+    /* Surface colors with gentle depth */
+    --surface: 240 8% 11%;
+    --surface-variant: 240 8% 13%;
+    --surface-container: 240 8% 15%;
+    
+    /* Cards and elevated surfaces */
+    --card: 240 8% 11%;
+    --card-foreground: 240 8% 92%;
+
+    /* Popover surfaces */
+    --popover: 240 8% 11%;
+    --popover-foreground: 240 8% 92%;
+
+    /* Primary brand colors - Refined Blue */
+    --primary: 210 80% 58%;
+    --primary-hover: 210 80% 62%;
+    --primary-subtle: 210 80% 18%;
+    --primary-foreground: 240 10% 8%;
+
+    /* Secondary colors - Soft Teal */
+    --secondary: 180 60% 52%;
+    --secondary-hover: 180 60% 55%;
+    --secondary-foreground: 240 10% 8%;
+
+    /* Muted surface colors */
+    --muted: 240 8% 13%;
+    --muted-foreground: 240 6% 58%;
+
+    /* Accent colors - Gentle Purple */
+    --accent: 270 50% 60%;
+    --accent-hover: 270 50% 64%;
+    --accent-foreground: 240 10% 8%;
+
+    /* Warm accent - Soft Orange */
+    --warm-accent: 25 70% 55%;
+    --warm-accent-foreground: 240 10% 8%;
+
+    /* Status colors */
+    --success: 120 60% 50%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 45 90% 60%;
+    --warning-foreground: 45 30% 15%;
+    
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Interactive elements */
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 210 100% 60%;
+
+    /* Subtle Gradients for dark mode */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(210 70% 62%));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(180 50% 55%));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(270 40% 62%));
+    --gradient-warm: linear-gradient(135deg, hsl(var(--warm-accent)), hsl(25 60% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(240 10% 8%), hsl(240 8% 11%));
+    --gradient-mesh: radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.15) 0%, transparent 50%), 
+                     radial-gradient(circle at 80% 20%, hsl(var(--accent) / 0.12) 0%, transparent 50%);
+    
+    /* Glassmorphism */
+    --glass-bg: hsla(220, 15%, 10%, 0.8);
+    --glass-border: hsla(220, 15%, 18%, 0.5);
+
+    /* Sidebar (if needed) */
+    --sidebar-background: 220 20% 8%;
+    --sidebar-foreground: 210 15% 85%;
+    --sidebar-primary: 210 100% 70%;
+    --sidebar-primary-foreground: 220 20% 8%;
+    --sidebar-accent: 220 15% 12%;
+    --sidebar-accent-foreground: 210 15% 85%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 210 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-light antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glassmorphism utilities */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+  }
+
+  /* Animation utilities */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.4s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    transition: all var(--duration-normal) ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Clean button variants */
+  .btn-hero {
+    @apply bg-gradient-primary text-primary-foreground 
+           rounded-xl px-8 py-4 font-semibold shadow-lg hover:shadow-xl 
+           transition-all duration-300 hover:scale-[1.02] border border-primary/20;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground border border-secondary/30
+           rounded-xl px-6 py-3 font-semibold hover:bg-secondary-hover
+           transition-all duration-300 hover:scale-[1.02];
+  }
+
+  .btn-ghost {
+    @apply text-foreground hover:bg-surface-variant/50 rounded-xl px-6 py-3 font-medium
+           transition-all duration-300 hover:scale-[1.02] border border-surface-variant/20;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
+  50% { box-shadow: 0 0 30px hsl(var(--primary) / 0.5); }
+}
