@@ -122,7 +122,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Contact Information */}
           <div className="lg:col-span-1 space-y-6">
             {/* Contact Details */}
@@ -246,9 +246,9 @@ const Contact = () => {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
+                      <Label htmlFor="name" className="text-sm">Full Name</Label>
                       <Input
                         id="name"
                         name="name"
@@ -257,10 +257,11 @@ const Contact = () => {
                         placeholder="Your full name"
                         required
                         disabled={isSubmitting}
+                        className="text-sm"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
+                      <Label htmlFor="email" className="text-sm">Email Address</Label>
                       <Input
                         id="email"
                         name="email"
@@ -270,12 +271,13 @@ const Contact = () => {
                         placeholder="your.email@example.com"
                         required
                         disabled={isSubmitting}
+                        className="text-sm"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
+                    <Label htmlFor="subject" className="text-sm">Subject</Label>
                     <Input
                       id="subject"
                       name="subject"
@@ -284,30 +286,32 @@ const Contact = () => {
                       placeholder="What would you like to discuss?"
                       required
                       disabled={isSubmitting}
+                      className="text-sm"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
+                    <Label htmlFor="message" className="text-sm">Message</Label>
                     <Textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder="Tell me about your project, opportunity, or just say hello..."
-                      rows={6}
+                      rows={5}
                       required
                       disabled={isSubmitting}
+                      className="text-sm resize-none"
                     />
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                     <Button 
                       type="submit" 
                       variant="hero" 
                       size="lg"
                       disabled={isSubmitting}
-                      className="flex-1 gap-2"
+                      className="flex-1 gap-2 text-sm sm:text-base"
                     >
                       {isSubmitting ? (
                         <>
@@ -325,7 +329,7 @@ const Contact = () => {
                       type="button" 
                       variant="outline" 
                       size="lg"
-                      className="gap-2"
+                      className="gap-2 text-sm sm:text-base"
                       disabled={isSubmitting}
                     >
                       <Coffee className="h-4 w-4" />

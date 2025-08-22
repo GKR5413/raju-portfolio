@@ -136,7 +136,7 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
           {/* Personal Story */}
           <div className="space-y-6">
             <div>
@@ -182,17 +182,17 @@ const About = () => {
             </Card>
 
             {/* Highlights */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {highlights.map((highlight, index) => (
                 <Card key={index} className="hover-lift">
-                  <CardContent className="p-4">
-                    <div className="text-2xl font-bold text-primary mb-1">
+                  <CardContent className="p-3 sm:p-4">
+                    <div className="text-xl sm:text-2xl font-bold text-primary mb-1">
                       {highlight.metric}
                     </div>
-                    <div className="text-sm font-medium text-foreground mb-1">
+                    <div className="text-xs sm:text-sm font-medium text-foreground mb-1">
                       {highlight.title}
                     </div>
-                    <div className="text-xs text-muted-foreground">
+                    <div className="text-xs text-muted-foreground leading-tight">
                       {highlight.description}
                     </div>
                   </CardContent>
@@ -229,29 +229,29 @@ const About = () => {
             <div className="mt-8">
               <h4 className="text-lg font-semibold text-foreground mb-4">Specialized Areas</h4>
               <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <Brain className="h-4 w-4 text-primary" />
-                  <span className="text-sm text-muted-foreground">GenAI & LLMs, Prompt Engineering, AI Model Integration, Machine Learning Pipelines</span>
+                <div className="flex items-start gap-3">
+                  <Brain className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed">GenAI & LLMs, Prompt Engineering, AI Model Integration, Machine Learning Pipelines</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Cloud className="h-4 w-4 text-primary" />
-                  <span className="text-sm text-muted-foreground">Cloud-Native Architecture, Kubernetes, Infrastructure as Code, Multi-Cloud Strategy</span>
+                <div className="flex items-start gap-3">
+                  <Cloud className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed">Cloud-Native Architecture, Kubernetes, Infrastructure as Code, Multi-Cloud Strategy</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-primary" />
-                  <span className="text-sm text-muted-foreground">Security Best Practices, OAuth, JWT, Rate Limiting, Zero-Trust Architecture</span>
+                <div className="flex items-start gap-3">
+                  <Shield className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed">Security Best Practices, OAuth, JWT, Rate Limiting, Zero-Trust Architecture</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Database className="h-4 w-4 text-primary" />
-                  <span className="text-sm text-muted-foreground">High-Performance Databases, Data Modeling, Caching Strategies, Event Streaming</span>
+                <div className="flex items-start gap-3">
+                  <Database className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed">High-Performance Databases, Data Modeling, Caching Strategies, Event Streaming</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Code className="h-4 w-4 text-primary" />
-                  <span className="text-sm text-muted-foreground">API Design, Microservices Patterns, Performance Optimization, Scalable Architecture</span>
+                <div className="flex items-start gap-3">
+                  <Code className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed">API Design, Microservices Patterns, Performance Optimization, Scalable Architecture</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4 text-primary" />
-                  <span className="text-sm text-muted-foreground">DevOps Culture, CI/CD Automation, Monitoring & Observability, Site Reliability Engineering</span>
+                <div className="flex items-start gap-3">
+                  <Users className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed">DevOps Culture, CI/CD Automation, Monitoring & Observability, Site Reliability Engineering</span>
                 </div>
               </div>
             </div>
@@ -263,12 +263,12 @@ const About = () => {
           <h3 className="text-2xl font-semibold text-foreground mb-8">
             Technologies & Tools
           </h3>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             {technologies.map((tech, index) => (
               <Badge 
                 key={index} 
                 variant="secondary" 
-                className="px-4 py-2 text-sm font-medium hover-lift"
+                className="px-3 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-medium hover-lift"
               >
                 {tech}
               </Badge>

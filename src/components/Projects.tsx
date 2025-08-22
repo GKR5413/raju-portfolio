@@ -149,7 +149,7 @@ const Projects = () => {
                 {/* Key Features */}
                 <div>
                   <h4 className="font-semibold text-foreground mb-3">Key Features</h4>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {project.features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
                         <span className="text-primary">•</span>
@@ -165,44 +165,44 @@ const Projects = () => {
                     <Zap className="h-5 w-5 text-primary" />
                     Performance Metrics
                   </h4>
-                  <div className="grid grid-cols-5 gap-4">
-                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm" style={{minHeight: '80px', height: '80px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxSizing: 'border-box'}}>
-                      <div className="text-xl font-bold text-primary mb-1">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4">
+                    <div className="text-center p-2 sm:p-3 bg-card rounded-lg border border-border shadow-sm min-h-[70px] sm:min-h-[80px] flex flex-col justify-center items-center">
+                      <div className="text-lg sm:text-xl font-bold text-primary mb-1">
                         {project.metrics.performance}
                       </div>
-                      <div className="text-sm text-muted-foreground font-semibold" style={{lineHeight: '1.2', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                      <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-tight text-center">
                         RPS
                       </div>
                     </div>
-                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm" style={{minHeight: '80px', height: '80px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxSizing: 'border-box'}}>
-                      <div className="text-xl font-bold text-primary mb-1">
+                    <div className="text-center p-2 sm:p-3 bg-card rounded-lg border border-border shadow-sm min-h-[70px] sm:min-h-[80px] flex flex-col justify-center items-center">
+                      <div className="text-lg sm:text-xl font-bold text-primary mb-1">
                         {project.metrics.latency}
                       </div>
-                      <div className="text-sm text-muted-foreground font-semibold" style={{lineHeight: '1.2', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                      <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-tight text-center">
                         P95 Latency
                       </div>
                     </div>
-                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm" style={{minHeight: '80px', height: '80px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxSizing: 'border-box'}}>
-                      <div className="text-xl font-bold text-primary mb-1">
+                    <div className="text-center p-2 sm:p-3 bg-card rounded-lg border border-border shadow-sm min-h-[70px] sm:min-h-[80px] flex flex-col justify-center items-center">
+                      <div className="text-lg sm:text-xl font-bold text-primary mb-1">
                         {project.metrics.accuracy}
                       </div>
-                      <div className="text-sm text-muted-foreground font-semibold" style={{lineHeight: '1.2', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                      <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-tight text-center">
                         Error Rate
                       </div>
                     </div>
-                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm" style={{minHeight: '80px', height: '80px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxSizing: 'border-box'}}>
-                      <div className="text-xl font-bold text-primary mb-1">
+                    <div className="text-center p-2 sm:p-3 bg-card rounded-lg border border-border shadow-sm min-h-[70px] sm:min-h-[80px] flex flex-col justify-center items-center">
+                      <div className="text-lg sm:text-xl font-bold text-primary mb-1">
                         {project.metrics.concurrent}
                       </div>
-                      <div className="text-sm text-muted-foreground font-semibold" style={{lineHeight: '1.2', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                      <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-tight text-center">
                         Concurrent
                       </div>
                     </div>
-                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm" style={{minHeight: '80px', height: '80px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxSizing: 'border-box'}}>
-                      <div className="text-xl font-bold text-primary mb-1">
+                    <div className="text-center p-2 sm:p-3 bg-card rounded-lg border border-border shadow-sm min-h-[70px] sm:min-h-[80px] flex flex-col justify-center items-center">
+                      <div className="text-lg sm:text-xl font-bold text-primary mb-1">
                         {project.metrics.system}
                       </div>
-                      <div className="text-sm text-muted-foreground font-semibold" style={{lineHeight: '1.2', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                      <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-tight text-center">
                         System Specs
                       </div>
                     </div>

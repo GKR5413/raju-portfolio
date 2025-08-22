@@ -53,8 +53,8 @@ const Hero = () => {
         </div>
 
         {/* Name */}
-        <div className="animate-fade-up mb-8" style={{ animationDelay: '0.4s' }}>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight">
+        <div className="animate-fade-up mb-6 sm:mb-8" style={{ animationDelay: '0.4s' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight">
             <span className="bg-gradient-primary bg-clip-text text-transparent">
               Kanakaraju
             </span>
@@ -67,7 +67,7 @@ const Hero = () => {
 
         {/* Tagline */}
         <div className="animate-fade-up" style={{ animationDelay: '0.6s' }}>
-          <p className="text-xl sm:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
             MS Computer Science Student & Software Engineer specializing in{" "}
             <span className="text-primary font-semibold">Java Microservices</span>,{" "}
             <span className="text-accent font-semibold">Fintech Solutions</span>, and{" "}
@@ -76,22 +76,22 @@ const Hero = () => {
         </div>
 
         {/* Stats */}
-        <div className="animate-fade-up grid grid-cols-2 sm:grid-cols-4 gap-6 mb-10" style={{ animationDelay: '0.8s' }}>
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">2+</div>
-            <div className="text-sm text-muted-foreground">Years Experience</div>
+        <div className="animate-fade-up grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-10" style={{ animationDelay: '0.8s' }}>
+          <div className="text-center p-3 sm:p-0">
+            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary mb-1">2+</div>
+            <div className="text-xs sm:text-sm text-muted-foreground leading-tight">Years Experience</div>
           </div>
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">10K+</div>
-            <div className="text-sm text-muted-foreground">Merchants Served</div>
+          <div className="text-center p-3 sm:p-0">
+            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary mb-1">10K+</div>
+            <div className="text-xs sm:text-sm text-muted-foreground leading-tight">Merchants Served</div>
           </div>
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">414</div>
-            <div className="text-sm text-muted-foreground">RPS Performance</div>
+          <div className="text-center p-3 sm:p-0">
+            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary mb-1">414</div>
+            <div className="text-xs sm:text-sm text-muted-foreground leading-tight">RPS Performance</div>
           </div>
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">3.82</div>
-            <div className="text-sm text-muted-foreground">GPA at UMKC</div>
+          <div className="text-center p-3 sm:p-0">
+            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary mb-1">3.82</div>
+            <div className="text-xs sm:text-sm text-muted-foreground leading-tight">GPA at UMKC</div>
           </div>
         </div>
 

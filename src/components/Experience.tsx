@@ -80,32 +80,34 @@ const Experience = () => {
         {/* Timeline */}
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-border md:transform md:-translate-x-0.5"></div>
+          <div className="absolute left-3 md:left-1/2 top-0 bottom-0 w-0.5 bg-border md:transform md:-translate-x-0.5"></div>
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
               <div key={index} className="relative">
                 {/* Timeline dot */}
-                <div className="absolute left-2 md:left-1/2 w-4 h-4 bg-primary rounded-full md:transform md:-translate-x-2 z-10 shadow-lg">
+                <div className="absolute left-1 md:left-1/2 w-4 h-4 bg-primary rounded-full md:transform md:-translate-x-2 z-10 shadow-lg">
                   <div className="w-2 h-2 bg-primary-foreground rounded-full absolute top-1 left-1"></div>
                 </div>
 
                 {/* Content card */}
-                <div className={`ml-12 md:ml-0 md:w-5/12 ${
+                <div className={`ml-8 md:ml-0 md:w-5/12 ${
                   index % 2 === 0 ? 'md:ml-auto md:pl-8' : 'md:pr-8'
                 }`}>
                   <Card className="hover-lift shadow-lg">
                     <CardHeader className="pb-4">
-                      <div className="flex items-start justify-between mb-2">
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground flex-shrink-0">
-                          <Calendar className="h-4 w-4" />
-                          <span>{exp.duration}</span>
-                          <Badge variant="outline" className="ml-2 whitespace-nowrap">
+                      <div className="flex flex-col sm:flex-row items-start justify-between mb-3 sm:mb-2 gap-3 sm:gap-2">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-2">
+                            <Calendar className="h-4 w-4" />
+                            <span className="text-xs sm:text-sm">{exp.duration}</span>
+                          </div>
+                          <Badge variant="outline" className="w-fit text-xs whitespace-nowrap">
                             {exp.type}
                           </Badge>
                         </div>
-                        <div className="text-right">
-                          <div className="text-2xl font-bold text-primary">
+                        <div className="text-center sm:text-right">
+                          <div className="text-xl sm:text-2xl font-bold text-primary">
                             {exp.impact.metric}
                           </div>
                           <div className="text-xs text-muted-foreground">
@@ -114,18 +116,18 @@ const Experience = () => {
                         </div>
                       </div>
                       
-                      <CardTitle className="text-xl text-foreground mb-2">
+                      <CardTitle className="text-lg sm:text-xl text-foreground mb-2">
                         {exp.position}
                       </CardTitle>
                       
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <Building2 className="h-4 w-4" />
-                          <span>{exp.company}</span>
+                          <span className="text-xs sm:text-sm">{exp.company}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <MapPin className="h-4 w-4" />
-                          <span>{exp.location}</span>
+                          <span className="text-xs sm:text-sm">{exp.location}</span>
                         </div>
                       </div>
                     </CardHeader>
@@ -155,9 +157,9 @@ const Experience = () => {
                           <h4 className="font-semibold text-foreground mb-2">
                             Technologies Used
                           </h4>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-1 sm:gap-2">
                             {exp.technologies.map((tech, techIndex) => (
-                              <Badge key={techIndex} variant="secondary" className="text-xs">
+                              <Badge key={techIndex} variant="secondary" className="text-xs px-2 py-1">
                                 {tech}
                               </Badge>
                             ))}
