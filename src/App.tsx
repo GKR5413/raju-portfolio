@@ -1,50 +1,57 @@
-const App = () => {
+import { HashRouter, Routes, Route } from "react-router-dom";
+import { useState, useEffect, createContext, useContext } from "react";
+import SimpleHero from "./components/SimpleHero";
+
+// Simple theme context
+const ThemeContext = createContext({
+  theme: 'light' as 'light' | 'dark',
+  setTheme: (theme: 'light' | 'dark') => {},
+});
+
+export const useCustomTheme = () => useContext(ThemeContext);
+
+// Index component with Hero
+const Index = () => {
   return (
-    <div style={{ 
-      padding: '20px', 
-      backgroundColor: '#f0f0f0', 
-      minHeight: '100vh',
-      fontFamily: 'Arial, sans-serif'
-    }}>
-      <h1 style={{ color: '#333', marginBottom: '20px' }}>
-        🎉 React is Working!
-      </h1>
-      <div style={{ 
-        backgroundColor: '#e8f5e8', 
-        padding: '15px', 
-        borderRadius: '8px',
-        border: '1px solid #4caf50',
-        marginBottom: '20px'
-      }}>
-        <p style={{ margin: 0, color: '#2e7d32' }}>
-          ✅ If you can see this, React is loading successfully
-        </p>
-      </div>
-      <div style={{ 
-        backgroundColor: '#fff3e0', 
-        padding: '15px', 
-        borderRadius: '8px',
-        border: '1px solid #ff9800',
-        marginBottom: '20px'
-      }}>
-        <p style={{ margin: 0, color: '#e65100' }}>
-          🔧 This is a minimal test version
-        </p>
-      </div>
-      <div style={{ 
-        backgroundColor: '#e3f2fd', 
-        padding: '15px', 
-        borderRadius: '8px',
-        border: '1px solid #2196f3'
-      }}>
-        <p style={{ margin: 0, color: '#0d47a1' }}>
-          📍 Current URL: {window.location.href}
-        </p>
-        <p style={{ margin: '10px 0 0 0', color: '#0d47a1' }}>
-          🕒 Loaded at: {new Date().toLocaleString()}
-        </p>
-      </div>
+    <div className="min-h-screen bg-background text-foreground">
+      <SimpleHero />
     </div>
+  );
+};
+
+const NotFound = () => {
+  return (
+    <div style={{ padding: '20px', textAlign: 'center' }}>
+      <h1>404 - Page Not Found</h1>
+    </div>
+  );
+};
+
+const App = () => {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark';
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </HashRouter>
+    </ThemeContext.Provider>
   );
 };
 
