@@ -1,56 +1,50 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, useEffect, createContext, useContext } from "react";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-
-const queryClient = new QueryClient();
-
-// Custom Theme Context
-const ThemeContext = createContext({
-  theme: 'light',
-  setTheme: (theme: 'light' | 'dark') => {},
-});
-
-export const useCustomTheme = () => useContext(ThemeContext);
-
 const App = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    // Get theme from localStorage or default to light
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark';
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
-  }, []);
-
-  useEffect(() => {
-    // Apply theme to document
-    document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </ThemeContext.Provider>
-    </QueryClientProvider>
+    <div style={{ 
+      padding: '20px', 
+      backgroundColor: '#f0f0f0', 
+      minHeight: '100vh',
+      fontFamily: 'Arial, sans-serif'
+    }}>
+      <h1 style={{ color: '#333', marginBottom: '20px' }}>
+        🎉 React is Working!
+      </h1>
+      <div style={{ 
+        backgroundColor: '#e8f5e8', 
+        padding: '15px', 
+        borderRadius: '8px',
+        border: '1px solid #4caf50',
+        marginBottom: '20px'
+      }}>
+        <p style={{ margin: 0, color: '#2e7d32' }}>
+          ✅ If you can see this, React is loading successfully
+        </p>
+      </div>
+      <div style={{ 
+        backgroundColor: '#fff3e0', 
+        padding: '15px', 
+        borderRadius: '8px',
+        border: '1px solid #ff9800',
+        marginBottom: '20px'
+      }}>
+        <p style={{ margin: 0, color: '#e65100' }}>
+          🔧 This is a minimal test version
+        </p>
+      </div>
+      <div style={{ 
+        backgroundColor: '#e3f2fd', 
+        padding: '15px', 
+        borderRadius: '8px',
+        border: '1px solid #2196f3'
+      }}>
+        <p style={{ margin: 0, color: '#0d47a1' }}>
+          📍 Current URL: {window.location.href}
+        </p>
+        <p style={{ margin: '10px 0 0 0', color: '#0d47a1' }}>
+          🕒 Loaded at: {new Date().toLocaleString()}
+        </p>
+      </div>
+    </div>
   );
 };
 

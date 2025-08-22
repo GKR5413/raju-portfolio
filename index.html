@@ -23,7 +23,36 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Fallback content while React loads -->
+      <div style="padding: 20px; background: #fff3e0; min-height: 100vh; font-family: Arial;">
+        <h1 style="color: #e65100;">🔄 Loading...</h1>
+        <p>If this message persists, React is not loading properly.</p>
+        <p>Check browser console for errors.</p>
+        <p id="debug-info"></p>
+      </div>
+    </div>
+    
+    <script>
+      // Debug information
+      console.log('HTML loaded, current URL:', window.location.href);
+      console.log('User agent:', navigator.userAgent);
+      document.getElementById('debug-info').innerHTML = 
+        'URL: ' + window.location.href + '<br>Time: ' + new Date().toLocaleString();
+      
+      // Error handling
+      window.addEventListener('error', function(e) {
+        console.error('Global error:', e.error);
+        document.getElementById('root').innerHTML = 
+          '<div style="padding:20px;background:#ffebee;min-height:100vh;font-family:Arial;">' +
+          '<h1 style="color:#c62828;">JavaScript Error</h1>' +
+          '<p>Error: ' + e.message + '</p>' +
+          '<p>File: ' + e.filename + '</p>' +
+          '<p>Line: ' + e.lineno + '</p>' +
+          '</div>';
+      });
+    </script>
+    
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
