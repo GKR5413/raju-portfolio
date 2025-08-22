@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  base: "/raju-portfolio/",
+  base: mode === 'production' ? "/raju-portfolio/" : "/",
   plugins: [
     react(),
   ],
