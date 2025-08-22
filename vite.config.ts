@@ -23,9 +23,11 @@ export default defineConfig(({ mode, command }) => {
       assetsDir: 'assets',
       sourcemap: false,
       minify: 'esbuild',
+      target: ['es2015', 'safari11'], // Better browser compatibility
       rollupOptions: {
         output: {
           manualChunks: undefined,
+          format: 'es', // Ensure ES modules
         },
       },
     },
