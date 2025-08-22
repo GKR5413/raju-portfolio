@@ -1,36 +1,27 @@
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect, createContext, useContext } from "react";
-import SimpleHero from "./components/SimpleHero";
+import Index from "./pages/Index";
+import NotFound from "./pages/NotFound";
 
-// Simple theme context
+const queryClient = new QueryClient();
+
+// Custom Theme Context
 const ThemeContext = createContext({
-  theme: 'light' as 'light' | 'dark',
+  theme: 'light',
   setTheme: (theme: 'light' | 'dark') => {},
 });
 
 export const useCustomTheme = () => useContext(ThemeContext);
 
-// Index component with Hero
-const Index = () => {
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      <SimpleHero />
-    </div>
-  );
-};
-
-const NotFound = () => {
-  return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>404 - Page Not Found</h1>
-    </div>
-  );
-};
-
 const App = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
+    // Get theme from localStorage or default to light
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark';
     if (savedTheme) {
       setTheme(savedTheme);
@@ -38,20 +29,28 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    // Apply theme to document
     document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      <HashRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </HashRouter>
-    </ThemeContext.Provider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <HashRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </HashRouter>
+        </TooltipProvider>
+      </ThemeContext.Provider>
+    </QueryClientProvider>
   );
 };
 
