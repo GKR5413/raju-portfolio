@@ -42,22 +42,21 @@
     </style>
     
     <script>
-      // Check module support
-      if (!('noModule' in HTMLScriptElement.prototype)) {
-        console.warn('ES modules not supported in this browser');
-      }
+      // Mark when React should have loaded
+      window.reactLoadStartTime = Date.now();
       
-      // Global error handler
+      // Global error handler for module loading
       window.addEventListener('error', function(e) {
-        console.error('Script error:', e.error);
+        if (e.filename && e.filename.includes('index-') && e.filename.includes('.js')) {
+          console.error('React bundle failed to load:', e.error);
+          showFallback('Script loading failed');
+        }
       });
       
-      // Timeout to check if React loaded successfully
-      setTimeout(function() {
+      function showFallback(reason) {
         var root = document.getElementById('root');
-        if (root && root.children.length === 1) {
-          // Still showing loading screen after 8 seconds
-          console.error('React failed to load - showing fallback');
+        if (root) {
+          console.log('Showing fallback due to:', reason);
           root.innerHTML = 
             '<div style="padding: 40px; max-width: 800px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif; line-height: 1.6;">' +
             '<h1 style="color: #333; text-align: center; margin-bottom: 30px;">Kanakaraju Gottumukkala</h1>' +
@@ -76,12 +75,37 @@
             '<a href="https://linkedin.com/in/gkr5413/" style="color: #0366d6; text-decoration: none; margin: 0 15px;" target="_blank">LinkedIn</a>' +
             '</div>' +
             '</div>' +
-            '<div style="text-align: center; margin-top: 40px; padding: 20px; background: #fff3cd; border-radius: 8px;">' +
-            '<p style="margin: 0; color: #856404;"><strong>Browser Compatibility Issue:</strong> For the full interactive portfolio, please try Chrome or Firefox, or refresh this page.</p>' +
+            '<div style="text-align: center; margin-top: 40px; padding: 20px; background: #e3f2fd; border-radius: 8px;">' +
+            '<button onclick="window.location.reload()" style="background: #1976d2; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 14px; margin-bottom: 10px;">🔄 Try Again</button>' +
+            '<p style="margin: 10px 0 0; color: #1565c0; font-size: 14px;">Click to reload the interactive portfolio</p>' +
             '</div>' +
             '</div>';
         }
-      }, 8000); // 8 second timeout
+      }
+      
+      // Check if React loaded successfully
+      function checkReactStatus() {
+        if (window.reactLoaded) {
+          console.log('React confirmed loaded, no fallback needed');
+          return;
+        }
+        
+        var root = document.getElementById('root');
+        if (root && root.children.length === 1) {
+          var loadTime = Date.now() - window.reactLoadStartTime;
+          if (loadTime > 20000) { // 20 seconds
+            showFallback('Timeout after ' + Math.round(loadTime/1000) + ' seconds');
+          } else {
+            // Check again in 2 seconds
+            setTimeout(checkReactStatus, 2000);
+          }
+        } else {
+          console.log('React appears to have loaded (DOM changed)');
+        }
+      }
+      
+      // Start checking after 5 seconds
+      setTimeout(checkReactStatus, 5000);
     </script>
     
     <script type="module" src="/src/main.tsx"></script>
