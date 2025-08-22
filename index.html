@@ -47,9 +47,18 @@
       
       // Global error handler for module loading
       window.addEventListener('error', function(e) {
-        if (e.filename && e.filename.includes('index-') && e.filename.includes('.js')) {
+        console.error('Script error detected:', e.filename, e.error);
+        if (e.filename && (e.filename.includes('index-') || e.filename.includes('main-')) && e.filename.includes('.js')) {
           console.error('React bundle failed to load:', e.error);
-          showFallback('Script loading failed');
+          showFallback('Script loading failed: ' + e.filename);
+        }
+      });
+      
+      // Additional module error handling
+      window.addEventListener('unhandledrejection', function(e) {
+        console.error('Module loading rejection:', e.reason);
+        if (e.reason && e.reason.toString().includes('Failed to fetch')) {
+          showFallback('Module fetch failed');
         }
       });
       
