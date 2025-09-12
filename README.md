@@ -2,6 +2,11 @@
 
 A modern, responsive portfolio website showcasing my work as a Software Engineer specializing in Java Microservices, Fintech Solutions, and AI/ML Platforms.
 
+## Latest Update
+- Enhanced project descriptions and technical achievements
+- Improved layout and responsiveness
+- Updated with latest professional experience
+
 **🌐 Live Website**: [rajugottumukkala.in](https://rajugottumukkala.in)
 
 ## ✨ Features
