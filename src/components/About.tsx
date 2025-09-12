@@ -58,13 +58,13 @@ const About = () => {
     },
     {
       title: "Deployment Efficiency",
-      description: "Reduced deployment time by 50%",
+      description: "Reduced release cycles by 50%",
       metric: "50% Faster"
     },
     {
-      title: "Academic Excellence",
-      description: "Dean's International Scholar at UMKC",
-      metric: "3.82 GPA"
+      title: "AI Innovation",
+      description: "Built VelocIDE supporting 20+ concurrent users",
+      metric: "5ms Response"
     }
   ];
 
@@ -131,8 +131,10 @@ const About = () => {
           </div>
           
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Software Engineer with 2+ years building scalable Java microservices and Python applications 
-            for fintech and enterprise clients. Currently pursuing MS in Computer Science at UMKC.
+            Software engineer with 4+ years of experience developing and deploying scalable fintech solutions and AI platforms. 
+            Expertise includes cloud-native deployment (AWS, Docker, Kubernetes, Terraform), CI/CD automation, and secure API integrations, 
+            leading to increased API response times by 25% and cutting release cycles in half. Led the construction of a web IDE integrating 
+            Gemini, Claude, and Llama 3 models, which can handle concurrent loads response times.
           </p>
         </div>
 
@@ -145,20 +147,21 @@ const About = () => {
               </h3>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  With over 2 years of hands-on experience in software development, I specialize in 
-                  creating robust, scalable microservices using Java and Spring Boot. My passion lies 
-                  in solving complex problems and building systems that can handle real-world scale.
+                  With over 4 years of hands-on experience in software development, I specialize in 
+                  creating robust, scalable fintech solutions and AI platforms using Java, Spring Boot, 
+                  and cloud-native technologies. My passion lies in solving complex problems and building 
+                  systems that can handle real-world scale.
                 </p>
                 <p>
-                  I've had the privilege of working on fintech platforms where precision, security, 
+                  I've had the privilege of working on enterprise fintech platforms where precision, security, 
                   and performance are paramount. From implementing secure payment processing systems 
-                  to integrating AI-driven features, I enjoy the challenge of building software that 
-                  makes a meaningful impact.
+                  to building AI-powered code editors and fraud detection platforms, I enjoy the challenge 
+                  of building software that makes a meaningful impact.
                 </p>
                 <p>
                   Currently pursuing my Master's in Computer Science at the University of Missouri-Kansas City 
                   with a 3.82 GPA, I'm expanding my expertise in advanced algorithms, distributed systems, 
-                  and cloud computing architecture.
+                  and cloud computing architecture while continuing to build innovative solutions.
                 </p>
               </div>
             </div>

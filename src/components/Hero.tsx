@@ -68,17 +68,17 @@ const Hero = () => {
         {/* Tagline */}
         <div className="animate-fade-up" style={{ animationDelay: '0.6s' }}>
           <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-            MS Computer Science Student & Software Engineer specializing in{" "}
-            <span className="text-primary font-semibold">Java Microservices</span>,{" "}
-            <span className="text-accent font-semibold">Fintech Solutions</span>, and{" "}
-            <span className="text-secondary font-semibold">AI/ML Platforms</span>
+            Software Engineer with 4+ years developing{" "}
+            <span className="text-primary font-semibold">Scalable Fintech Solutions</span>,{" "}
+            <span className="text-accent font-semibold">AI Platforms</span>, and{" "}
+            <span className="text-secondary font-semibold">Cloud-Native Applications</span>
           </p>
         </div>
 
         {/* Stats */}
         <div className="animate-fade-up grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-10" style={{ animationDelay: '0.8s' }}>
           <div className="text-center p-3 sm:p-0">
-            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary mb-1">2+</div>
+            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary mb-1">4+</div>
             <div className="text-xs sm:text-sm text-muted-foreground leading-tight">Years Experience</div>
           </div>
           <div className="text-center p-3 sm:p-0">

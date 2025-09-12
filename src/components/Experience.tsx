@@ -1,66 +1,72 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Building2, TrendingUp } from "lucide-react";
+import { Calendar, MapPin, TrendingUp } from "lucide-react";
 
 const Experience = () => {
   const experiences = [
     {
       company: "Fidelity National Information Services (FIS Global)",
+      logo: "/logos/fis-global.png",
       position: "Software Engineer",
       location: "India",
       duration: "Jun 2022 - Jul 2023",
       type: "Full-time",
-      description: "Developed and maintained merchant payment modules within enterprise platform serving 10,000+ global merchants, implementing robust error handling and monitoring to ensure system reliability during peak traffic periods.",
+      description: "Designed and scaled merchant payment modules supporting 10,000+ global merchants, embedding fault-tolerant error handling and proactive monitoring to maintain 99.99% uptime during peak load.",
       achievements: [
-        "Built high-performance microservices with Spring Boot and Java, optimizing database queries and implementing caching strategies that improved API response times by 25%",
-        "Optimized deployment processes through CI/CD automation using Jenkins pipelines, Docker containerization, and AWS CodePipeline, reducing deployment time by 50%",
-        "Designed 10+ dynamic, reusable UI components using React and Material-UI, implementing lazy loading and state optimization techniques that achieved 25% improvement in frontend performance",
-        "Led Agile ceremonies including sprint planning and retrospectives, conducted thorough code reviews focusing on best practices and security"
+        "Implemented 20+ Spring Boot microservices with efficient database queries and caching layers, cutting API latency by 25% and handling 30% YoY growth without system strain",
+        "Orchestrated deployment pipelines with Jenkins, Docker, AWS CodePipeline, Terraform, compressing release cycles to 3 days and enabling 50% faster go-lives with safe rollbacks",
+        "Introduced 15+ modular React/Material-UI components with lazy loading and smarter state handling, driving a 25% boost in frontend performance and smoother merchant onboarding",
+        "Guided and coached 4 junior engineers via pair programming, reviews, and mentoring sessions, accelerating their ramp-up and improving team throughput by 30%",
+        "Expanded automated testing with JUnit, Mockito, Selenium, raising test coverage from 55% → 85%, cutting post-release defects by 40%, and strengthening compliance"
       ],
-      technologies: ["Java", "Spring Boot", "React", "Material-UI", "Jenkins", "Docker", "AWS", "PostgreSQL", "Redis"],
+      technologies: ["Java", "Spring Boot", "React", "Material-UI", "Jenkins", "Docker", "AWS", "PostgreSQL", "Redis", "Terraform"],
       impact: {
         metric: "25%",
         description: "Performance Improvement"
       }
     },
     {
-      company: "Cognizant Technology Solutions Corp (CTS)",
-      position: "Programmer Analyst",
+      company: "L&T Finance Limited",
+      logo: "/logos/lt-finance.png",
+      position: "Software Developer",
       location: "India",
-      duration: "Jan 2022 - Jun 2022",
+      duration: "Oct 2020 - Jun 2022",
       type: "Full-time",
-      description: "Coordinated transition from Salesforce Classic to Lightning by redesigning custom objects, page layouts, and workflows, improving system usability and performance for U.S.-based business operations.",
+      description: "Delivered full-stack loan management/payment modules using Spring Boot, Java, React, and PostgreSQL for 50,000+ active customers, ensuring frictionless transactions.",
       achievements: [
-        "Developed and implemented 30 workflow rules and 15 approval processes, leading to a 25% increase in operational efficiency",
-        "Ensured 100% data consistency across millions of records by sequencing parent-child relationships and executing bulk data uploads with Data Loader",
-        "Implemented complex REST/SOAP API integrations using MuleSoft middleware, along with OAuth for secure authentication between systems",
-        "Designed and optimized large-scale data models, wrote advanced SOQL/SOSL queries, and managed Salesforce Shield encryption for data security"
+        "Published and tuned REST APIs with auth + rate limiting, trimming API response times by 30% and strengthening security posture",
+        "Built 15+ React components with Redux state flows, standardizing UI patterns and trimming dev effort by 25%",
+        "Deployed automated CI/CD pipelines (Jenkins + Docker), shrinking release cycles from 2 weeks → 1 week and enabling zero-downtime rollouts",
+        "Integrated with payment gateways and credit bureaus to deliver real-time loan approvals and verifications, accelerating customer decisioning",
+        "Refactored SQL queries and applied caching, shrinking reporting runtime from 10s+ to <3s, boosting analyst output"
       ],
-      technologies: ["Salesforce", "MuleSoft", "REST/SOAP APIs", "OAuth", "SOQL/SOSL", "Data Loader", "Salesforce Shield"],
+      technologies: ["Java", "Spring Boot", "React", "Redux", "PostgreSQL", "Jenkins", "Docker", "REST APIs"],
       impact: {
-        metric: "25%",
-        description: "Efficiency Increase"
+        metric: "30%",
+        description: "API Performance"
       }
     },
     {
-      company: "E-Box",
-      position: "Software Development Intern",
+      company: "KPMG",
+      logo: "/logos/kpmg.png",
+      position: "Jr. Software Developer",
       location: "India",
-      duration: "Apr 2020 - Jun 2020",
-      type: "Internship",
-      description: "Developed campus navigation web application for university with 2,000+ active users using Spring MVC and PostgreSQL, implementing shortest path algorithms for route optimization between 30+ campus buildings.",
+      duration: "Apr 2019 - Sep 2020",
+      type: "Full-time",
+      description: "Contributed to internal audit & compliance applications built on Java, Spring Boot, Angular, and MySQL, serving over 5,000 users across multiple business units.",
       achievements: [
-        "Built RESTful APIs with basic authentication and input validation, integrated Google Maps API for location services",
-        "Achieved consistent sub-second response times for route calculations using optimized algorithms",
-        "Participated in agile development practices including daily standups and sprint retrospectives",
-        "Delivered assigned features on schedule while learning best practices for version control and testing"
+        "Delivered 10+ secure APIs with validation and logging, enhancing data reliability and reducing integration issues by 15%",
+        "Applied RBAC and security patches, adhering to ISO 27001 + GDPR standards",
+        "Tuned SQL queries and backend logic, reducing report generation time from 12 seconds to 4 seconds, providing faster access to insights for auditors",
+        "Helped migrate Excel/VBA workflows into dashboards, cutting manual reporting by 40%",
+        "Developed 5+ Angular components for dashboards and forms, unifying UI design and reducing front-end defects by 20%"
       ],
-      technologies: ["Java", "Spring MVC", "PostgreSQL", "REST APIs", "Google Maps API", "Algorithms", "Git"],
+      technologies: ["Java", "Spring Boot", "Angular", "MySQL", "Jenkins", "JUnit", "Mockito"],
       impact: {
-        metric: "2,000+",
-        description: "Active Users"
+        metric: "40%",
+        description: "Manual Work Reduction"
       }
-    }
+    },
   ];
 
   return (
@@ -121,8 +127,12 @@ const Experience = () => {
                       </CardTitle>
                       
                       <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Building2 className="h-4 w-4" />
+                        <div className="flex items-center gap-2">
+                          <img 
+                            src={exp.logo} 
+                            alt={`${exp.company} logo`}
+                            className="h-6 w-auto object-contain"
+                          />
                           <span className="text-xs sm:text-sm">{exp.company}</span>
                         </div>
                         <div className="flex items-center gap-1">

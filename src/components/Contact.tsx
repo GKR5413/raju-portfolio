@@ -15,7 +15,9 @@ import {
   Clock, 
   Globe,
   Coffee,
-  Calendar
+  Calendar,
+  CheckCircle,
+  AlertCircle
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -27,37 +29,98 @@ const Contact = () => {
     subject: "",
     message: ""
   });
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
   const { toast } = useToast();
+
+  const validateForm = () => {
+    const newErrors: {[key: string]: string} = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+    
+    if (!formData.subject.trim()) {
+      newErrors.subject = "Subject is required";
+    } else if (formData.subject.trim().length < 5) {
+      newErrors.subject = "Subject must be at least 5 characters";
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters";
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      toast({
+        title: "Please fix the errors below",
+        description: "All fields are required and must meet the minimum requirements.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    toast({
-      title: "Message sent successfully!",
-      description: "Thank you for reaching out. I'll get back to you within 24 hours.",
-    });
-    
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
+    try {
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for reaching out. I'll get back to you within 24 hours.",
+      });
+      
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setErrors({});
+    } catch (error) {
+      toast({
+        title: "Error sending message",
+        description: "Please try again or contact me directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ""
+      });
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "gottumukkala.kanakaraju@gmail.com",
-      href: "mailto:gottumukkala.kanakaraju@gmail.com"
+      value: "rajugottumukkala986@gmail.com",
+      href: "mailto:rajugottumukkala986@gmail.com"
     },
     {
       icon: Phone,
@@ -257,8 +320,14 @@ const Contact = () => {
                         placeholder="Your full name"
                         required
                         disabled={isSubmitting}
-                        className="text-sm"
+                        className={`text-sm ${errors.name ? 'border-destructive' : ''}`}
                       />
+                      {errors.name && (
+                        <div className="flex items-center gap-1 text-sm text-destructive">
+                          <AlertCircle className="h-4 w-4" />
+                          <span>{errors.name}</span>
+                        </div>
+                      )}
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email" className="text-sm">Email Address</Label>
@@ -271,8 +340,14 @@ const Contact = () => {
                         placeholder="your.email@example.com"
                         required
                         disabled={isSubmitting}
-                        className="text-sm"
+                        className={`text-sm ${errors.email ? 'border-destructive' : ''}`}
                       />
+                      {errors.email && (
+                        <div className="flex items-center gap-1 text-sm text-destructive">
+                          <AlertCircle className="h-4 w-4" />
+                          <span>{errors.email}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -286,8 +361,14 @@ const Contact = () => {
                       placeholder="What would you like to discuss?"
                       required
                       disabled={isSubmitting}
-                      className="text-sm"
+                      className={`text-sm ${errors.subject ? 'border-destructive' : ''}`}
                     />
+                    {errors.subject && (
+                      <div className="flex items-center gap-1 text-sm text-destructive">
+                        <AlertCircle className="h-4 w-4" />
+                        <span>{errors.subject}</span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -301,8 +382,14 @@ const Contact = () => {
                       rows={5}
                       required
                       disabled={isSubmitting}
-                      className="text-sm resize-none"
+                      className={`text-sm resize-none ${errors.message ? 'border-destructive' : ''}`}
                     />
+                    {errors.message && (
+                      <div className="flex items-center gap-1 text-sm text-destructive">
+                        <AlertCircle className="h-4 w-4" />
+                        <span>{errors.message}</span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">

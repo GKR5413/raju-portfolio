@@ -10,22 +10,50 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "IntelliFlow AI Platform",
+      title: "VelocIDE - AI-Based Code Editor",
       category: "AI/ML",
-      description: "Enterprise-grade fintech infrastructure with real-time fraud detection using ML+LLM APIs, achieving ~55ms p95 latency under 20 concurrent requests.",
+      description: "Orchestrated a production-ready web IDE supporting 20+ concurrent users, integrating Gemini, Claude, and Llama 3 models for autonomous code management with 5ms average response times and 100% accuracy under load.",
+      image: "/api/placeholder/400/250",
+      technologies: ["React", "TypeScript", "Monaco Editor", "Docker", "gRPC", "OAuth 2.0", "JWT", "Gemini", "Claude", "Llama 3"],
+      features: [
+        "Multi-model AI integration",
+        "Real-time code editing",
+        "Multi-tab interface",
+        "gRPC powered terminals"
+      ],
+      metrics: {
+        performance: "20+",
+        latency: "5ms avg",
+        accuracy: "100%",
+        concurrent: "20 users",
+        system: "6 services"
+      },
+      links: {
+        github: "https://github.com/GKR5413/velocide",
+        live: "#",
+        demo: "#"
+      },
+      status: "Production",
+      icon: Brain
+    },
+    {
+      id: 2,
+      title: "IntelliFlow AI Platform",
+      category: "Fintech",
+      description: "Designed a fraud detection API with ML + LLM integration, sustaining ~55ms p95 latency at 414 requests per second (RPS) with zero errors on 8-core/16GB infra.",
       image: "/api/placeholder/400/250",
       technologies: ["Python", "ML", "LLMs", "Docker", "Kubernetes", "Terraform", "Prometheus", "Grafana", "Ollama", "Mistral"],
       features: [
         "Real-time fraud detection",
-        "ML+LLM fraud API",
+        "ML+LLM integration",
         "Containerized deployment",
-        "Comprehensive monitoring"
+        "Automated ML pipelines"
       ],
       metrics: {
         performance: "414 RPS",
         latency: "~55ms p95",
         accuracy: "0 errors",
-        concurrent: "20 req",
+        concurrent: "20+ req",
         system: "8-core/16GB"
       },
       links: {
@@ -34,11 +62,11 @@ const Projects = () => {
         demo: "#"
       },
       status: "Production",
-      icon: Brain
+      icon: Shield
     }
   ];
 
-  const categories = ["All", "AI/ML"];
+  const categories = ["All", "AI/ML", "Fintech"];
 
   const filteredProjects = activeFilter === "All" 
     ? projects 
@@ -80,24 +108,24 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {filteredProjects.map((project) => (
                           <Card key={project.id} className="group hover-lift shadow-lg overflow-hidden border-2 border-transparent hover:border-primary/20 transition-all duration-300">
                 {/* Project Header with Enhanced Design */}
-                <div className="relative h-52 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 overflow-hidden">
+                <div className="relative h-48 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 overflow-hidden">
                   {/* Animated Background Pattern */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5"></div>
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]"></div>
                   
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
-                      <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl flex items-center justify-center mb-4 shadow-2xl mx-auto border border-primary/20 backdrop-blur-sm">
+                      <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl flex items-center justify-center mb-3 shadow-2xl mx-auto border border-primary/20 backdrop-blur-sm">
                         {(() => {
                           const IconComponent = project.icon;
-                          return <IconComponent className="h-10 w-10 text-primary" />;
+                          return <IconComponent className="h-8 w-8 text-primary" />;
                         })()}
                       </div>
-                      <p className="text-lg text-foreground font-semibold bg-background/80 backdrop-blur-sm px-4 py-2 rounded-full">{project.title}</p>
+                      <p className="text-base text-foreground font-semibold bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full">{project.title}</p>
                     </div>
                   </div>
                   
@@ -115,13 +143,13 @@ const Projects = () => {
                   {/* Achievement Highlights */}
                   <div className="absolute bottom-4 left-4 flex gap-2">
                     <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200 text-xs">
-                      🚀 414 RPS
+                      🚀 {project.metrics.performance}
                     </Badge>
                     <Badge variant="secondary" className="bg-blue-100 text-blue-800 border-blue-200 text-xs">
-                      ⚡ ~55ms
+                      ⚡ {project.metrics.latency}
                     </Badge>
                     <Badge variant="secondary" className="bg-purple-100 text-purple-800 border-purple-200 text-xs">
-                      🎯 0 Errors
+                      🎯 {project.metrics.accuracy}
                     </Badge>
                   </div>
                 </div>
@@ -140,7 +168,7 @@ const Projects = () => {
                   </div>
                 </div>
                 
-                <p className="text-foreground leading-relaxed text-lg font-medium">
+                <p className="text-foreground leading-relaxed text-base">
                   {project.description}
                 </p>
               </CardHeader>
@@ -165,44 +193,44 @@ const Projects = () => {
                     <Zap className="h-5 w-5 text-primary" />
                     Performance Metrics
                   </h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4">
-                    <div className="text-center p-2 sm:p-3 bg-card rounded-lg border border-border shadow-sm min-h-[70px] sm:min-h-[80px] flex flex-col justify-center items-center">
-                      <div className="text-lg sm:text-xl font-bold text-primary mb-1">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm min-h-[80px] flex flex-col justify-center items-center">
+                      <div className="text-xl font-bold text-primary mb-1">
                         {project.metrics.performance}
                       </div>
-                      <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-tight text-center">
+                      <div className="text-sm text-muted-foreground font-semibold leading-tight text-center">
                         RPS
                       </div>
                     </div>
-                    <div className="text-center p-2 sm:p-3 bg-card rounded-lg border border-border shadow-sm min-h-[70px] sm:min-h-[80px] flex flex-col justify-center items-center">
-                      <div className="text-lg sm:text-xl font-bold text-primary mb-1">
+                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm min-h-[80px] flex flex-col justify-center items-center">
+                      <div className="text-xl font-bold text-primary mb-1">
                         {project.metrics.latency}
                       </div>
-                      <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-tight text-center">
+                      <div className="text-sm text-muted-foreground font-semibold leading-tight text-center">
                         P95 Latency
                       </div>
                     </div>
-                    <div className="text-center p-2 sm:p-3 bg-card rounded-lg border border-border shadow-sm min-h-[70px] sm:min-h-[80px] flex flex-col justify-center items-center">
-                      <div className="text-lg sm:text-xl font-bold text-primary mb-1">
+                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm min-h-[80px] flex flex-col justify-center items-center">
+                      <div className="text-xl font-bold text-primary mb-1">
                         {project.metrics.accuracy}
                       </div>
-                      <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-tight text-center">
+                      <div className="text-sm text-muted-foreground font-semibold leading-tight text-center">
                         Error Rate
                       </div>
                     </div>
-                    <div className="text-center p-2 sm:p-3 bg-card rounded-lg border border-border shadow-sm min-h-[70px] sm:min-h-[80px] flex flex-col justify-center items-center">
-                      <div className="text-lg sm:text-xl font-bold text-primary mb-1">
+                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm min-h-[80px] flex flex-col justify-center items-center">
+                      <div className="text-xl font-bold text-primary mb-1">
                         {project.metrics.concurrent}
                       </div>
-                      <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-tight text-center">
+                      <div className="text-sm text-muted-foreground font-semibold leading-tight text-center">
                         Concurrent
                       </div>
                     </div>
-                    <div className="text-center p-2 sm:p-3 bg-card rounded-lg border border-border shadow-sm min-h-[70px] sm:min-h-[80px] flex flex-col justify-center items-center">
-                      <div className="text-lg sm:text-xl font-bold text-primary mb-1">
+                    <div className="text-center p-3 bg-card rounded-lg border border-border shadow-sm min-h-[80px] flex flex-col justify-center items-center">
+                      <div className="text-xl font-bold text-primary mb-1">
                         {project.metrics.system}
                       </div>
-                      <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-tight text-center">
+                      <div className="text-sm text-muted-foreground font-semibold leading-tight text-center">
                         System Specs
                       </div>
                     </div>
@@ -210,6 +238,47 @@ const Projects = () => {
                 </div>
 
                 {/* Technical Achievements */}
+                {project.title.includes("VelocIDE") && (
+                  <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-6 mb-6 border border-primary/20">
+                    <h5 className="font-bold text-foreground mb-4 flex items-center gap-3 text-lg">
+                      <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                        <Brain className="h-5 w-5 text-primary" />
+                      </div>
+                      🚀 Technical Achievements
+                    </h5>
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
+                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                          <span className="font-semibold text-foreground">Architected a 6-service Dockerized microservices system</span>
+                          <span className="text-muted-foreground"> with latency benchmarks of Auth: 6ms, AI Agent: 5ms, Compiler: 13ms, enabling sub-10ms inter-service communication</span>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
+                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                          <span className="font-semibold text-foreground">Delivered a React + TypeScript SPA using Monaco Editor</span>
+                          <span className="text-muted-foreground"> with 156ms cold starts and 25ms page loads, including multi-tab editing, resizable panels, and gRPC powered terminals</span>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
+                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                          <span className="font-semibold text-foreground">Implemented OAuth 2.0/JWT for authentication</span>
+                          <span className="text-muted-foreground"> supporting 20+ simultaneous sessions with lightweight &lt;50MB memory footprint per service</span>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
+                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                          <span className="font-semibold text-foreground">Optimized container lifecycle management</span>
+                          <span className="text-muted-foreground"> to achieve 3-second deployments and 100% uptime in stress testing across 10,000+ test requests</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {project.title.includes("IntelliFlow") && (
                   <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-6 mb-6 border border-primary/20">
                     <h5 className="font-bold text-foreground mb-4 flex items-center gap-3 text-lg">
@@ -222,29 +291,29 @@ const Projects = () => {
                       <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
                         <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <span className="font-semibold text-foreground">Benchmarked ML+LLM fraud API</span>
-                          <span className="text-muted-foreground"> to ~55ms p95 latency under 20 concurrent requests and sustained 414 RPS (0 errors) on an 8-core/16GB system</span>
+                          <span className="font-semibold text-foreground">Deployed containerized services on Docker + Kubernetes with Terraform IaC</span>
+                          <span className="text-muted-foreground"> standardizing 100% of deployments and reducing environment drift to 0%</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
                         <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <span className="font-semibold text-foreground">Deployed containerized services</span>
-                          <span className="text-muted-foreground"> via Docker/Kubernetes with Terraform IaC, establishing comprehensive monitoring and alerting (Prometheus/Grafana)</span>
+                          <span className="font-semibold text-foreground">Built automated ML pipelines covering feature engineering, retraining, and deployment</span>
+                          <span className="text-muted-foreground"> cutting manual intervention by 80% and release cycles by 40%</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
                         <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <span className="font-semibold text-foreground">Built real-time fraud detection platform</span>
-                          <span className="text-muted-foreground"> with automated ML pipelines, integrating security best practices (JWT, rate limiting) and automated CI/CD workflows</span>
+                          <span className="font-semibold text-foreground">Integrated Mistral LLMs for intelligent verification</span>
+                          <span className="text-muted-foreground"> improving fraud detection accuracy by 15% while reducing false positives by 20%</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
                         <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <span className="font-semibold text-foreground">Advanced fraud detection</span>
-                          <span className="text-muted-foreground"> using Ollama-hosted Mistral LLMs for intelligent multi-factor verification, reducing false positives while maintaining real-time processing</span>
+                          <span className="font-semibold text-foreground">Monitored systems with Prometheus + Grafana</span>
+                          <span className="text-muted-foreground"> sustaining sub-100ms latency across all mission-critical APIs under continuous load</span>
                         </div>
                       </div>
                     </div>
