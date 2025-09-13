@@ -1,3 +1,6 @@
+
+
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Download, Moon, Sun, Eye, Mail } from "lucide-react";
@@ -48,9 +51,7 @@ const Navigation = () => {
   return (
     <nav className={cn(
       "fixed top-0 left-0 right-0 z-[150] transition-all duration-500 ease-out",
-      scrolled 
-        ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200/20 dark:border-gray-700/20 shadow-sm" 
-        : "bg-transparent"
+      "bg-transparent"
     )}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="flex items-center justify-between h-20">
@@ -58,7 +59,7 @@ const Navigation = () => {
           <div className="flex-shrink-0">
             <button 
               onClick={() => scrollToSection('home')}
-              className="text-2xl font-bold text-foreground transition-colors duration-300"
+              className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105"
             >
               Raju.
             </button>
@@ -71,7 +72,7 @@ const Navigation = () => {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.sectionId)}
-                  className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-4 py-2 rounded-xl text-base font-medium transition-all duration-300 relative group hover:bg-gray-100 dark:hover:bg-gray-800/50"
+                  className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 relative group hover:bg-gray-100 dark:hover:bg-gray-800/50"
                 >
                   {item.name}
                   <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-300 rounded-full"></span>
@@ -89,7 +90,7 @@ const Navigation = () => {
                 onClick={toggleDarkMode}
                 className="w-10 h-10 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110"
               >
-                {theme === 'dark' ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-600" />}
+                {theme === 'dark' ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-700" />}
               </Button>
             )}
             <Button 
@@ -120,7 +121,7 @@ const Navigation = () => {
                 onClick={toggleDarkMode}
                 className="w-10 h-10 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300"
               >
-                {theme === 'dark' ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-600" />}
+                {theme === 'dark' ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-700" />}
               </Button>
             )}
             <Button
@@ -144,7 +145,7 @@ const Navigation = () => {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.sectionId)}
-                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 w-full text-left"
+                className="text-gray-800 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 w-full text-left"
               >
                 {item.name}
               </button>

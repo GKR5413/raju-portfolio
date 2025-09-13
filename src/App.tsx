@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoadingScreen from "./components/LoadingScreen";
-import CreativeBackground from "./components/CreativeBackground";
+import Minimal3DBackground from "./components/Minimal3DBackground";
 import Navigation from "./components/Navigation";
 
 const queryClient = new QueryClient();
@@ -40,24 +40,15 @@ const App = () => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  useEffect(() => {
-    // Simulate initial loading with 3 second delay
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000); // 3 seconds for all loads
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <TooltipProvider>
-          <div className="min-h-screen bg-background text-foreground relative">
-            <CreativeBackground />
+          <div className="min-h-screen text-foreground relative">
+            <Minimal3DBackground />
             <Toaster />
             <Sonner />
-            {isLoading && <LoadingScreen />}
+            {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ 
