@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, TrendingUp } from "lucide-react";
+import { Calendar, MapPin, TrendingUp, Code2, Terminal } from "lucide-react";
+import AnimatedCodeSnippet, { javaSpringBootCode, microservicesCode, reactHookCode } from "./AnimatedCodeSnippet";
+import { AchievementCard, achievements } from "./AnimatedProgress";
 
 const Experience = () => {
   const experiences = [
@@ -183,6 +185,195 @@ const Experience = () => {
                   </Card>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Enhanced Code in Action Section */}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <div className="group inline-block relative mb-6">
+              <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                Code in Action
+              </h3>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Real examples from production systems handling millions of transactions
+            </p>
+          </div>
+
+          {/* Interactive Code Showcase */}
+          <div className="space-y-12">
+            {/* Featured Code Example - Payment Processing */}
+            <div className="relative">
+              <Card className="overflow-hidden border-primary/20 shadow-xl">
+                <CardHeader className="bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 backdrop-blur-sm">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-primary/20 rounded-lg">
+                        <Code2 className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-lg font-semibold">Featured: Enterprise Payment API</CardTitle>
+                        <p className="text-sm text-muted-foreground">Production-ready Spring Boot microservice</p>
+                      </div>
+                    </div>
+                    <Badge className="bg-green-500/20 text-green-700 dark:text-green-300 border-green-500/30">
+                      In Production
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <AnimatedCodeSnippet
+                    title="Payment Processing API"
+                    language="Java"
+                    code={javaSpringBootCode}
+                    description="Handles 10,000+ daily transactions with fault tolerance and monitoring"
+                    autoPlay={false}
+                    theme="dark"
+                  />
+                  <div className="p-4 bg-muted/30 border-t">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                      <div>
+                        <div className="text-2xl font-bold text-primary">414</div>
+                        <div className="text-xs text-muted-foreground">Requests/Second</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-primary">99.9%</div>
+                        <div className="text-xs text-muted-foreground">Uptime</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-primary">25ms</div>
+                        <div className="text-xs text-muted-foreground">Avg Response</div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Code Grid */}
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Kubernetes Configuration */}
+              <Card className="hover-lift border-primary/10 hover:border-primary/30 transition-all duration-300">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-500/20 rounded-lg">
+                      <Terminal className="h-5 w-5 text-blue-500" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Cloud Infrastructure</CardTitle>
+                      <p className="text-sm text-muted-foreground">Auto-scaling Kubernetes deployment</p>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <AnimatedCodeSnippet
+                    title="Microservices Deployment"
+                    language="YAML"
+                    code={microservicesCode}
+                    description="Production K8s config with health checks and resource limits"
+                    autoPlay={false}
+                    theme="dark"
+                  />
+                </CardContent>
+              </Card>
+
+              {/* React Frontend */}
+              <Card className="hover-lift border-primary/10 hover:border-primary/30 transition-all duration-300">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-cyan-500/20 rounded-lg">
+                      <Code2 className="h-5 w-5 text-cyan-500" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">Frontend Integration</CardTitle>
+                      <p className="text-sm text-muted-foreground">Custom React hook for payment processing</p>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <AnimatedCodeSnippet
+                    title="Custom Payment Hook"
+                    language="JavaScript"
+                    code={reactHookCode}
+                    description="Reusable hook with error handling and loading states"
+                    autoPlay={false}
+                    theme="dark"
+                  />
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Code Metrics Dashboard */}
+            <Card className="border-green-200 bg-green-50/30 dark:border-green-800 dark:bg-green-950/20">
+              <CardHeader>
+                <CardTitle className="text-green-800 dark:text-green-200 flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5" />
+                  Code Quality & Performance Metrics
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-700 dark:text-green-300 mb-1">85%</div>
+                    <div className="text-sm text-green-600 dark:text-green-400">Test Coverage</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-700 dark:text-green-300 mb-1">A+</div>
+                    <div className="text-sm text-green-600 dark:text-green-400">Code Quality</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-700 dark:text-green-300 mb-1">0</div>
+                    <div className="text-sm text-green-600 dark:text-green-400">Security Issues</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-700 dark:text-green-300 mb-1">99.9%</div>
+                    <div className="text-sm text-green-600 dark:text-green-400">Reliability</div>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-2 justify-center">
+                  <Badge variant="outline" className="text-green-700 dark:text-green-300 border-green-500/30">
+                    ✅ SOLID Principles
+                  </Badge>
+                  <Badge variant="outline" className="text-green-700 dark:text-green-300 border-green-500/30">
+                    ✅ Clean Architecture
+                  </Badge>
+                  <Badge variant="outline" className="text-green-700 dark:text-green-300 border-green-500/30">
+                    ✅ Error Handling
+                  </Badge>
+                  <Badge variant="outline" className="text-green-700 dark:text-green-300 border-green-500/30">
+                    ✅ Performance Optimized
+                  </Badge>
+                  <Badge variant="outline" className="text-green-700 dark:text-green-300 border-green-500/30">
+                    ✅ Security First
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Achievement Cards */}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-semibold text-foreground mb-4">
+              Key Achievements
+            </h3>
+            <p className="text-muted-foreground">
+              Measurable impact across different domains
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {achievements.map((achievement, index) => (
+              <AchievementCard
+                key={index}
+                {...achievement}
+                animationDelay={index * 0.2}
+              />
             ))}
           </div>
         </div>

@@ -7,6 +7,7 @@ import { Menu, X, Download, Moon, Sun, Eye, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCustomTheme } from "@/App";
 import ResumeModal from "./ResumeModal";
+import MagneticElement from "./MagneticElement";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,12 +58,14 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <button 
-              onClick={() => scrollToSection('home')}
-              className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105"
-            >
-              Raju.
-            </button>
+            <MagneticElement strength={0.2}>
+              <button
+                onClick={() => scrollToSection('home')}
+                className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105"
+              >
+                Raju.
+              </button>
+            </MagneticElement>
           </div>
 
           {/* Desktop Navigation */}
@@ -93,23 +96,27 @@ const Navigation = () => {
                 {theme === 'dark' ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-700" />}
               </Button>
             )}
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="gap-2 rounded-xl border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:scale-105"
-              onClick={() => setResumeModalOpen(true)}
-            >
-              <Eye className="h-4 w-4" />
-              Resume
-            </Button>
-            <Button 
-              className="gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-              size="sm"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              <Mail className="h-4 w-4" />
-              Get In Touch
-            </Button>
+            <MagneticElement strength={0.15}>
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-2 rounded-xl border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 hover:scale-105"
+                onClick={() => setResumeModalOpen(true)}
+              >
+                <Eye className="h-4 w-4" />
+                Resume
+              </Button>
+            </MagneticElement>
+            <MagneticElement strength={0.2}>
+              <Button
+                className="gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                size="sm"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <Mail className="h-4 w-4" />
+                Get In Touch
+              </Button>
+            </MagneticElement>
           </div>
 
           {/* Mobile menu button */}

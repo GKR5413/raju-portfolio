@@ -9,6 +9,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoadingScreen from "./components/LoadingScreen";
 import Minimal3DBackground from "./components/Minimal3DBackground";
+import MorphingBackground from "./components/MorphingBackground";
+import FloatingShapes from "./components/FloatingShapes";
 import Navigation from "./components/Navigation";
 
 const queryClient = new QueryClient();
@@ -45,7 +47,8 @@ const App = () => {
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <TooltipProvider>
           <div className="min-h-screen text-foreground relative">
-            <Minimal3DBackground />
+            <MorphingBackground />
+            <FloatingShapes shapeCount={12} interactive={true} />
             <Toaster />
             <Sonner />
             {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}

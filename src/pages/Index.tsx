@@ -46,97 +46,28 @@ const Index = () => {
   }, [location]);
 
   return (
-    <motion.div 
-      className="min-h-screen bg-background text-foreground"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ 
-        duration: 2.0, 
-        ease: [0.4, 0.0, 0.2, 1],
-        delay: 0.5
-      }}
-    >
+    <div className="min-h-screen bg-background text-foreground">
       {/* Navigation - Always visible */}
       <Navigation />
-      
-      {/* Hero with smooth fade entrance */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ 
-          duration: 2.5, 
-          ease: [0.4, 0.0, 0.2, 1],
-          delay: 0.8
-        }}
-      >
-        <Hero />
-      </motion.div>
-      
-      {/* About with smooth fade effect */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ 
-          duration: 2.5, 
-          ease: [0.4, 0.0, 0.2, 1],
-          delay: 1.0
-        }}
-      >
-        <About />
-      </motion.div>
-      
-      {/* Experience with smooth fade */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ 
-          duration: 2.5, 
-          ease: [0.4, 0.0, 0.2, 1],
-          delay: 1.2
-        }}
-      >
-        <Experience />
-      </motion.div>
-      
-      {/* Projects with smooth fade */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ 
-          duration: 2.5, 
-          ease: [0.4, 0.0, 0.2, 1],
-          delay: 1.4
-        }}
-      >
-        <Projects />
-      </motion.div>
-      
-      {/* Contact with smooth fade */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ 
-          duration: 2.5, 
-          ease: [0.4, 0.0, 0.2, 1],
-          delay: 1.6
-        }}
-      >
-        <Contact />
-      </motion.div>
-      
-      {/* Footer with smooth fade */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ 
-          duration: 2.5, 
-          ease: [0.4, 0.0, 0.2, 1],
-          delay: 1.8
-        }}
-      >
-        <Footer />
-      </motion.div>
-    </motion.div>
+
+      {/* Hero */}
+      <Hero />
+
+      {/* About */}
+      <About />
+
+      {/* Experience */}
+      <Experience />
+
+      {/* Projects */}
+      <Projects />
+
+      {/* Contact */}
+      <Contact />
+
+      {/* Footer */}
+      <Footer />
+    </div>
   );
 };
 

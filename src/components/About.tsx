@@ -2,23 +2,11 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Code, Database, Cloud, Brain, Shield, Users, GraduationCap, Award, Server, Layers, Zap, Eye } from "lucide-react";
-import { useState, useEffect } from "react";
+import SkillBubbles from "./SkillBubbles";
+import { sampleSkills } from "@/data/skills";
+import { SkillMeter, technicalSkills, CircularProgress } from "./AnimatedProgress";
 
 const About = () => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [imagesLoaded, setImagesLoaded] = useState({ img1: false, img2: false });
-
-  // Auto-switch images every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev === 0 ? 1 : 0));
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Check if any images are loaded
-  const hasImages = imagesLoaded.img1 || imagesLoaded.img2;
   const skills = [
     { name: "Java & Spring Boot", level: 95, icon: Code },
     { name: "Microservices & Cloud", level: 90, icon: Cloud },
@@ -35,14 +23,14 @@ const About = () => {
   ];
 
   const technologies = [
-    "Java", "Spring Boot", "Spring Cloud", "Spring Security", "Spring Data JPA", "Python", "JavaScript", "TypeScript", "React", "Node.js", "Express.js",
-    "PostgreSQL", "MongoDB", "MySQL", "Redis", "Apache Kafka", "RabbitMQ", "Elasticsearch", "InfluxDB", "Cassandra",
-    "AWS (EKS, EC2, S3, Lambda, RDS, CloudFormation, IAM, VPC)", "Azure", "Google Cloud Platform", "Docker", "Kubernetes", "Terraform", "Helm", "Istio",
-    "Jenkins", "GitHub Actions", "GitLab CI", "ArgoCD", "Linux", "Nginx", "Apache", "Ansible", "Puppet", "Chef", "Git", "Maven", "Gradle", "SonarQube",
-    "Prometheus", "Grafana", "ELK Stack", "Jaeger", "Zipkin", "HashiCorp Vault", "Consul", "Nomad", "OpenTelemetry", "Splunk", "Datadog",
-    "JUnit", "Mockito", "TestNG", "Cucumber", "Selenium", "Postman", "Swagger", "OpenAPI", "GraphQL", "gRPC", "WebSocket", "REST APIs",
-    "Machine Learning", "TensorFlow", "PyTorch", "Scikit-learn", "Pandas", "NumPy", "Jupyter", "MLflow", "Kubeflow", "Apache Spark", "Hadoop",
-    "Microservices", "Service Mesh", "API Gateway", "Load Balancing", "Circuit Breaker", "Retry Patterns", "CQRS", "Event Sourcing", "Saga Pattern"
+    "Java", "Spring Boot", "Spring Cloud", "Spring Security", "Spring Data JPA", "Python", "JavaScript", "TypeScript", "React", "Node.js",
+    "PostgreSQL", "MongoDB", "Redis", "Apache Kafka", "Elasticsearch",
+    "AWS (EKS, EC2, S3, Lambda, RDS)", "Docker", "Kubernetes", "Terraform", "Helm",
+    "Jenkins", "GitHub Actions", "Git", "Maven", "Gradle",
+    "Prometheus", "Grafana", "ELK Stack", "Jaeger",
+    "JUnit", "Mockito", "Postman", "Swagger", "REST APIs", "GraphQL", "gRPC",
+    "Machine Learning", "TensorFlow", "Scikit-learn", "Pandas", "NumPy", "Jupyter",
+    "Microservices", "API Gateway", "Circuit Breaker", "CQRS", "Event Sourcing"
   ];
 
   const highlights = [
@@ -80,56 +68,19 @@ const About = () => {
             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
           
-          {/* Animated Profile Picture Switcher */}
+          {/* Profile Picture */}
           <div className="flex justify-center mb-6">
-            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl group">
-              {/* Loading Indicator */}
-              {!hasImages && (
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
-                  <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
-                </div>
-              )}
-              <div className="relative w-full h-full">
-                {/* First Profile Picture */}
-                <img
-                  src="/profile-1.jpg"
-                  alt="Raju Gottumukkala - Professional Headshot 1"
-                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out ${
-                    currentImage === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
-                  }`}
-                  onLoad={() => setImagesLoaded(prev => ({ ...prev, img1: true }))}
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    setImagesLoaded(prev => ({ ...prev, img1: false }));
-                  }}
-                />
-                {/* Second Profile Picture */}
-                <img
-                  src="/profile-2.jpg"
-                  alt="Raju Gottumukkala - Professional Headshot 2"
-                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out ${
-                    currentImage === 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
-                  }`}
-                  onLoad={() => setImagesLoaded(prev => ({ ...prev, img2: true }))}
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    setImagesLoaded(prev => ({ ...prev, img2: false }));
-                  }}
-                />
-                
-                {/* Fallback Avatar if images don't load */}
-                {!hasImages && (
-                  <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                    <div className="text-4xl font-bold text-primary">RG</div>
-                  </div>
-                )}
-              </div>
-              
-              {/* Animated Border Ring */}
-              <div className="absolute inset-0 rounded-full border-4 border-transparent bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 animate-spin-slow opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              {/* Hover Effect */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl group">
+              <div
+                className="w-full h-full bg-cover bg-center bg-no-repeat transition-transform duration-300 ease-in-out group-hover:scale-105"
+                style={{
+                  backgroundImage: 'url(/profile-2.jpg)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+                role="img"
+                aria-label="Raju Gottumukkala - Professional Headshot"
+              />
             </div>
           </div>
           
@@ -208,29 +159,13 @@ const About = () => {
             </div>
           </div>
 
-          {/* Skills */}
+          {/* Skills with Animation */}
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold text-foreground mb-6">
               Technical Expertise
             </h3>
-            
-            <div className="space-y-6">
-              {skills.map((skill, index) => {
-                const IconComponent = skill.icon;
-                return (
-                  <div key={index} className="space-y-2">
-                    <div className="flex items-center gap-3">
-                      <IconComponent className="h-5 w-5 text-primary" />
-                      <span className="font-medium text-foreground">{skill.name}</span>
-                      <span className="text-sm text-muted-foreground ml-auto">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <Progress value={skill.level} className="h-2" />
-                  </div>
-                );
-              })}
-            </div>
+
+            <SkillMeter skills={technicalSkills} />
 
             {/* Specialized Skills */}
             <div className="mt-8">
@@ -265,6 +200,19 @@ const About = () => {
           </div>
         </div>
 
+        {/* Interactive Skills Bubbles */}
+        <div className="mb-16">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-semibold text-foreground mb-4">
+              Core Technologies
+            </h3>
+            <p className="text-muted-foreground">
+              Hover over skills to see details and experience level
+            </p>
+          </div>
+          <SkillBubbles skills={sampleSkills} className="min-h-[400px]" />
+        </div>
+
         {/* Technologies */}
         <div className="text-center">
           <h3 className="text-2xl font-semibold text-foreground mb-8">
@@ -272,9 +220,9 @@ const About = () => {
           </h3>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             {technologies.map((tech, index) => (
-              <Badge 
-                key={index} 
-                variant="secondary" 
+              <Badge
+                key={index}
+                variant="secondary"
                 className="px-3 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-medium hover-lift"
               >
                 {tech}
