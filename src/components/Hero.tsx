@@ -20,7 +20,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-blue-50/30 via-white to-gray-50/50 dark:from-gray-900 dark:to-gray-800">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-blue-50/30 via-white to-gray-50/50 dark:from-gray-900 dark:to-gray-800 pt-28">
       {/* Subtle accent elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div 
