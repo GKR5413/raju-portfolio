@@ -139,7 +139,7 @@ const TextReveal = memo(({
       </motion.div>
     </div>
   );
-});
+};
 
 interface AnimatedCounterProps {
   from: number;
@@ -192,7 +192,7 @@ export const AnimatedCounter = memo(({
       {to % 1 !== 0 ? count.toFixed(2) : count}{suffix}
     </span>
   );
-});
+};
 
 interface StaggeredFadeProps {
   children: React.ReactNode[];
@@ -246,6 +246,6 @@ export const StaggeredFade = memo(({
       ))}
     </motion.div>
   );
-});
+};
 
 export default TextReveal;
