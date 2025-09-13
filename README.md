@@ -9,6 +9,7 @@ A modern, responsive portfolio website showcasing my work as a Software Engineer
 - Simplified background animation for cleaner look
 - Triggered fresh deployment for domain update
 - **Version 1.5**: Fixed profile picture display, removed flickering, updated GPA to 3.82
+- **Performance Update**: Fixed jittery website, optimized animations, resolved syntax errors
 
 **🌐 Live Website**: [rajugottumukkala.in](https://rajugottumukkala.in)
 
