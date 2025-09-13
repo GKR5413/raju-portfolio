@@ -4,8 +4,12 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect, createContext, useContext } from "react";
+import { motion } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import LoadingScreen from "./components/LoadingScreen";
+import CreativeBackground from "./components/CreativeBackground";
+import Navigation from "./components/Navigation";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +23,7 @@ export const useCustomTheme = () => useContext(ThemeContext);
 
 const App = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Get theme from localStorage or default to light
@@ -35,25 +40,51 @@ const App = () => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  useEffect(() => {
+    // Simulate initial loading with 3 second delay
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // 3 seconds for all loads
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <HashRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/home" element={<Index />} />
-              <Route path="/about" element={<Index />} />
-              <Route path="/experience" element={<Index />} />
-              <Route path="/projects" element={<Index />} />
-              <Route path="/contact" element={<Index />} />
-              <Route path="/resume" element={<Index />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </HashRouter>
+          <div className="min-h-screen bg-background text-foreground relative">
+            <CreativeBackground />
+            <Toaster />
+            <Sonner />
+            {isLoading && <LoadingScreen />}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: isLoading ? 0 : 1
+              }}
+              transition={{ 
+                duration: 2.0, 
+                ease: [0.4, 0.0, 0.2, 1],
+                delay: isLoading ? 0 : 0.3
+              }}
+              className="relative"
+            >
+              <HashRouter>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/home" element={<Index />} />
+                  <Route path="/about" element={<Index />} />
+                  <Route path="/experience" element={<Index />} />
+                  <Route path="/projects" element={<Index />} />
+                  <Route path="/contact" element={<Index />} />
+                  <Route path="/resume" element={<Index />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </HashRouter>
+            </motion.div>
+          </div>
         </TooltipProvider>
       </ThemeContext.Provider>
     </QueryClientProvider>

@@ -71,11 +71,14 @@ const About = () => {
   return (
     <section id="about" className="py-20 bg-surface">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
-        {/* Section Header */}
+        {/* Enhanced Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-            About Me
-          </h2>
+          <div className="group inline-block relative mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient-x bg-300%">
+              About Me
+            </h2>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
           
           {/* Animated Profile Picture Switcher */}
           <div className="flex justify-center mb-6">
@@ -184,12 +187,12 @@ const About = () => {
               </CardContent>
             </Card>
 
-            {/* Highlights */}
+            {/* Enhanced Highlights */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {highlights.map((highlight, index) => (
-                <Card key={index} className="hover-lift">
-                  <CardContent className="p-3 sm:p-4">
-                    <div className="text-xl sm:text-2xl font-bold text-primary mb-1">
+                <Card key={index} className="group hover-lift relative overflow-hidden border-primary/10 hover:border-primary/30 transition-all duration-300">
+                  <CardContent className="p-3 sm:p-4 relative z-10">
+                    <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-1">
                       {highlight.metric}
                     </div>
                     <div className="text-xs sm:text-sm font-medium text-foreground mb-1">
@@ -199,6 +202,7 @@ const About = () => {
                       {highlight.description}
                     </div>
                   </CardContent>
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Card>
               ))}
             </div>

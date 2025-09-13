@@ -174,12 +174,15 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 bg-background">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
-        {/* Section Header */}
+        {/* Enhanced Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Let's Connect
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <div className="group inline-block relative mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient-x bg-300%">
+              Let's Connect
+            </h2>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             I'm always excited to discuss new opportunities, collaborate on interesting projects, 
             or simply connect with fellow developers. Drop me a message!
           </p>

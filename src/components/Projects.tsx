@@ -75,12 +75,15 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20 bg-surface">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        {/* Section Header */}
+        {/* Enhanced Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Featured Projects
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <div className="group inline-block relative mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient-x bg-300%">
+              Featured Projects
+            </h2>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             A showcase of innovative solutions I've built, from high-performance fintech platforms 
             to AI-powered applications that solve real-world problems.
           </p>
@@ -99,7 +102,11 @@ const Projects = () => {
                 variant={activeFilter === category ? "default" : "outline"}
                 size="sm"
                 onClick={() => setActiveFilter(category)}
-                className="rounded-full"
+                className={`rounded-full transition-all duration-300 hover:scale-105 ${
+                  activeFilter === category 
+                    ? "shadow-lg shadow-primary/25 bg-gradient-to-r from-primary to-accent" 
+                    : "hover:border-primary/50 hover:shadow-md"
+                }`}
               >
                 {category}
               </Button>

@@ -72,11 +72,14 @@ const Experience = () => {
   return (
     <section id="experience" className="py-20 bg-background">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
-        {/* Section Header */}
+        {/* Enhanced Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Professional Experience
-          </h2>
+          <div className="group inline-block relative mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient-x bg-300%">
+              Professional Experience
+            </h2>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-28 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             A journey through challenging projects, innovative solutions, and continuous growth 
             in the world of software engineering.
