@@ -6,6 +6,7 @@ A modern, responsive portfolio website showcasing my work as a Software Engineer
 - Enhanced project descriptions and technical achievements
 - Improved layout and responsiveness
 - Updated with latest professional experience
+- Triggered fresh deployment for domain update
 
 **🌐 Live Website**: [rajugottumukkala.in](https://rajugottumukkala.in)
 
