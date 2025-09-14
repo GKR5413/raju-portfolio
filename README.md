@@ -12,6 +12,7 @@ A modern, responsive portfolio website showcasing my work as a Software Engineer
 - **Performance Update**: Fixed jittery website, optimized animations, resolved syntax errors
 - **Flicker Fix**: Eliminated pinkish flicker in navigation, simplified glassmorphism effects
 - **Navigation Enhancement**: Improved FloatingNavigation component with better click handling and mobile responsiveness
+- **Mobile Theme Toggle**: Added floating theme toggle button for mobile users with iOS liquid glass styling
 
 **🌐 Live Website**: [rajugottumukkala.in](https://rajugottumukkala.in)
 
