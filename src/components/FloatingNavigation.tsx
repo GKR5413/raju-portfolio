@@ -244,6 +244,15 @@ const FloatingNavigation = () => {
 
     const handleButtonClick = (e: MouseEvent) => {
       const button = e.currentTarget as HTMLElement;
+      const section = button.dataset.section;
+
+      if (section) {
+        // Immediately update active section and move pill
+        setActiveSection(section);
+        movePill(button);
+      }
+
+      // Handle illumination effect
       const illumination = button.querySelector('.illumination') as HTMLElement;
       if (illumination) {
         const rect = illumination.getBoundingClientRect();
@@ -257,6 +266,7 @@ const FloatingNavigation = () => {
 
     buttons.forEach(button => {
       button.addEventListener('mouseenter', handleButtonHover);
+      button.addEventListener('click', handleButtonClick);
       button.addEventListener('mousedown', handleButtonClick);
     });
 
@@ -265,6 +275,7 @@ const FloatingNavigation = () => {
       nav.removeEventListener('mouseleave', handleMouseLeave);
       buttons.forEach(button => {
         button.removeEventListener('mouseenter', handleButtonHover);
+        button.removeEventListener('click', handleButtonClick);
         button.removeEventListener('mousedown', handleButtonClick);
       });
     };
@@ -313,14 +324,8 @@ const FloatingNavigation = () => {
 
       // Only update if there's a real change and we're not programmatically scrolling
       if (currentSection !== activeSection && !isScrolling) {
-        // Add a small delay to prevent rapid switching
-        if (pendingSection !== currentSection) {
-          setPendingSection(currentSection);
-          setTimeout(() => {
-            setPendingSection(null);
-            setActiveSection(currentSection);
-          }, 150);
-        }
+        setActiveSection(currentSection);
+        setPendingSection(null);
       }
 
       ticking = false;
@@ -410,7 +415,7 @@ const FloatingNavigation = () => {
               stiffness: 300,
               damping: 30
             }}
-            className="fixed bottom-8 left-0 right-0 z-50 flex justify-center"
+            className="fixed bottom-4 sm:bottom-8 left-0 right-0 z-50 flex justify-center px-4 sm:px-0"
           >
             <nav
               id="liquid-nav"
@@ -448,29 +453,6 @@ const FloatingNavigation = () => {
         )}
       </AnimatePresence>
 
-      {/* Scroll to Top Button - iOS Liquid Glass Style */}
-      <AnimatePresence>
-        {isVisible && scrollProgress > 20 && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0, y: 20 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 25
-            }}
-            className="fixed bottom-6 right-6 z-50"
-          >
-            <button
-              className="ios-liquid-glass ios-liquid-glass-container w-16 h-16 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200 text-white dark:text-white light:text-gray-800"
-              onClick={scrollToTop}
-            >
-              <ChevronUp size={24} strokeWidth={1.5} />
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Side Progress Indicator */}
       <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-40">
