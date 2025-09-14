@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HelmetProvider } from "react-helmet-async";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect, createContext, useContext } from "react";
 import { motion } from "framer-motion";
@@ -11,6 +12,7 @@ import LoadingScreen from "./components/LoadingScreen";
 import BreathingGradients from "./components/BreathingGradients";
 import CursorAurora from "./components/CursorAurora";
 import FloatingNavigation from "./components/FloatingNavigation";
+import SEOHead from "./components/SEOHead";
 
 const queryClient = new QueryClient();
 
@@ -49,21 +51,23 @@ const App = () => {
   }, [theme]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
-        <TooltipProvider>
-          <div className="min-h-screen text-foreground relative">
-            <BreathingGradients />
-            <Toaster />
-            <Sonner />
-            {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
-            <div
-              className="relative h-full"
-              style={{
-                opacity: isLoading ? 0 : 1,
-                transition: 'opacity 0.5s ease'
-              }}
-            >
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeContext.Provider value={{ theme, setTheme }}>
+          <TooltipProvider>
+            <SEOHead />
+            <div className="min-h-screen text-foreground relative">
+              <BreathingGradients />
+              <Toaster />
+              <Sonner />
+              {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
+              <div
+                className="relative h-full"
+                style={{
+                  opacity: isLoading ? 0 : 1,
+                  transition: 'opacity 0.5s ease'
+                }}
+              >
               <main className="relative z-10">
                 <HashRouter>
                   <Routes>
@@ -88,6 +92,7 @@ const App = () => {
         </TooltipProvider>
       </ThemeContext.Provider>
     </QueryClientProvider>
+    </HelmetProvider>
   );
 };
 
