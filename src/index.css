@@ -240,6 +240,12 @@ All colors MUST be HSL for consistency and theming.
     border: 1px solid var(--glass-border);
   }
 
+  /* Stable navigation without glassmorphism effects */
+  .nav-stable {
+    transition: all 0.2s ease-out;
+    will-change: auto;
+  }
+
   /* Animation utilities */
   .animate-float {
     animation: float 6s ease-in-out infinite;

@@ -365,26 +365,27 @@ const Projects = () => {
           ))}
         </div>
 
+
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <div className="bg-surface-container rounded-2xl p-8 shadow-lg">
-            <h3 className="text-2xl font-bold text-foreground mb-4">
+          <Card className="p-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0">
+            <h3 className="text-2xl font-bold mb-4">
               Interested in My Work?
             </h3>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              I'm always working on new projects and exploring innovative technologies. 
+            <p className="text-white/90 mb-6 max-w-2xl mx-auto">
+              I'm always working on new projects and exploring innovative technologies.
               Let's connect and discuss how we can build something amazing together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="lg" className="gap-2">
+              <Button variant="secondary" size="lg" className="gap-2">
                 <Github className="h-5 w-5" />
                 View All Projects
               </Button>
-              <Button variant="outline" size="lg" className="gap-2">
+              <Button variant="outline" size="lg" className="gap-2 border-white text-white hover:bg-white/10">
                 Get In Touch
               </Button>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     </section>

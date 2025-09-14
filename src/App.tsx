@@ -10,8 +10,8 @@ import NotFound from "./pages/NotFound";
 import LoadingScreen from "./components/LoadingScreen";
 import Minimal3DBackground from "./components/Minimal3DBackground";
 import MorphingBackground from "./components/MorphingBackground";
-import FloatingShapes from "./components/FloatingShapes";
 import Navigation from "./components/Navigation";
+import FloatingNavigation from "./components/FloatingNavigation";
 
 const queryClient = new QueryClient();
 
@@ -48,17 +48,16 @@ const App = () => {
         <TooltipProvider>
           <div className="min-h-screen text-foreground relative">
             <MorphingBackground />
-            <FloatingShapes shapeCount={12} interactive={true} />
             <Toaster />
             <Sonner />
             {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ 
+              animate={{
                 opacity: isLoading ? 0 : 1
               }}
-              transition={{ 
-                duration: 2.0, 
+              transition={{
+                duration: 2.0,
                 ease: [0.4, 0.0, 0.2, 1],
                 delay: isLoading ? 0 : 0.3
               }}
@@ -76,6 +75,9 @@ const App = () => {
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
+
+                {/* Floating Navigation */}
+                <FloatingNavigation />
               </HashRouter>
             </motion.div>
           </div>
