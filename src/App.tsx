@@ -8,8 +8,7 @@ import { motion } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoadingScreen from "./components/LoadingScreen";
-import BreathingGradients from "./components/BreathingGradients";
-import CursorAurora from "./components/CursorAurora";
+import SimpleBackground from "./components/SimpleBackground";
 import FloatingNavigation from "./components/FloatingNavigation";
 
 const queryClient = new QueryClient();
@@ -25,7 +24,6 @@ export const useCustomTheme = () => useContext(ThemeContext);
 const App = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [isLoading, setIsLoading] = useState(true);
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
     // Get theme from localStorage or default to light
@@ -34,38 +32,12 @@ const App = () => {
       setTheme(savedTheme);
     }
 
-    // Only reset scroll position on fresh page load (not navigation)
-    const isInitialLoad = !sessionStorage.getItem('app_loaded');
-    if (isInitialLoad) {
-      sessionStorage.setItem('app_loaded', 'true');
+    // Simple loading timeout
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500); // Reduced loading time
 
-      // Temporarily disable scroll restoration for initial load
-      if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-      }
-
-      // Ensure we start at the top of the page
-      window.scrollTo(0, 0);
-
-      // Re-enable scroll restoration after initial load
-      const timer = setTimeout(() => {
-        if ('scrollRestoration' in history) {
-          history.scrollRestoration = 'auto';
-        }
-        setIsInitialLoad(false);
-      }, 1000);
-
-      // Set a maximum loading time to prevent stuck loading
-      const maxLoadingTime = setTimeout(() => {
-        setIsLoading(false);
-        setIsInitialLoad(false);
-      }, 3000); // Maximum 3 seconds loading
-
-      return () => {
-        clearTimeout(timer);
-        clearTimeout(maxLoadingTime);
-      };
-    }
+    return () => clearTimeout(loadingTimer);
   }, []);
 
   useEffect(() => {
@@ -80,7 +52,7 @@ const App = () => {
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <TooltipProvider>
           <div className="min-h-screen text-foreground relative">
-            <BreathingGradients />
+            <SimpleBackground />
             <Toaster />
             <Sonner />
             {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
@@ -90,13 +62,12 @@ const App = () => {
                 opacity: isLoading ? 0 : 1
               }}
               transition={{
-                duration: 2.0,
-                ease: [0.4, 0.0, 0.2, 1],
-                delay: isLoading ? 0 : 0.3
+                duration: 1.0,
+                ease: "easeOut",
+                delay: isLoading ? 0 : 0.2
               }}
               className="relative h-full"
             >
-              <CursorAurora />
               <main className="relative z-10">
                 <HashRouter>
                   <Routes>

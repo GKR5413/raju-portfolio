@@ -33,20 +33,33 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto; /* Changed from smooth to auto for better performance */
   -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
 }
 
 body {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  position: relative;
 }
 
 /* Optimize scrolling performance */
 .scroll-container {
-  will-change: transform;
+  will-change: auto; /* Changed from transform to auto */
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+}
+
+/* Fix scroll issues */
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Smooth scrolling only when needed */
+.smooth-scroll {
+  scroll-behavior: smooth;
 }
 
 /* Reduce motion for users who prefer it */
