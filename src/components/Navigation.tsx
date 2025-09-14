@@ -57,7 +57,7 @@ const Navigation = () => {
         shouldHide ? "opacity-0 pointer-events-none transform -translate-y-full" : "opacity-100 pointer-events-auto transform translate-y-0"
       )}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-16 w-full">
             {/* Logo */}
             <div className="flex-shrink-0">
               <button 
@@ -148,10 +148,10 @@ const Navigation = () => {
 
           {/* Mobile Navigation Menu */}
           <div className={cn(
-            "md:hidden transition-all duration-300 ease-out overflow-hidden",
+            "md:hidden transition-all duration-300 ease-out overflow-hidden w-full",
             isOpen ? "max-h-96 opacity-100 pb-4" : "max-h-0 opacity-0"
           )}>
-            <div className="px-2 pt-4 pb-4 space-y-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl mt-2 border border-gray-200/20 dark:border-gray-700/20 shadow-xl">
+            <div className="px-2 pt-4 pb-4 space-y-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-2xl mt-2 border border-gray-200/20 dark:border-gray-700/20 shadow-xl mx-2">
               {navItems.map((item) => (
                 <button
                   key={item.name}

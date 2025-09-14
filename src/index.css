@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Breathing Gradient Animations */
+@keyframes breathe {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: scale(1.02); 
+    opacity: 0.95; 
+  }
+}
+
+@keyframes gradientShift {
+  0% { 
+    background-position: 0% 50%; 
+  }
+  50% { 
+    background-position: 100% 50%; 
+  }
+  100% { 
+    background-position: 0% 50%; 
+  }
+}
+
 @layer utilities {
   .animate-spin-slow {
     animation: spin 8s linear infinite;
@@ -223,12 +247,77 @@ All colors MUST be HSL for consistency and theming.
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground font-light antialiased;
-  }
-
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-light antialiased;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Prevent horizontal overflow on all elements */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Mobile viewport fixes */
+  @media (max-width: 768px) {
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
+    /* Ensure containers don't exceed viewport width */
+    .container, .max-w-6xl, .max-w-7xl {
+      max-width: 100vw;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    /* Prevent any element from causing horizontal scroll */
+    * {
+      max-width: 100vw;
+    }
+
+    /* Specific mobile fixes */
+    section {
+      overflow-x: hidden;
+    }
+
+    /* Fix floating navigation on mobile */
+    .ios-liquid-glass {
+      max-width: calc(100vw - 2rem);
+    }
+  }
+
+  /* Additional mobile safety measures */
+  @media (max-width: 480px) {
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    .text-4xl, .text-5xl, .text-6xl, .text-7xl {
+      font-size: clamp(2rem, 8vw, 3.5rem) !important;
+    }
+
+    .text-lg {
+      font-size: clamp(1rem, 4vw, 1.125rem) !important;
+    }
+
+    .text-xl {
+      font-size: clamp(1.125rem, 5vw, 1.25rem) !important;
+    }
+
+    .text-2xl {
+      font-size: clamp(1.25rem, 6vw, 1.5rem) !important;
+    }
   }
 }
 

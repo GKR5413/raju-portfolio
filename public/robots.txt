@@ -1,14 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://rajugottumukkala.in/sitemap.xml
+
+# Additional instructions for search engines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Twitterbot
+User-agent: LinkedInBot
 Allow: /
 
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: *
-Allow: /
+# Crawl delay (optional)
+Crawl-delay: 1

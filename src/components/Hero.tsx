@@ -1,3 +1,4 @@
+import ErrorBoundary from "./ErrorBoundary";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { motion, useAnimation } from "framer-motion";
@@ -158,9 +159,10 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-28">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-28" itemScope itemType="https://schema.org/Person">
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8 text-center">
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
         {/* Greeting */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -181,23 +183,25 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mb-8"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-            <motion.div
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight" itemProp="name">
+            <motion.span
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="block text-blue-600 dark:text-blue-400"
+              itemProp="givenName"
             >
               Kanakaraju
-            </motion.div>
-            <motion.div
+            </motion.span>
+            <motion.span
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="block text-gray-800 dark:text-gray-200"
+              itemProp="familyName"
             >
               Gottumukkala
-            </motion.div>
+            </motion.span>
           </h1>
         </motion.div>
 
@@ -207,15 +211,15 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed px-4 sm:px-0">
-            MS Computer Science Student & Software Engineer specializing in{" "}
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed" itemProp="description">
+            <span itemProp="jobTitle">MS Computer Science Student & Software Engineer</span> specializing in{" "}
+            <span className="text-blue-600 dark:text-blue-400 font-semibold" itemProp="knowsAbout">
               Java Microservices
             </span>,{" "}
-            <span className="text-purple-600 dark:text-purple-400 font-semibold">
+            <span className="text-purple-600 dark:text-purple-400 font-semibold" itemProp="knowsAbout">
               Fintech Solutions
             </span>, and{" "}
-            <span className="text-cyan-600 dark:text-cyan-400 font-semibold">
+            <span className="text-cyan-600 dark:text-cyan-400 font-semibold" itemProp="knowsAbout">
               AI/ML Platforms
             </span>
           </p>
@@ -267,9 +271,9 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.0 }}
         >
-          <div className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400 mb-12">
+          <div className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400 mb-12" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
             <MapPin className="h-4 w-4" />
-            <span>Kansas City, MO</span>
+            <span><span itemProp="addressLocality">Kansas City</span>, <span itemProp="addressRegion">MO</span></span>
           </div>
         </motion.div>
 

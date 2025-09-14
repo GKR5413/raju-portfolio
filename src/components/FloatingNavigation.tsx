@@ -415,7 +415,7 @@ const FloatingNavigation = () => {
               stiffness: 300,
               damping: 30
             }}
-            className="fixed bottom-4 sm:bottom-8 left-0 right-0 z-50 flex justify-center px-4 sm:px-0"
+            className="fixed bottom-4 sm:bottom-8 left-4 right-4 z-50 flex justify-center"
           >
             <nav
               id="liquid-nav"
@@ -454,8 +454,8 @@ const FloatingNavigation = () => {
       </AnimatePresence>
 
 
-      {/* Side Progress Indicator */}
-      <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-40">
+      {/* Side Progress Indicator - Hidden on mobile */}
+      <div className="hidden sm:block fixed right-6 top-1/2 transform -translate-y-1/2 z-40">
         <div className="w-1 h-32 bg-white/10 rounded-full overflow-hidden">
           <motion.div
             className="w-full bg-gradient-to-t from-blue-500 to-blue-400 rounded-full"

@@ -139,7 +139,7 @@ const MorphingBackground = () => {
           ],
         }}
         transition={{
-          duration: 8,
+          duration: 30,
           repeat: Infinity,
           repeatType: "reverse",
           ease: "easeInOut",
@@ -160,7 +160,7 @@ const MorphingBackground = () => {
           ],
         }}
         transition={{
-          duration: 12,
+          duration: 40,
           repeat: Infinity,
           repeatType: "reverse",
           ease: "easeInOut",

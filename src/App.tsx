@@ -8,9 +8,8 @@ import { motion } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoadingScreen from "./components/LoadingScreen";
-import Minimal3DBackground from "./components/Minimal3DBackground";
-import MorphingBackground from "./components/MorphingBackground";
-import Navigation from "./components/Navigation";
+import BreathingGradients from "./components/BreathingGradients";
+import CursorAurora from "./components/CursorAurora";
 import FloatingNavigation from "./components/FloatingNavigation";
 
 const queryClient = new QueryClient();
@@ -47,7 +46,7 @@ const App = () => {
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <TooltipProvider>
           <div className="min-h-screen text-foreground relative">
-            <MorphingBackground />
+            <BreathingGradients />
             <Toaster />
             <Sonner />
             {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
@@ -61,24 +60,28 @@ const App = () => {
                 ease: [0.4, 0.0, 0.2, 1],
                 delay: isLoading ? 0 : 0.3
               }}
-              className="relative"
+              className="relative h-full"
             >
-              <HashRouter>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/home" element={<Index />} />
-                  <Route path="/about" element={<Index />} />
-                  <Route path="/experience" element={<Index />} />
-                  <Route path="/projects" element={<Index />} />
-                  <Route path="/contact" element={<Index />} />
-                  <Route path="/resume" element={<Index />} />
-                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
+              <CursorAurora />
+              <main className="relative z-10">
+                <HashRouter>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/home" element={<Index />} />
+                    <Route path="/about" element={<Index />} />
+                    <Route path="/experience" element={<Index />} />
+                    <Route path="/projects" element={<Index />} />
+                    <Route path="/contact" element={<Index />} />
+                    <Route path="/resume" element={<Index />} />
+                    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
 
-                {/* Floating Navigation */}
-                <FloatingNavigation />
-              </HashRouter>
+                  {/* Floating Navigation */}
+                  <FloatingNavigation />
+                </HashRouter>
+              </main>
+              <CursorAurora />
             </motion.div>
           </div>
         </TooltipProvider>
