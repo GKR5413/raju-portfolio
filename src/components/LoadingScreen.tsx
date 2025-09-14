@@ -10,7 +10,7 @@ const OdometerCharacter = ({ finalChar, onResolved }) => {
   const yOffset = charIndex > -1 ? -charIndex * 36 : 0; // 36px is the height
 
   useEffect(() => {
-    const randomStartDelay = Math.random() * 1200;
+    const randomStartDelay = Math.random() * 2000 + 500; // Increased from 1200 to 2000-2500ms
 
     const startTimer = setTimeout(async () => {
       await controls.start({
@@ -53,7 +53,7 @@ const LoadingScreen = ({ onFinished }) => {
     if (allResolved) {
       const timer = setTimeout(() => {
         onFinished();
-      }, 800);
+      }, 1500); // Increased from 800ms to 1500ms
       return () => clearTimeout(timer);
     }
   }, [allResolved, onFinished]);
@@ -78,7 +78,7 @@ const LoadingScreen = ({ onFinished }) => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: allResolved ? 1 : 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 1.2, delay: 0.8 }}
           className="mt-6 text-lg text-foreground/70 tracking-wider"
         >
           Software Engineer & AI Enthusiast

@@ -36,7 +36,7 @@ const App = () => {
     // Simple loading timeout
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500); // Reduced loading time
+    }, 4000); // Increased loading time to accommodate longer animation
 
     return () => clearTimeout(loadingTimer);
   }, []);
