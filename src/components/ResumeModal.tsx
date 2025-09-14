@@ -22,30 +22,32 @@ const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] p-0">
-        <DialogHeader className="p-6 pb-4 border-b">
+      <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] p-0 m-2 sm:m-6">
+        <DialogHeader className="p-4 sm:p-6 pb-3 sm:pb-4 border-b">
           <div className="flex items-center justify-between">
-            <DialogTitle className="flex items-center gap-2">
-              <Eye className="h-5 w-5 text-primary" />
-              Resume Preview
+            <DialogTitle className="flex items-center gap-2 text-sm sm:text-base">
+              <Eye className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+              <span className="hidden sm:inline">Resume Preview</span>
+              <span className="sm:hidden">Resume</span>
             </DialogTitle>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleDownload}
-                className="gap-2"
+                className="gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-3"
               >
-                <Download className="h-4 w-4" />
-                Download PDF
+                <Download className="h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden sm:inline">Download PDF</span>
+                <span className="sm:hidden">PDF</span>
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={onClose}
-                className="h-8 w-8"
+                className="h-8 w-8 sm:h-9 sm:w-9"
               >
-                <X className="h-4 w-4" />
+                <X className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </div>
           </div>

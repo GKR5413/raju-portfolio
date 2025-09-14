@@ -246,6 +246,13 @@ All colors MUST be HSL for consistency and theming.
     will-change: auto;
   }
 
+  /* Clean mobile navigation styles */
+  .mobile-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
   /* Animation utilities */
   .animate-float {
     animation: float 6s ease-in-out infinite;
