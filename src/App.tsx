@@ -32,6 +32,29 @@ const App = () => {
     if (savedTheme) {
       setTheme(savedTheme);
     }
+
+    // Only reset scroll position on fresh page load (not navigation)
+    const isInitialLoad = !sessionStorage.getItem('app_loaded');
+    if (isInitialLoad) {
+      sessionStorage.setItem('app_loaded', 'true');
+
+      // Temporarily disable scroll restoration for initial load
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+
+      // Ensure we start at the top of the page
+      window.scrollTo(0, 0);
+
+      // Re-enable scroll restoration after initial load
+      const timer = setTimeout(() => {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'auto';
+        }
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   useEffect(() => {

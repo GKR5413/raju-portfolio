@@ -23,6 +23,7 @@ const Index = () => {
       }, 100);
     };
 
+    // Only handle specific routes, don't interfere with default behavior
     switch (location.pathname) {
       case '/home':
         scrollToSection('home');
@@ -40,7 +41,7 @@ const Index = () => {
         scrollToSection('contact');
         break;
       default:
-        // Default to home section
+        // Do nothing for default route - let normal scrolling work
         break;
     }
   }, [location]);

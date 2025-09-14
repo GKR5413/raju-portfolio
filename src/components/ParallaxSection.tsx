@@ -1,5 +1,24 @@
-import { useRef, ReactNode } from 'react';
+import { useRef, ReactNode, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+
+// Mobile detection hook
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768 ||
+        /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  return isMobile;
+};
 
 interface ParallaxSectionProps {
   children: ReactNode;
@@ -17,6 +36,8 @@ const ParallaxSection = ({
   offset = 0
 }: ParallaxSectionProps) => {
   const ref = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
@@ -28,6 +49,17 @@ const ParallaxSection = ({
     [0, 1],
     [offset, offset + (multiplier * speed * 200)]
   );
+
+  // Disable parallax on mobile for better performance
+  if (isMobile) {
+    return (
+      <div ref={ref} className={`relative ${className}`}>
+        <div>
+          {children}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={ref} className={`relative ${className}`}>
@@ -53,11 +85,21 @@ export const ParallaxElement = ({
   rotateOnScroll = false,
   scaleOnScroll = false
 }: ParallaxElementProps) => {
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll();
 
   const y = useTransform(scrollYProgress, [0, 1], [0, speed * 100]);
   const rotate = rotateOnScroll ? useTransform(scrollYProgress, [0, 1], [0, 360]) : 0;
   const scale = scaleOnScroll ? useTransform(scrollYProgress, [0, 1], [1, 1.2]) : 1;
+
+  // Disable parallax on mobile for better performance
+  if (isMobile) {
+    return (
+      <div className={className}>
+        {children}
+      </div>
+    );
+  }
 
   return (
     <motion.div

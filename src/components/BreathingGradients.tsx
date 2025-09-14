@@ -23,11 +23,21 @@ const BreathingGradients: React.FC<BreathingGradientsProps> = ({ className = "" 
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(prev => prev + 0.01);
-    }, 16); // ~60fps
+    let animationId: number;
+    let lastTime = performance.now();
 
-    return () => clearInterval(interval);
+    const animate = (currentTime: number) => {
+      // Throttle to 30fps for background animations to preserve scroll performance
+      const deltaTime = currentTime - lastTime;
+      if (deltaTime >= 33.33) { // 30fps (1000/30 = 33.33ms)
+        setTime(prev => prev + 0.016); // Adjusted for 30fps
+        lastTime = currentTime;
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
   }, []);
 
   // Update random positions periodically

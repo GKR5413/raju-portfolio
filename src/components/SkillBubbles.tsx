@@ -253,7 +253,7 @@ const SkillBubbles = ({
     <TooltipProvider>
       <div
         ref={containerRef}
-        className={`relative flex flex-wrap gap-4 justify-center items-center p-8 ${className}`}
+        className={`relative flex flex-wrap gap-4 justify-center items-center p-8 pb-20 ${className}`}
       >
         {skills.map((skill, index) => (
           <BubbleComponent key={skill.id} skill={skill} index={index} />
@@ -261,7 +261,7 @@ const SkillBubbles = ({
 
         {/* Category Legend */}
         <motion.div
-          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex gap-2 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-200/50 dark:border-gray-700/50"
+          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-wrap gap-2 justify-center bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-200/50 dark:border-gray-700/50 max-w-full"
           initial={{
             opacity: 0,
             y: 30,

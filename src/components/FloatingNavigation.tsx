@@ -23,6 +23,7 @@ const FloatingNavigation = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const [pendingSection, setPendingSection] = useState<string | null>(null);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // iOS Liquid Glass effects with live refraction and mouse tracking
   useEffect(() => {
@@ -175,13 +176,17 @@ const FloatingNavigation = () => {
     return () => document.head.removeChild(style);
   }, []);
 
-  // 3D Parallax and Live Sheen Effect (from reference)
+  // 3D Parallax and Live Sheen Effect (disabled on mobile for performance)
   useEffect(() => {
     const nav = document.getElementById('liquid-nav');
     const pill = document.getElementById('active-pill');
     const buttons = nav?.querySelectorAll('.nav-button');
 
     if (!nav || !pill || !buttons) return;
+
+    // Check if mobile
+    const isMobile = window.innerWidth < 768 ||
+      /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
     let currentActive = buttons[0] as HTMLElement;
 
@@ -211,37 +216,55 @@ const FloatingNavigation = () => {
       movePill(activeButton);
     }, 100);
 
-    // Mouse tracking and tilt effects
-    const tiltFactor = 0.4;
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = nav.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+    // Desktop-only mouse tracking and tilt effects
+    if (!isMobile) {
+      const tiltFactor = 0.4;
+      const handleMouseMove = (e: MouseEvent) => {
+        const rect = nav.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-      // Set mouse position for the glossy sheen
-      nav.style.setProperty('--mouse-x', `${x}px`);
-      nav.style.setProperty('--mouse-y', `${y}px`);
+        // Set mouse position for the glossy sheen
+        nav.style.setProperty('--mouse-x', `${x}px`);
+        nav.style.setProperty('--mouse-y', `${y}px`);
 
-      // 3D tilt calculation
-      const rotateX = (y - rect.height / 2) * -1 * tiltFactor / 10;
-      const rotateY = (x - rect.width / 2) * tiltFactor / 10;
-      nav.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-    };
+        // 3D tilt calculation
+        const rotateX = (y - rect.height / 2) * -1 * tiltFactor / 10;
+        const rotateY = (x - rect.width / 2) * tiltFactor / 10;
+        nav.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      };
 
-    const handleMouseLeave = () => {
-      nav.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-      // Return pill to active section
-      const activeButton = Array.from(buttons).find(btn =>
-        (btn as HTMLElement).dataset.section === activeSection
-      ) as HTMLElement || currentActive;
-      movePill(activeButton);
-    };
+      const handleMouseLeave = () => {
+        nav.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+        // Return pill to active section
+        const activeButton = Array.from(buttons).find(btn =>
+          (btn as HTMLElement).dataset.section === activeSection
+        ) as HTMLElement || currentActive;
+        movePill(activeButton);
+      };
 
-    const handleButtonHover = (e: Event) => {
-      const button = e.currentTarget as HTMLElement;
-      movePill(button);
-    };
+      const handleButtonHover = (e: Event) => {
+        const button = e.currentTarget as HTMLElement;
+        movePill(button);
+      };
 
+      nav.addEventListener('mousemove', handleMouseMove);
+      nav.addEventListener('mouseleave', handleMouseLeave);
+
+      buttons.forEach(button => {
+        button.addEventListener('mouseenter', handleButtonHover);
+      });
+
+      return () => {
+        nav.removeEventListener('mousemove', handleMouseMove);
+        nav.removeEventListener('mouseleave', handleMouseLeave);
+        buttons.forEach(button => {
+          button.removeEventListener('mouseenter', handleButtonHover);
+        });
+      };
+    }
+
+    // Common click handlers for both mobile and desktop
     const handleButtonClick = (e: MouseEvent) => {
       const button = e.currentTarget as HTMLElement;
       const section = button.dataset.section;
@@ -252,37 +275,46 @@ const FloatingNavigation = () => {
         movePill(button);
       }
 
-      // Handle illumination effect
-      const illumination = button.querySelector('.illumination') as HTMLElement;
-      if (illumination) {
-        const rect = illumination.getBoundingClientRect();
-        illumination.style.setProperty('--x', e.clientX - rect.left + 'px');
-        illumination.style.setProperty('--y', e.clientY - rect.top + 'px');
+      // Handle illumination effect (simplified on mobile)
+      if (!isMobile) {
+        const illumination = button.querySelector('.illumination') as HTMLElement;
+        if (illumination) {
+          const rect = illumination.getBoundingClientRect();
+          illumination.style.setProperty('--x', e.clientX - rect.left + 'px');
+          illumination.style.setProperty('--y', e.clientY - rect.top + 'px');
+        }
       }
     };
 
-    nav.addEventListener('mousemove', handleMouseMove);
-    nav.addEventListener('mouseleave', handleMouseLeave);
-
     buttons.forEach(button => {
-      button.addEventListener('mouseenter', handleButtonHover);
       button.addEventListener('click', handleButtonClick);
-      button.addEventListener('mousedown', handleButtonClick);
+      if (!isMobile) {
+        button.addEventListener('mousedown', handleButtonClick);
+      }
     });
 
     return () => {
-      nav.removeEventListener('mousemove', handleMouseMove);
-      nav.removeEventListener('mouseleave', handleMouseLeave);
       buttons.forEach(button => {
-        button.removeEventListener('mouseenter', handleButtonHover);
         button.removeEventListener('click', handleButtonClick);
-        button.removeEventListener('mousedown', handleButtonClick);
+        if (!isMobile) {
+          button.removeEventListener('mousedown', handleButtonClick);
+        }
       });
     };
   }, [activeSection]);
 
+  // Initialize with delay to prevent immediate section detection on page load
+  useEffect(() => {
+    const initTimer = setTimeout(() => {
+      setIsInitialized(true);
+    }, 500); // Wait 0.5 seconds before activating section detection
+
+    return () => clearTimeout(initTimer);
+  }, []);
+
   useEffect(() => {
     let ticking = false;
+    let timeoutId: NodeJS.Timeout | null = null;
 
     const handleScroll = () => {
       if (!ticking) {
@@ -292,50 +324,71 @@ const FloatingNavigation = () => {
     };
 
     const updateScrollState = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
+      // Throttle updates for mobile performance
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
 
-      // Show floating nav after scrolling 300px
-      setIsVisible(scrollY > 300);
+      timeoutId = setTimeout(() => {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
 
-      // Calculate scroll progress
-      const progress = (scrollY / (documentHeight - windowHeight)) * 100;
-      setScrollProgress(Math.min(progress, 100));
+        // Show floating nav after scrolling 300px
+        setIsVisible(scrollY > 300);
 
-      // Simple, stable section detection
-      const sections = navItems.map(item => item.section);
-      let currentSection = activeSection; // Start with current to avoid unnecessary changes
+        // Calculate scroll progress
+        const progress = (scrollY / (documentHeight - windowHeight)) * 100;
+        setScrollProgress(Math.min(progress, 100));
 
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const elementTop = rect.top;
-          const elementBottom = rect.bottom;
+        // Only do section detection after initialization and when not programmatically scrolling
+        if (isInitialized && !isScrolling) {
+          const sections = navItems.map(item => item.section);
+          let currentSection = activeSection;
 
-          // Check if section is prominently in view (large threshold for stability)
-          if (elementTop <= windowHeight * 0.4 && elementBottom >= windowHeight * 0.6) {
-            currentSection = section;
-            break;
+          // Only change from home if we've scrolled significantly past the hero section
+          if (scrollY > 300) {
+            for (const section of sections) {
+              const element = document.getElementById(section);
+              if (element) {
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.top;
+                const elementBottom = rect.bottom;
+
+                // More lenient thresholds for mobile
+                if (elementTop <= windowHeight * 0.5 && elementBottom >= windowHeight * 0.3) {
+                  currentSection = section;
+                  break;
+                }
+              }
+            }
+          } else {
+            // If we're at the top, always set to home
+            currentSection = 'home';
+          }
+
+          // Only update if there's a real change
+          if (currentSection !== activeSection) {
+            setActiveSection(currentSection);
+            setPendingSection(null);
           }
         }
-      }
 
-      // Only update if there's a real change and we're not programmatically scrolling
-      if (currentSection !== activeSection && !isScrolling) {
-        setActiveSection(currentSection);
-        setPendingSection(null);
-      }
-
-      ticking = false;
+        ticking = false;
+      }, 16); // 60fps for smooth scroll detection without interference
     };
 
+    // Use passive listeners for better mobile performance
     window.addEventListener('scroll', handleScroll, { passive: true });
     updateScrollState(); // Initial call
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeSection, isScrolling, pendingSection]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [activeSection, isScrolling, pendingSection, isInitialized]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -347,58 +400,40 @@ const FloatingNavigation = () => {
       // Immediately update active section for visual feedback
       setActiveSection(sectionId);
 
-      // Custom smooth scrolling with consistent speed
-      const targetPosition = element.offsetTop - 80; // Offset for fixed header
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition;
-      const duration = 800; // Fixed duration for consistent speed
-      let start: number | null = null;
+      // Use native smooth scrolling for better mobile performance
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-      function animation(currentTime: number) {
-        if (start === null) start = currentTime;
-        const timeElapsed = currentTime - start;
-        const progress = Math.min(timeElapsed / duration, 1);
+      // Fallback to native smooth scroll for better mobile compatibility
+      try {
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
 
-        // Linear easing for constant speed throughout
-        const ease = progress;
-
-        window.scrollTo(0, startPosition + distance * ease);
-
-        if (timeElapsed < duration) {
-          requestAnimationFrame(animation);
-        } else {
-          // Clear scrolling state after animation completes
-          setTimeout(() => {
-            setIsScrolling(false);
-          }, 100);
-        }
+        // Clear scrolling state after expected scroll duration
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 1000);
+      } catch (error) {
+        // Fallback for older browsers
+        window.scrollTo(0, offsetPosition);
+        setIsScrolling(false);
       }
-
-      requestAnimationFrame(animation);
     }
   };
 
   const scrollToTop = () => {
-    const startPosition = window.pageYOffset;
-    const duration = 800; // Fixed duration for consistent speed
-    let start: number | null = null;
-
-    function animation(currentTime: number) {
-      if (start === null) start = currentTime;
-      const timeElapsed = currentTime - start;
-      const progress = Math.min(timeElapsed / duration, 1);
-
-      // Linear easing for constant speed throughout
-      const ease = progress;
-
-      window.scrollTo(0, startPosition * (1 - ease));
-
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      }
+    try {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } catch (error) {
+      // Fallback for older browsers
+      window.scrollTo(0, 0);
     }
-
-    requestAnimationFrame(animation);
   };
 
   return (
