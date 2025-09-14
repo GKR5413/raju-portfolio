@@ -271,10 +271,22 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.0 }}
         >
-          <div className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400 mb-12" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+          <div className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400 mb-8" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
             <MapPin className="h-4 w-4" />
             <span><span itemProp="addressLocality">Kansas City</span>, <span itemProp="addressRegion">MO</span></span>
           </div>
+          
+          {/* Domain mention for SEO */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+            className="mb-12"
+          >
+            <div className="text-sm text-gray-500 dark:text-gray-500 font-mono">
+              rajugottumukkala.in
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* CTA Buttons */}
