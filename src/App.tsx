@@ -8,8 +8,8 @@ import { motion } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoadingScreen from "./components/LoadingScreen";
-import BreathingGradients from "./components/BreathingGradients";
-import CursorAurora from "./components/CursorAurora";
+import OptimizedBreathingGradients from "./components/OptimizedBreathingGradients";
+import OptimizedOptimizedCursorAurora from "./components/OptimizedOptimizedCursorAurora";
 import FloatingNavigation from "./components/FloatingNavigation";
 
 const queryClient = new QueryClient();
@@ -25,6 +25,7 @@ export const useCustomTheme = () => useContext(ThemeContext);
 const App = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [isLoading, setIsLoading] = useState(true);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
     // Get theme from localStorage or default to light
@@ -51,9 +52,19 @@ const App = () => {
         if ('scrollRestoration' in history) {
           history.scrollRestoration = 'auto';
         }
+        setIsInitialLoad(false);
       }, 1000);
 
-      return () => clearTimeout(timer);
+      // Set a maximum loading time to prevent stuck loading
+      const maxLoadingTime = setTimeout(() => {
+        setIsLoading(false);
+        setIsInitialLoad(false);
+      }, 3000); // Maximum 3 seconds loading
+
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(maxLoadingTime);
+      };
     }
   }, []);
 
@@ -69,7 +80,7 @@ const App = () => {
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <TooltipProvider>
           <div className="min-h-screen text-foreground relative">
-            <BreathingGradients />
+            <OptimizedBreathingGradients />
             <Toaster />
             <Sonner />
             {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
@@ -85,7 +96,7 @@ const App = () => {
               }}
               className="relative h-full"
             >
-              <CursorAurora />
+              <OptimizedCursorAurora />
               <main className="relative z-10">
                 <HashRouter>
                   <Routes>
@@ -104,7 +115,7 @@ const App = () => {
                   <FloatingNavigation />
                 </HashRouter>
               </main>
-              <CursorAurora />
+              <OptimizedCursorAurora />
             </motion.div>
           </div>
         </TooltipProvider>
