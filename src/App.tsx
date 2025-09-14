@@ -8,7 +8,8 @@ import { motion } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoadingScreen from "./components/LoadingScreen";
-import SimpleBackground from "./components/SimpleBackground";
+import BreathingGradients from "./components/BreathingGradients";
+import CursorAurora from "./components/CursorAurora";
 import FloatingNavigation from "./components/FloatingNavigation";
 
 const queryClient = new QueryClient();
@@ -52,21 +53,16 @@ const App = () => {
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <TooltipProvider>
           <div className="min-h-screen text-foreground relative">
-            <SimpleBackground />
+            <BreathingGradients />
             <Toaster />
             <Sonner />
             {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: isLoading ? 0 : 1
-              }}
-              transition={{
-                duration: 1.0,
-                ease: "easeOut",
-                delay: isLoading ? 0 : 0.2
-              }}
+            <div
               className="relative h-full"
+              style={{
+                opacity: isLoading ? 0 : 1,
+                transition: 'opacity 0.5s ease'
+              }}
             >
               <main className="relative z-10">
                 <HashRouter>
@@ -87,7 +83,7 @@ const App = () => {
                 </HashRouter>
               </main>
               <CursorAurora />
-            </motion.div>
+            </div>
           </div>
         </TooltipProvider>
       </ThemeContext.Provider>
