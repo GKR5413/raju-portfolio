@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, User, Briefcase, Code, Mail, ChevronUp } from 'lucide-react';
+import { Home, User, Briefcase, Code, Mail, ChevronUp, Moon, Sun } from 'lucide-react';
+import { useCustomTheme } from '@/App';
 
 interface NavItem {
   id: string;
@@ -23,6 +24,12 @@ const FloatingNavigation = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const [pendingSection, setPendingSection] = useState<string | null>(null);
+  const { theme, setTheme } = useCustomTheme();
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+  };
 
   // iOS Liquid Glass effects with live refraction and mouse tracking
   useEffect(() => {
@@ -453,6 +460,34 @@ const FloatingNavigation = () => {
         )}
       </AnimatePresence>
 
+      {/* Mobile Theme Toggle Button */}
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0, x: 20 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            exit={{ opacity: 0, scale: 0, x: 20 }}
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 25,
+              delay: 0.2
+            }}
+            className="fixed bottom-4 sm:bottom-8 right-4 sm:right-6 z-50 md:hidden"
+          >
+            <button
+              className="ios-liquid-glass ios-liquid-glass-container w-12 h-12 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200"
+              onClick={toggleTheme}
+            >
+              {theme === 'dark' ? (
+                <Sun size={20} className="text-white" strokeWidth={1.5} />
+              ) : (
+                <Moon size={20} className="text-gray-800" strokeWidth={1.5} />
+              )}
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Side Progress Indicator */}
       <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-40">
