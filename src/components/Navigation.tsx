@@ -10,7 +10,7 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
   const [shouldHide, setShouldHide] = useState(false);
-  const { theme, setTheme } = useCustomTheme();
+  const { theme, triggerThemeTransition } = useCustomTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -27,9 +27,11 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleDarkMode = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
+  const toggleDarkMode = (event: React.MouseEvent) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    triggerThemeTransition(x, y);
   };
 
   const scrollToSection = (sectionId: string) => {

@@ -9,9 +9,9 @@ import { motion } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoadingScreen from "./components/LoadingScreen";
-import BreathingGradients from "./components/BreathingGradients";
-import CursorAurora from "./components/CursorAurora";
+import SimpleBackground from "./components/SimpleBackground";
 import FloatingNavigation from "./components/FloatingNavigation";
+import ThemeTransition from "./components/ThemeTransition";
 import SEOHead from "./components/SEOHead";
 
 const queryClient = new QueryClient();
@@ -20,6 +20,7 @@ const queryClient = new QueryClient();
 const ThemeContext = createContext({
   theme: 'light',
   setTheme: (theme: 'light' | 'dark') => {},
+  triggerThemeTransition: (x: number, y: number) => {},
 });
 
 export const useCustomTheme = () => useContext(ThemeContext);
@@ -27,6 +28,8 @@ export const useCustomTheme = () => useContext(ThemeContext);
 const App = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [isLoading, setIsLoading] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitionOrigin, setTransitionOrigin] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     // Get theme from localStorage or default to light
@@ -38,26 +41,42 @@ const App = () => {
     // Simple loading timeout
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
-    }, 4000); // Increased loading time to accommodate longer animation
+    }, 4000); // Increased loading time to allow full name animation
 
     return () => clearTimeout(loadingTimer);
   }, []);
 
   useEffect(() => {
-    // Apply theme to document
+    // Apply theme to document without transition animation
+    if (!isTransitioning) {
+      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.add(theme);
+      localStorage.setItem('theme', theme);
+    }
+  }, [theme, isTransitioning]);
+
+  const triggerThemeTransition = (x: number, y: number) => {
+    setTransitionOrigin({ x, y });
+    setIsTransitioning(true);
+  };
+
+  const handleTransitionComplete = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
     document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    document.documentElement.classList.add(newTheme);
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    setIsTransitioning(false);
+  };
 
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <ThemeContext.Provider value={{ theme, setTheme }}>
+        <ThemeContext.Provider value={{ theme, setTheme, triggerThemeTransition }}>
           <TooltipProvider>
             <SEOHead />
-            <div className="min-h-screen text-foreground relative">
-              <BreathingGradients />
+            <div className={`min-h-screen text-foreground relative ${isTransitioning ? 'theme-transitioning' : ''}`}>
+              <SimpleBackground />
               <Toaster />
               <Sonner />
               {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
@@ -86,8 +105,17 @@ const App = () => {
                   <FloatingNavigation />
                 </HashRouter>
               </main>
-              <CursorAurora />
+              {/* <CursorAurora /> */}
             </div>
+
+            {/* Theme Transition Effect */}
+            <ThemeTransition
+              isTransitioning={isTransitioning}
+              transitionOrigin={transitionOrigin}
+              currentTheme={theme}
+              newTheme={theme === 'dark' ? 'light' : 'dark'}
+              onComplete={handleTransitionComplete}
+            />
           </div>
         </TooltipProvider>
       </ThemeContext.Provider>

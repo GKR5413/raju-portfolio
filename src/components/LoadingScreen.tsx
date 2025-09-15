@@ -3,14 +3,14 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 
 // --- A component for a single character that resolves with a scroll effect ---
 const OdometerCharacter = ({ finalChar, onResolved }) => {
-  const scrollChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ<>_[]{}#@!$%^&*()+=?01234seph";
+  const scrollChars = "ZYXWVUTSRQPONMLKJIHGFEDCBA<>_[]{}#@!$%^&*()+=?01234seph";
   const controls = useAnimation();
 
   const charIndex = scrollChars.indexOf(finalChar.toUpperCase());
   const yOffset = charIndex > -1 ? -charIndex * 36 : 0; // 36px is the height
 
   useEffect(() => {
-    const randomStartDelay = Math.random() * 2000 + 500; // Increased from 1200 to 2000-2500ms
+    const randomStartDelay = Math.random() * 2500 + 800; // Increased for better name reveal effect
 
     const startTimer = setTimeout(async () => {
       await controls.start({
@@ -53,7 +53,7 @@ const LoadingScreen = ({ onFinished }) => {
     if (allResolved) {
       const timer = setTimeout(() => {
         onFinished();
-      }, 1500); // Increased from 800ms to 1500ms
+      }, 2000); // Increased delay after name completes
       return () => clearTimeout(timer);
     }
   }, [allResolved, onFinished]);

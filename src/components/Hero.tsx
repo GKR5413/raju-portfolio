@@ -1,4 +1,3 @@
-import ErrorBoundary from "./ErrorBoundary";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { motion, useAnimation } from "framer-motion";
@@ -7,56 +6,37 @@ import ParallaxSection from "./ParallaxSection";
 import TextReveal, { AnimatedCounter } from "./TextReveal";
 import MagneticElement from "./MagneticElement";
 
-// Individual Character Scroller - exactly like loading screen
-const OdometerCharacter = ({ finalChar, onResolved, delay = 0 }) => {
-  const scrollChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>_[]{}#@!$%^&*()+=?.-*K%abcdefghijklmnopqrstuvwxyz";
+// Character scrolling animation like loading screen
+const StatCharacter = ({ finalChar, onResolved, isVisible }) => {
+  const scrollChars = "ZYXWVUTSRQPONMLKJIHGFEDCBA0987654321.+K";
   const controls = useAnimation();
-  const [isResolved, setIsResolved] = useState(false);
 
-  const charIndex = scrollChars.indexOf(finalChar.toUpperCase());
+  const charIndex = scrollChars.indexOf(finalChar);
   const yOffset = charIndex > -1 ? -charIndex * 36 : 0;
 
   useEffect(() => {
-    const randomDelay = Math.random() * 1500 + delay; // Extended animation time
+    if (!isVisible) return;
+
+    const randomStartDelay = Math.random() * 800 + 300;
 
     const startTimer = setTimeout(async () => {
-      setIsResolved(true);
       await controls.start({
         y: yOffset,
-        transition: {
-          type: "spring",
-          damping: 12,
-          stiffness: 80,
-          mass: 0.8,
-          duration: 1.2, // Longer duration for smoother effect
-        },
+        transition: { type: "spring", damping: 15, stiffness: 100, mass: 0.5 },
       });
-      if (onResolved) onResolved();
-    }, randomDelay);
+      if (onResolved) {
+        onResolved();
+      }
+    }, randomStartDelay);
 
     return () => clearTimeout(startTimer);
-  }, [controls, yOffset, onResolved, delay]);
+  }, [controls, yOffset, onResolved, isVisible]);
 
   return (
-    <div
-      className="overflow-hidden inline-block"
-      style={{ height: 36, lineHeight: '36px', width: '1em', textAlign: 'center' }}
-    >
-      <motion.div
-        initial={{ y: Math.random() * -scrollChars.length * 36 }} // Start at random position
-        animate={controls}
-        style={{ willChange: 'transform' }}
-      >
+    <div style={{ height: 36, lineHeight: '36px' }} className="overflow-hidden">
+      <motion.div initial={{ y: 0 }} animate={controls}>
         {[...scrollChars].map((char, index) => (
-          <div
-            key={index}
-            style={{
-              height: 36,
-              lineHeight: '36px',
-              textAlign: 'center',
-              fontWeight: 'bold'
-            }}
-          >
+          <div key={index} style={{ height: 36 }} className="text-2xl sm:text-3xl font-bold">
             {char}
           </div>
         ))}
@@ -65,14 +45,13 @@ const OdometerCharacter = ({ finalChar, onResolved, delay = 0 }) => {
   );
 };
 
-// Odometer-style metric component with enhanced fluid animation
-const OdometerMetric = ({ finalValue, suffix = "", label, onResolved }) => {
+// Scrolling Counter Animation (like loading screen)
+const ScrollingCounter = ({ finalValue, suffix = "", label, onResolved }) => {
   const [resolvedCount, setResolvedCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Convert final value to string for character-by-character animation
-  const finalString = finalValue.toString() + suffix;
-  const totalChars = finalString.replace(/ /g, "").length;
+  const valueString = finalValue.toString() + suffix;
+  const totalChars = valueString.length;
 
   const handleCharResolved = useCallback(() => {
     setResolvedCount(prev => prev + 1);
@@ -83,7 +62,7 @@ const OdometerMetric = ({ finalValue, suffix = "", label, onResolved }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, Math.random() * 800 + 200);
+    }, Math.random() * 500 + 200);
 
     return () => clearTimeout(timer);
   }, []);
@@ -92,7 +71,7 @@ const OdometerMetric = ({ finalValue, suffix = "", label, onResolved }) => {
     if (allResolved && onResolved) {
       const timer = setTimeout(() => {
         onResolved();
-      }, 300);
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [allResolved, onResolved]);
@@ -105,40 +84,20 @@ const OdometerMetric = ({ finalValue, suffix = "", label, onResolved }) => {
         opacity: isVisible ? 1 : 0,
         scale: isVisible ? 1 : 0.8
       }}
-      transition={{ duration: 0.8, type: "spring", stiffness: 120 }}
-      whileHover={{
-        scale: 1.05,
-        transition: { duration: 0.3 }
-      }}
+      transition={{ duration: 0.5 }}
     >
-      <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-1 font-mono flex justify-center items-center">
-        {isVisible && finalString.split('').map((char, index) =>
-          char === ' ' ? (
-            <span key={index} className="inline-block w-2"></span>
-          ) : (
-            <OdometerCharacter
-              key={index}
-              finalChar={char}
-              onResolved={handleCharResolved}
-              delay={index * 150} // Staggered start times
-            />
-          )
-        )}
+      <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-1 flex justify-center">
+        {valueString.split('').map((char, index) => (
+          <StatCharacter key={index} finalChar={char} onResolved={handleCharResolved} isVisible={isVisible} />
+        ))}
       </div>
-      <motion.div
-        className="text-sm text-gray-600 dark:text-gray-400 mt-2"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{
-          opacity: allResolved ? 1 : 0,
-          y: allResolved ? 0 : 10
-        }}
-        transition={{ delay: 0.3, duration: 0.6 }}
-      >
+      <div className="text-sm text-gray-600 dark:text-gray-400 mt-2">
         {label}
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
+
 
 const Hero = () => {
   const statsRef = useRef(null);
@@ -150,10 +109,10 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    // Trigger animation after a delay when component mounts
+    // Trigger animation after loading screen is complete (4 seconds + buffer)
     const timer = setTimeout(() => {
       setIsStatsInView(true);
-    }, 2000); // 2 second delay
+    }, 5000); // 5 second delay to ensure loading screen is done
 
     return () => clearTimeout(timer);
   }, []);
@@ -226,7 +185,7 @@ const Hero = () => {
         </motion.div>
 
         {/* Stats with Odometer Animation */}
-        <ParallaxSection speed={0.2} className="mb-16">
+        <div className="mb-16">
           <motion.div
             ref={statsRef}
             initial={{ opacity: 0, y: 30 }}
@@ -236,25 +195,25 @@ const Hero = () => {
           >
             {isStatsInView && (
               <>
-                <OdometerMetric
+                <ScrollingCounter
                   finalValue={4}
                   suffix="+"
                   label="Years Experience"
                   onResolved={handleMetricResolved}
                 />
-                <OdometerMetric
+                <ScrollingCounter
                   finalValue={10}
                   suffix="K+"
                   label="Merchants Served"
                   onResolved={handleMetricResolved}
                 />
-                <OdometerMetric
+                <ScrollingCounter
                   finalValue={414}
                   suffix=""
                   label="RPS Performance"
                   onResolved={handleMetricResolved}
                 />
-                <OdometerMetric
+                <ScrollingCounter
                   finalValue={3.82}
                   suffix=""
                   label="GPA at UMKC"
@@ -263,7 +222,7 @@ const Hero = () => {
               </>
             )}
           </motion.div>
-        </ParallaxSection>
+        </div>
 
         {/* Location */}
         <motion.div 

@@ -30,10 +30,16 @@
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Remove any aggressive optimizations that might block scroll */
+}
+
+/* Disable transitions during theme spreading animation */
+.theme-transitioning * {
+  transition: none !important;
 }
 
 html {
-  scroll-behavior: auto; /* Changed from smooth to auto for better performance */
+  scroll-behavior: smooth; /* Re-enable smooth scrolling for navigation */
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
 }
@@ -41,26 +47,10 @@ html {
 body {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  position: relative;
+  /* Remove position relative that might cause issues */
 }
 
-/* Optimize scrolling performance */
-.scroll-container {
-  will-change: auto; /* Changed from transform to auto */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-}
-
-/* Fix scroll issues */
-#root {
-  min-height: 100vh;
-  position: relative;
-}
-
-/* Smooth scrolling only when needed */
-.smooth-scroll {
-  scroll-behavior: smooth;
-}
+/* Simple CSS - remove complex optimizations */
 
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
@@ -75,10 +65,6 @@ body {
 }
 
 @layer utilities {
-  .animate-spin-slow {
-    animation: spin 8s linear infinite;
-  }
-  
   .metric-card {
     min-height: 80px;
     display: flex;
@@ -86,15 +72,11 @@ body {
     justify-content: center;
     align-items: center;
   }
-  
+
   .metric-label {
     line-height: 1.2;
     word-break: keep-all;
     white-space: nowrap;
-  }
-  
-  .bg-gradient-radial {
-    background: radial-gradient(circle at center, var(--tw-gradient-stops));
   }
 }
 
