@@ -62,11 +62,24 @@ const App = () => {
 
   const handleTransitionComplete = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(newTheme);
+
+    // Emergency cleanup - remove any stuck transition elements
+    const cleanup = () => {
+      document.documentElement.classList.remove('light', 'dark', 'theme-transitioning');
+      document.documentElement.classList.add(newTheme);
+      const transitionStyles = document.querySelectorAll('style[data-theme-transition]');
+      transitionStyles.forEach(style => style.remove());
+      const themeRevealElements = document.querySelectorAll('.theme-reveal');
+      themeRevealElements.forEach(el => el.remove());
+    };
+
+    cleanup();
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
     setIsTransitioning(false);
+
+    // Double cleanup after a delay
+    setTimeout(cleanup, 100);
   };
 
   return (

@@ -33,9 +33,9 @@
   /* Remove any aggressive optimizations that might block scroll */
 }
 
-/* Disable transitions during theme spreading animation */
-.theme-transitioning * {
-  transition: none !important;
+/* Clean theme transition without interference */
+.theme-transitioning {
+  will-change: auto;
 }
 
 html {

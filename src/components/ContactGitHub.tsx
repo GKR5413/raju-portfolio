@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Linkedin, 
-  Github, 
-  Send, 
-  Clock, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin,
+  Github,
+  Send,
+  Clock,
   Globe,
   Coffee,
   Calendar,
@@ -20,8 +20,9 @@ import {
   AlertCircle
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { initEmailJS, sendContactEmail } from "@/lib/emailjs-config";
 
-const Contact = () => {
+const ContactGitHub = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -32,40 +33,45 @@ const Contact = () => {
   const [errors, setErrors] = useState<{[key: string]: string}>({});
   const { toast } = useToast();
 
+  // Initialize EmailJS on component mount
+  useEffect(() => {
+    initEmailJS();
+  }, []);
+
   const validateForm = () => {
     const newErrors: {[key: string]: string} = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
     } else if (formData.name.trim().length < 2) {
       newErrors.name = "Name must be at least 2 characters";
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
     }
-    
+
     if (!formData.subject.trim()) {
       newErrors.subject = "Subject is required";
     } else if (formData.subject.trim().length < 5) {
       newErrors.subject = "Subject must be at least 5 characters";
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
     } else if (formData.message.trim().length < 10) {
       newErrors.message = "Message must be at least 10 characters";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       toast({
         title: "Please fix the errors below",
@@ -74,27 +80,15 @@ const Contact = () => {
       });
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to send message');
-      }
+      const result = await sendContactEmail(formData);
 
       toast({
         title: "Message sent successfully!",
-        description: data.message || "Thank you for reaching out. I'll get back to you within 24 hours.",
+        description: result.message,
       });
 
       setFormData({ name: "", email: "", subject: "", message: "" });
@@ -117,7 +111,7 @@ const Contact = () => {
       ...formData,
       [name]: value
     });
-    
+
     // Clear error for this field when user starts typing
     if (errors[name]) {
       setErrors({
@@ -195,7 +189,7 @@ const Contact = () => {
             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            I'm always excited to discuss new opportunities, collaborate on interesting projects, 
+            I'm always excited to discuss new opportunities, collaborate on interesting projects,
             or simply connect with fellow developers. Drop me a message!
           </p>
         </div>
@@ -222,7 +216,7 @@ const Contact = () => {
                       <div className="flex-1">
                         <div className="text-sm text-muted-foreground">{info.label}</div>
                         {info.href ? (
-                          <a 
+                          <a
                             href={info.href}
                             className="text-foreground hover:text-primary transition-colors"
                             target={info.href.startsWith('http') ? '_blank' : undefined}
@@ -291,7 +285,7 @@ const Contact = () => {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="font-medium text-foreground">{item.type}</span>
-                        <Badge 
+                        <Badge
                           variant={
                             item.status === 'Open' ? 'default' :
                             item.status === 'Available' ? 'secondary' :
@@ -408,9 +402,9 @@ const Contact = () => {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                    <Button 
-                      type="submit" 
-                      variant="hero" 
+                    <Button
+                      type="submit"
+                      variant="hero"
                       size="lg"
                       disabled={isSubmitting}
                       className="flex-1 gap-2 text-sm sm:text-base"
@@ -427,9 +421,9 @@ const Contact = () => {
                         </>
                       )}
                     </Button>
-                    <Button 
-                      type="button" 
-                      variant="outline" 
+                    <Button
+                      type="button"
+                      variant="outline"
                       size="lg"
                       className="gap-2 text-sm sm:text-base"
                       disabled={isSubmitting}
@@ -458,4 +452,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactGitHub;

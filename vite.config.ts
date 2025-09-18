@@ -7,7 +7,14 @@ export default defineConfig(({ mode, command }) => {
   return {
     server: {
       host: "::",
-      port: 3001,
+      port: 5173,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3001',
+          changeOrigin: true,
+          secure: false,
+        },
+      },
     },
     base: "./",
     plugins: [

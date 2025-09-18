@@ -6,7 +6,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
+import ContactGitHub from "@/components/ContactGitHub";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -64,7 +64,7 @@ const Index = () => {
       <Projects />
 
       {/* Contact */}
-      <Contact />
+      <ContactGitHub />
 
       {/* Footer */}
       <Footer />
