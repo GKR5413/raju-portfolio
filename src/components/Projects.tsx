@@ -29,7 +29,7 @@ const Projects = () => {
         system: "6 services"
       },
       links: {
-        github: "https://github.com/GKR5413/velocide",
+        github: "https://github.com/GKR5413/AI-Code-Editor",
         live: "#",
         demo: "#"
       },
@@ -341,23 +341,14 @@ const Projects = () => {
 
                 {/* Enhanced Action Buttons */}
                 <div className="flex gap-3 pt-6 border-t border-border">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="flex-1 gap-2 hover:bg-primary hover:text-white transition-all duration-200 border-primary/30"
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full gap-2 hover:bg-primary hover:text-white transition-all duration-200 border-primary/30"
                     onClick={() => window.open(project.links.github, '_blank')}
                   >
                     <Github className="h-4 w-4" />
                     View Code
-                  </Button>
-                  <Button 
-                    variant="default" 
-                    size="sm" 
-                    className="flex-1 gap-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white shadow-lg hover:shadow-xl transition-all duration-200"
-                    onClick={() => window.open(project.links.demo, '_blank')}
-                  >
-                    <Play className="h-4 w-4" />
-                    Explore Project
                   </Button>
                 </div>
               </CardContent>
