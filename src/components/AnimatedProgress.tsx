@@ -371,11 +371,11 @@ export const achievements = [
     color: '#10B981'
   },
   {
-    title: 'Merchants Served',
-    value: 10000,
-    target: 15000,
-    unit: '+',
-    description: 'Active merchants on platform',
+    title: 'System Uptime',
+    value: 99.9,
+    target: 100,
+    unit: '%',
+    description: 'Production system availability',
     icon: <Target className="h-5 w-5" />,
     color: '#3B82F6'
   },
