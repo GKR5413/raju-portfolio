@@ -7,6 +7,27 @@ import { AchievementCard, achievements } from "./AnimatedProgress";
 const Experience = () => {
   const experiences = [
     {
+      company: "DXC Technology",
+      logo: "/logos/dxc-technology.png",
+      position: "Software Engineer",
+      location: "Plano, TX",
+      duration: "May 2025 - present",
+      type: "Full-time",
+      description: "Delivered a workflow management platform with Spring Boot, Node.js, and React, deployed via AWS Elastic Beanstalk and RDS, which accelerated team project.",
+      achievements: [
+        "Automated subscription workflows through Stripe webhooks, removing 40% of manual tasks and cutting customer support resolution time by 25%",
+        "Increased transaction success rate by 5% through refined Stripe API flows, reducing charge failures and saving the business $5K monthly",
+        "Coordinated with product managers and QA under Agile sprints, ensuring 100% on-time feature releases aligned with stakeholder expectations",
+        "Expanded test coverage from 55% to 80% by implementing JUnit, Mockito, and Jest test suites, lowering production issues by 30%",
+        "Containerized services using Docker and streamlined deployments with CI/CD pipelines in GitHub Actions, reducing deployment time from 30 minutes to under 10 minutes"
+      ],
+      technologies: ["Java", "Spring Boot", "Node.js", "React", "AWS Elastic Beanstalk", "AWS RDS", "Stripe API", "Docker", "GitHub Actions", "JUnit", "Mockito", "Jest"],
+      impact: {
+        metric: "40%",
+        description: "Manual Task Reduction"
+      }
+    },
+    {
       company: "Fidelity National Information Services (FIS Global)",
       logo: "/logos/fis-global.png",
       position: "Software Engineer",

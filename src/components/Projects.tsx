@@ -12,20 +12,20 @@ const Projects = () => {
       id: 1,
       title: "VelocIDE - AI-Based Code Editor",
       category: "AI/ML",
-      description: "Orchestrated a production-ready web IDE supporting 20+ concurrent users, integrating Gemini, Claude, and Llama 3 models for autonomous code management with 5ms average response times and 100% accuracy under load.",
+      description: "Built production-ready web IDE integrating Google Gemini 3 Pro, Claude 4.5 Sonnet, and Llama 3 models with autonomous file management where LLMs create, delete, and modify entire codebases with 5ms response.",
       image: "/api/placeholder/400/250",
-      technologies: ["React", "TypeScript", "Monaco Editor", "Docker", "gRPC", "OAuth 2.0", "JWT", "Gemini", "Claude", "Llama 3"],
+      technologies: ["React", "TypeScript", "Monaco Editor", "Docker", "gRPC", "OAuth 2.0", "JWT", "Google Gemini 3 Pro", "Claude 4.5 Sonnet", "Llama 3"],
       features: [
         "Multi-model AI integration",
-        "Real-time code editing",
+        "Autonomous file management",
         "Multi-tab interface",
         "gRPC powered terminals"
       ],
       metrics: {
-        performance: "20+",
-        latency: "5ms avg",
-        accuracy: "100%",
-        concurrent: "20 users",
+        performance: "20+ users",
+        latency: "5ms",
+        accuracy: "Sub-10ms",
+        concurrent: "20+ users",
         system: "6 services"
       },
       links: {
@@ -257,29 +257,22 @@ const Projects = () => {
                       <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
                         <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <span className="font-semibold text-foreground">Architected a 6-service Dockerized microservices system</span>
-                          <span className="text-muted-foreground"> with latency benchmarks of Auth: 6ms, AI Agent: 5ms, Compiler: 13ms, enabling sub-10ms inter-service communication</span>
+                          <span className="font-semibold text-foreground">Prepared 6-service Docker microservices architecture</span>
+                          <span className="text-muted-foreground"> achieving sub-10ms response times (Auth: 6ms, AI Agent: 5ms, Compiler: 13ms) with 1ms file reads and 8ms writes for real-time workspace synchronization</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
                         <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <span className="font-semibold text-foreground">Delivered a React + TypeScript SPA using Monaco Editor</span>
-                          <span className="text-muted-foreground"> with 156ms cold starts and 25ms page loads, including multi-tab editing, resizable panels, and gRPC powered terminals</span>
+                          <span className="font-semibold text-foreground">Built production-ready web IDE with autonomous file management</span>
+                          <span className="text-muted-foreground"> where LLMs create, delete, and modify entire codebases with 5ms response</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
                         <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <span className="font-semibold text-foreground">Implemented OAuth 2.0/JWT for authentication</span>
-                          <span className="text-muted-foreground"> supporting 20+ simultaneous sessions with lightweight &lt;50MB memory footprint per service</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        <div>
-                          <span className="font-semibold text-foreground">Optimized container lifecycle management</span>
-                          <span className="text-muted-foreground"> to achieve 3-second deployments and 100% uptime in stress testing across 10,000+ test requests</span>
+                          <span className="font-semibold text-foreground">Architected OAuth 2.0/JWT authentication</span>
+                          <span className="text-muted-foreground"> supporting 20+ concurrent users with 6ms response times, 50MB memory footprint per service, and automated cleanup with rate limiting</span>
                         </div>
                       </div>
                     </div>

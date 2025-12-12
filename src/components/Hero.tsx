@@ -196,7 +196,7 @@ const Hero = () => {
             {isStatsInView && (
               <>
                 <ScrollingCounter
-                  finalValue={4}
+                  finalValue={5}
                   suffix="+"
                   label="Years Experience"
                   onResolved={handleMetricResolved}

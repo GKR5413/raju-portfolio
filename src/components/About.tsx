@@ -23,14 +23,16 @@ const About = () => {
   ];
 
   const technologies = [
-    "Java", "Spring Boot", "Spring Cloud", "Spring Security", "Spring Data JPA", "Python", "JavaScript", "TypeScript", "React", "Node.js",
-    "PostgreSQL", "MongoDB", "Redis", "Apache Kafka", "Elasticsearch",
-    "AWS (EKS, EC2, S3, Lambda, RDS)", "Docker", "Kubernetes", "Terraform", "Helm",
-    "Jenkins", "GitHub Actions", "Git", "Maven", "Gradle",
+    "Java", "Spring Boot", "Spring Cloud", "Spring Security", "Spring Data JPA", "Python", "JavaScript", "TypeScript", "React", "Node.js", "Vue", "Angular",
+    "PostgreSQL", "MongoDB", "MySQL", "Redis", "DuckDB", "Apache Kafka", "Elasticsearch",
+    "AWS (EKS, EC2, S3, Lambda, RDS)", "Azure", "Docker", "Kubernetes", "Terraform", "Helm",
+    "Jenkins", "GitHub Actions", "GitLab CI/CD", "Git", "Maven", "Gradle",
     "Prometheus", "Grafana", "ELK Stack", "Jaeger",
-    "JUnit", "Mockito", "Postman", "Swagger", "REST APIs", "GraphQL", "gRPC",
-    "Machine Learning", "TensorFlow", "Scikit-learn", "Pandas", "NumPy", "Jupyter",
-    "Microservices", "API Gateway", "Circuit Breaker", "CQRS", "Event Sourcing"
+    "JUnit", "Mockito", "Selenium", "Postman", "Swagger", "REST APIs", "GraphQL", "gRPC", "SOAP", "OAuth 2.0", "JWT Authentication",
+    "nginx", "Memcached", "Tailwind CSS",
+    "Machine Learning", "TensorFlow", "Scikit-learn", "Pandas", "NumPy", "Jupyter", "Google Gemini 3 Pro", "Claude 4.5", "Llama 3", "Ollama",
+    "Monaco Editor", "IntelliJ IDEA", "Visual Studio Code",
+    "Microservices", "API Gateway", "Circuit Breaker", "CQRS", "Event Sourcing", "Google Maps API"
   ];
 
   const highlights = [
@@ -85,9 +87,9 @@ const About = () => {
           </div>
           
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Software engineer with 4+ years of experience developing and deploying scalable fintech solutions and AI platforms. 
-            Expertise includes cloud-native deployment (AWS, Docker, Kubernetes, Terraform), CI/CD automation, and secure API integrations, 
-            leading to increased API response times by 25% and cutting release cycles in half. Led the construction of a web IDE integrating 
+            Software engineer with 5+ years of experience developing and deploying scalable fintech solutions and AI platforms.
+            Expertise includes cloud-native deployment (AWS, Docker, Kubernetes, Terraform), CI/CD automation, and secure API integrations,
+            leading to reduce API response times by 25% and cutting release cycles in half. Led the construction of a web IDE integrating
             Gemini, Claude, and Llama 3 models, which can handle concurrent loads response times.
           </p>
         </div>
@@ -101,9 +103,9 @@ const About = () => {
               </h3>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  With over 4 years of hands-on experience in software development, I specialize in 
-                  creating robust, scalable fintech solutions and AI platforms using Java, Spring Boot, 
-                  and cloud-native technologies. My passion lies in solving complex problems and building 
+                  With over 5 years of hands-on experience in software development, I specialize in
+                  creating robust, scalable fintech solutions and AI platforms using Java, Spring Boot,
+                  and cloud-native technologies. My passion lies in solving complex problems and building
                   systems that can handle real-world scale.
                 </p>
                 <p>
@@ -113,8 +115,8 @@ const About = () => {
                   of building software that makes a meaningful impact.
                 </p>
                 <p>
-                  Currently pursuing my Master's in Computer Science at the University of Missouri-Kansas City 
-                  with a 3.82 GPA, I'm expanding my expertise in advanced algorithms, distributed systems, 
+                  Graduated with my Master's in Computer Science from the University of Missouri-Kansas City
+                  (May 2025) with a 3.82 GPA, expanding my expertise in advanced algorithms, distributed systems,
                   and cloud computing architecture while continuing to build innovative solutions.
                 </p>
               </div>
@@ -125,14 +127,14 @@ const About = () => {
               <CardContent className="p-4">
                 <div className="flex items-center gap-3 mb-3">
                   <GraduationCap className="h-5 w-5 text-primary" />
-                  <span className="font-semibold text-foreground">Current Education</span>
+                  <span className="font-semibold text-foreground">Education</span>
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  <div className="font-medium text-foreground">MS in Computer Science</div>
+                  <div className="font-medium text-foreground">MS in Computer Science (Aug 2023 - May 2025)</div>
                   <div>University of Missouri-Kansas City</div>
                   <div className="flex items-center gap-2 mt-1">
                     <Award className="h-4 w-4 text-primary" />
-                    <span className="text-xs">Dean's International Scholar - $16,000 scholarship</span>
+                    <span className="text-xs">GPA: 3.82</span>
                   </div>
                 </div>
               </CardContent>
