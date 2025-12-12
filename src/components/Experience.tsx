@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, TrendingUp, Code2, Terminal } from "lucide-react";
-import AnimatedCodeSnippet, { javaSpringBootCode, microservicesCode, reactHookCode } from "./AnimatedCodeSnippet";
+import { Button } from "@/components/ui/button";
+import { Calendar, MapPin, TrendingUp, Code2 } from "lucide-react";
 import { AchievementCard, achievements } from "./AnimatedProgress";
 
 const Experience = () => {
@@ -210,167 +210,299 @@ const Experience = () => {
           </div>
         </div>
 
-        {/* Enhanced Code in Action Section */}
+        {/* VelocIDE Project Showcase */}
         <div className="mt-20">
           <div className="text-center mb-12">
             <div className="group inline-block relative mb-6">
               <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                Code in Action
+                Featured Project: VelocIDE
               </h3>
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Real examples from production systems handling millions of transactions
+              AI-powered code editor with autonomous file management • Live on GitHub
             </p>
           </div>
 
-          {/* Interactive Code Showcase */}
-          <div className="space-y-12">
-            {/* Featured Code Example - Payment Processing */}
-            <div className="relative">
-              <Card className="overflow-hidden border-primary/20 shadow-xl">
-                <CardHeader className="bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 backdrop-blur-sm">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-primary/20 rounded-lg">
-                        <Code2 className="h-5 w-5 text-primary" />
-                      </div>
-                      <div>
-                        <CardTitle className="text-lg font-semibold">Featured: Enterprise Payment API</CardTitle>
-                        <p className="text-sm text-muted-foreground">Production-ready Spring Boot microservice</p>
-                      </div>
-                    </div>
-                    <Badge className="bg-green-500/20 text-green-700 dark:text-green-300 border-green-500/30">
-                      In Production
-                    </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <AnimatedCodeSnippet
-                    title="Payment Processing API"
-                    language="Java"
-                    code={javaSpringBootCode}
-                    description="Handles 10,000+ daily transactions with fault tolerance and monitoring"
-                    autoPlay={false}
-                    theme="dark"
-                  />
-                  <div className="p-4 bg-muted/30 border-t">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                      <div>
-                        <div className="text-2xl font-bold text-primary">414</div>
-                        <div className="text-xs text-muted-foreground">Requests/Second</div>
-                      </div>
-                      <div>
-                        <div className="text-2xl font-bold text-primary">99.9%</div>
-                        <div className="text-xs text-muted-foreground">Uptime</div>
-                      </div>
-                      <div>
-                        <div className="text-2xl font-bold text-primary">25ms</div>
-                        <div className="text-xs text-muted-foreground">Avg Response</div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Code Grid */}
-            <div className="grid lg:grid-cols-2 gap-8">
-              {/* Kubernetes Configuration */}
-              <Card className="hover-lift border-primary/10 hover:border-primary/30 transition-all duration-300">
-                <CardHeader className="pb-4">
+          {/* VelocIDE GitHub Stats & Repository */}
+          <div className="space-y-8">
+            {/* GitHub Repository Card */}
+            <Card className="overflow-hidden border-primary/20 shadow-xl">
+              <CardHeader className="bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-cyan-500/10">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-blue-500/20 rounded-lg">
-                      <Terminal className="h-5 w-5 text-blue-500" />
+                    <div className="p-2 bg-purple-500/20 rounded-lg">
+                      <Code2 className="h-6 w-6 text-purple-500" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg">Cloud Infrastructure</CardTitle>
-                      <p className="text-sm text-muted-foreground">Auto-scaling Kubernetes deployment</p>
+                      <CardTitle className="text-xl">AI-Code-Editor</CardTitle>
+                      <p className="text-sm text-muted-foreground">Production-ready AI-powered IDE with multi-model support</p>
                     </div>
                   </div>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <AnimatedCodeSnippet
-                    title="Microservices Deployment"
-                    language="YAML"
-                    code={microservicesCode}
-                    description="Production K8s config with health checks and resource limits"
-                    autoPlay={false}
-                    theme="dark"
-                  />
-                </CardContent>
-              </Card>
-
-              {/* React Frontend */}
-              <Card className="hover-lift border-primary/10 hover:border-primary/30 transition-all duration-300">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-cyan-500/20 rounded-lg">
-                      <Code2 className="h-5 w-5 text-cyan-500" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-lg">Frontend Integration</CardTitle>
-                      <p className="text-sm text-muted-foreground">Custom React hook for payment processing</p>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <AnimatedCodeSnippet
-                    title="Custom Payment Hook"
-                    language="JavaScript"
-                    code={reactHookCode}
-                    description="Reusable hook with error handling and loading states"
-                    autoPlay={false}
-                    theme="dark"
-                  />
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Code Metrics Dashboard */}
-            <Card className="border-green-200 bg-green-50/30 dark:border-green-800 dark:bg-green-950/20">
-              <CardHeader>
-                <CardTitle className="text-green-800 dark:text-green-200 flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5" />
-                  Code Quality & Performance Metrics
-                </CardTitle>
+                  <a
+                    href="https://github.com/GKR5413/AI-Code-Editor"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="outline" className="gap-2">
+                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                      </svg>
+                      View Repository
+                    </Button>
+                  </a>
+                </div>
               </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-700 dark:text-green-300 mb-1">85%</div>
-                    <div className="text-sm text-green-600 dark:text-green-400">Test Coverage</div>
+              <CardContent className="p-6">
+                {/* GitHub Stats */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+                  <div className="text-center p-4 bg-muted/30 rounded-lg">
+                    <div className="text-3xl font-bold text-primary mb-1">⭐</div>
+                    <div className="text-sm text-muted-foreground">Open Source</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-700 dark:text-green-300 mb-1">A+</div>
-                    <div className="text-sm text-green-600 dark:text-green-400">Code Quality</div>
+                  <div className="text-center p-4 bg-muted/30 rounded-lg">
+                    <div className="text-3xl font-bold text-primary mb-1">6</div>
+                    <div className="text-sm text-muted-foreground">Microservices</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-700 dark:text-green-300 mb-1">0</div>
-                    <div className="text-sm text-green-600 dark:text-green-400">Security Issues</div>
+                  <div className="text-center p-4 bg-muted/30 rounded-lg">
+                    <div className="text-3xl font-bold text-primary mb-1">5ms</div>
+                    <div className="text-sm text-muted-foreground">Response Time</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-700 dark:text-green-300 mb-1">99.9%</div>
-                    <div className="text-sm text-green-600 dark:text-green-400">Reliability</div>
+                  <div className="text-center p-4 bg-muted/30 rounded-lg">
+                    <div className="text-3xl font-bold text-primary mb-1">20+</div>
+                    <div className="text-sm text-muted-foreground">Concurrent Users</div>
                   </div>
                 </div>
 
-                <div className="mt-6 flex flex-wrap gap-2 justify-center">
-                  <Badge variant="outline" className="text-green-700 dark:text-green-300 border-green-500/30">
-                    ✅ SOLID Principles
-                  </Badge>
-                  <Badge variant="outline" className="text-green-700 dark:text-green-300 border-green-500/30">
-                    ✅ Clean Architecture
-                  </Badge>
-                  <Badge variant="outline" className="text-green-700 dark:text-green-300 border-green-500/30">
-                    ✅ Error Handling
-                  </Badge>
-                  <Badge variant="outline" className="text-green-700 dark:text-green-300 border-green-500/30">
-                    ✅ Performance Optimized
-                  </Badge>
-                  <Badge variant="outline" className="text-green-700 dark:text-green-300 border-green-500/30">
-                    ✅ Security First
-                  </Badge>
+                {/* Tech Stack */}
+                <div className="mb-6">
+                  <h4 className="font-semibold text-foreground mb-3">Technology Stack</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary">React</Badge>
+                    <Badge variant="secondary">TypeScript</Badge>
+                    <Badge variant="secondary">Monaco Editor</Badge>
+                    <Badge variant="secondary">Docker</Badge>
+                    <Badge variant="secondary">gRPC</Badge>
+                    <Badge variant="secondary">OAuth 2.0</Badge>
+                    <Badge variant="secondary">Gemini 3 Pro</Badge>
+                    <Badge variant="secondary">Claude 4.5</Badge>
+                    <Badge variant="secondary">Llama 3</Badge>
+                  </div>
+                </div>
+
+                {/* Key Features */}
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Key Features</h4>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    <div className="flex items-start gap-2">
+                      <span className="text-primary mt-1">✓</span>
+                      <span className="text-sm text-muted-foreground">Multi-model AI integration (Gemini, Claude, Llama)</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-primary mt-1">✓</span>
+                      <span className="text-sm text-muted-foreground">Autonomous file creation & modification</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-primary mt-1">✓</span>
+                      <span className="text-sm text-muted-foreground">Real-time workspace synchronization (1ms reads, 8ms writes)</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-primary mt-1">✓</span>
+                      <span className="text-sm text-muted-foreground">OAuth 2.0/JWT authentication with rate limiting</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* GitHub Activity & Repository Links */}
+            <div className="space-y-6">
+              {/* VelocIDE Repository Direct Access */}
+              <Card className="hover-lift border-purple-500/20 bg-gradient-to-r from-purple-500/5 via-blue-500/5 to-cyan-500/5">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle className="text-xl mb-2">VelocIDE Repository</CardTitle>
+                      <p className="text-sm text-muted-foreground">Full commit history, versions, and development activity</p>
+                    </div>
+                    <svg className="h-12 w-12 text-purple-500/50" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {/* Commits & History */}
+                    <a
+                      href="https://github.com/GKR5413/AI-Code-Editor/commits/main"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group"
+                    >
+                      <div className="p-4 border border-border rounded-lg hover:border-primary/50 transition-all hover:shadow-lg bg-card">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="p-2 bg-blue-500/10 rounded-lg">
+                            <svg className="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">Commit History</h4>
+                            <p className="text-xs text-muted-foreground">All commits with messages</p>
+                          </div>
+                        </div>
+                        <p className="text-sm text-muted-foreground">View complete development timeline →</p>
+                      </div>
+                    </a>
+
+                    {/* Releases & Versions */}
+                    <a
+                      href="https://github.com/GKR5413/AI-Code-Editor/releases"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group"
+                    >
+                      <div className="p-4 border border-border rounded-lg hover:border-primary/50 transition-all hover:shadow-lg bg-card">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="p-2 bg-green-500/10 rounded-lg">
+                            <svg className="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">Releases & Tags</h4>
+                            <p className="text-xs text-muted-foreground">Version history and changelogs</p>
+                          </div>
+                        </div>
+                        <p className="text-sm text-muted-foreground">View all releases →</p>
+                      </div>
+                    </a>
+
+                    {/* Code Frequency */}
+                    <a
+                      href="https://github.com/GKR5413/AI-Code-Editor/graphs/code-frequency"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group"
+                    >
+                      <div className="p-4 border border-border rounded-lg hover:border-primary/50 transition-all hover:shadow-lg bg-card">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="p-2 bg-purple-500/10 rounded-lg">
+                            <svg className="h-5 w-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">Code Frequency</h4>
+                            <p className="text-xs text-muted-foreground">Additions and deletions over time</p>
+                          </div>
+                        </div>
+                        <p className="text-sm text-muted-foreground">View activity graphs →</p>
+                      </div>
+                    </a>
+
+                    {/* Contributors */}
+                    <a
+                      href="https://github.com/GKR5413/AI-Code-Editor/graphs/contributors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group"
+                    >
+                      <div className="p-4 border border-border rounded-lg hover:border-primary/50 transition-all hover:shadow-lg bg-card">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="p-2 bg-cyan-500/10 rounded-lg">
+                            <svg className="h-5 w-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">Contributors</h4>
+                            <p className="text-xs text-muted-foreground">Contribution stats and graphs</p>
+                          </div>
+                        </div>
+                        <p className="text-sm text-muted-foreground">View contributor insights →</p>
+                      </div>
+                    </a>
+                  </div>
+
+                  {/* Quick Stats */}
+                  <div className="mt-6 pt-6 border-t border-border">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-primary mb-1">Public</div>
+                        <div className="text-xs text-muted-foreground">Open Source</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-primary mb-1">TypeScript</div>
+                        <div className="text-xs text-muted-foreground">Primary Language</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-primary mb-1">Active</div>
+                        <div className="text-xs text-muted-foreground">Development Status</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-primary mb-1">2025</div>
+                        <div className="text-xs text-muted-foreground">Latest Updates</div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* GitHub Profile Link */}
+              <Card className="hover-lift bg-gradient-to-r from-blue-500/5 to-purple-500/5">
+                <CardContent className="p-6">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 bg-primary/10 rounded-full">
+                        <svg className="h-8 w-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground text-lg mb-1">View Complete GitHub Profile</h4>
+                        <p className="text-sm text-muted-foreground">See all repositories, contributions, and activity</p>
+                      </div>
+                    </div>
+                    <a
+                      href="https://github.com/GKR5413"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button size="lg" className="gap-2">
+                        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        Visit GitHub Profile
+                      </Button>
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Repository Links */}
+            <Card className="bg-gradient-to-r from-purple-500/5 via-blue-500/5 to-cyan-500/5 border-primary/20">
+              <CardContent className="p-6">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2">Explore the Full Project</h4>
+                    <p className="text-sm text-muted-foreground">Check out the complete source code, documentation, and live demos</p>
+                  </div>
+                  <div className="flex gap-3">
+                    <a
+                      href="https://github.com/GKR5413/AI-Code-Editor"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button variant="default" className="gap-2">
+                        <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View Source Code
+                      </Button>
+                    </a>
+                  </div>
                 </div>
               </CardContent>
             </Card>

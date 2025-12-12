@@ -216,26 +216,55 @@ const AnimatedCodeSnippet = ({
   );
 };
 
-// Sample code snippets for your experience
-export const javaSpringBootCode: CodeLine[] = [
-  { id: '1', content: '@RestController', type: 'keyword' },
-  { id: '2', content: '@RequestMapping("/api/payments")', type: 'keyword' },
-  { id: '3', content: 'public class PaymentController {', type: 'keyword' },
-  { id: '4', content: '', type: 'normal', indent: 1 },
-  { id: '5', content: '    @Autowired', type: 'keyword', indent: 1 },
-  { id: '6', content: '    private PaymentService paymentService;', type: 'variable', indent: 1 },
-  { id: '7', content: '', type: 'normal', indent: 1 },
-  { id: '8', content: '    @PostMapping("/process")', type: 'keyword', indent: 1 },
-  { id: '9', content: '    public ResponseEntity<PaymentResponse> processPayment(', type: 'function', indent: 1 },
-  { id: '10', content: '            @RequestBody PaymentRequest request) {', type: 'variable', indent: 2 },
-  { id: '11', content: '', type: 'normal', indent: 1 },
-  { id: '12', content: '        // Validate payment request', type: 'comment', indent: 2 },
-  { id: '13', content: '        PaymentResponse response = paymentService', type: 'variable', indent: 2 },
-  { id: '14', content: '            .processPayment(request);', type: 'function', indent: 3 },
-  { id: '15', content: '', type: 'normal', indent: 1 },
-  { id: '16', content: '        return ResponseEntity.ok(response);', type: 'keyword', indent: 2 },
+// Real code snippets from actual projects
+
+// 1. DXC Technology - Stripe Webhook Handler
+export const stripeWebhookCode: CodeLine[] = [
+  { id: '1', content: '@PostMapping("/webhooks/stripe")', type: 'keyword' },
+  { id: '2', content: 'public ResponseEntity<String> handleStripeWebhook(', type: 'function' },
+  { id: '3', content: '    @RequestBody String payload,', type: 'variable', indent: 2 },
+  { id: '4', content: '    @RequestHeader("Stripe-Signature") String signature) {', type: 'variable', indent: 2 },
+  { id: '5', content: '', type: 'normal' },
+  { id: '6', content: '    Event event = Webhook.constructEvent(', type: 'variable', indent: 1 },
+  { id: '7', content: '        payload, signature, webhookSecret);', type: 'variable', indent: 2 },
+  { id: '8', content: '', type: 'normal' },
+  { id: '9', content: '    // Handle subscription events', type: 'comment', indent: 1 },
+  { id: '10', content: '    switch (event.getType()) {', type: 'keyword', indent: 1 },
+  { id: '11', content: '        case "customer.subscription.created":', type: 'string', indent: 2 },
+  { id: '12', content: '            subscriptionService.activate(event);', type: 'function', indent: 3 },
+  { id: '13', content: '            break;', type: 'keyword', indent: 3 },
+  { id: '14', content: '        case "invoice.payment_succeeded":', type: 'string', indent: 2 },
+  { id: '15', content: '            paymentService.updateStatus(event);', type: 'function', indent: 3 },
+  { id: '16', content: '            break;', type: 'keyword', indent: 3 },
   { id: '17', content: '    }', type: 'normal', indent: 1 },
-  { id: '18', content: '}', type: 'normal' }
+  { id: '18', content: '    return ResponseEntity.ok("Success");', type: 'keyword', indent: 1 },
+  { id: '19', content: '}', type: 'normal' }
+];
+
+// 2. FIS Global - Merchant Payment Processing with Circuit Breaker
+export const merchantPaymentCode: CodeLine[] = [
+  { id: '1', content: '@Service', type: 'keyword' },
+  { id: '2', content: 'public class MerchantPaymentService {', type: 'keyword' },
+  { id: '3', content: '', type: 'normal' },
+  { id: '4', content: '    @CircuitBreaker(name = "paymentProcessor",', type: 'keyword', indent: 1 },
+  { id: '5', content: '        fallbackMethod = "processPaymentFallback")', type: 'keyword', indent: 2 },
+  { id: '6', content: '    @RateLimiter(name = "paymentAPI")', type: 'keyword', indent: 1 },
+  { id: '7', content: '    public PaymentResult processPayment(', type: 'function', indent: 1 },
+  { id: '8', content: '            MerchantPaymentRequest request) {', type: 'variable', indent: 3 },
+  { id: '9', content: '', type: 'normal' },
+  { id: '10', content: '        // Validate merchant and amount', type: 'comment', indent: 2 },
+  { id: '11', content: '        merchantValidator.validate(request);', type: 'function', indent: 2 },
+  { id: '12', content: '', type: 'normal' },
+  { id: '13', content: '        // Process with Redis caching', type: 'comment', indent: 2 },
+  { id: '14', content: '        String cacheKey = generateKey(request);', type: 'variable', indent: 2 },
+  { id: '15', content: '        PaymentResult cached = cache.get(cacheKey);', type: 'variable', indent: 2 },
+  { id: '16', content: '        if (cached != null) return cached;', type: 'keyword', indent: 2 },
+  { id: '17', content: '', type: 'normal' },
+  { id: '18', content: '        PaymentResult result = gateway.process(request);', type: 'variable', indent: 2 },
+  { id: '19', content: '        cache.put(cacheKey, result, 300);', type: 'function', indent: 2 },
+  { id: '20', content: '        return result;', type: 'keyword', indent: 2 },
+  { id: '21', content: '    }', type: 'normal', indent: 1 },
+  { id: '22', content: '}', type: 'normal' }
 ];
 
 export const microservicesCode: CodeLine[] = [
@@ -260,28 +289,59 @@ export const microservicesCode: CodeLine[] = [
   { id: '19', content: '        - containerPort: 8080', type: 'variable', indent: 6 }
 ];
 
-export const reactHookCode: CodeLine[] = [
-  { id: '1', content: 'const usePaymentProcessor = () => {', type: 'function' },
-  { id: '2', content: '  const [loading, setLoading] = useState(false);', type: 'variable', indent: 1 },
-  { id: '3', content: '  const [error, setError] = useState(null);', type: 'variable', indent: 1 },
-  { id: '4', content: '', type: 'normal' },
-  { id: '5', content: '  const processPayment = useCallback(async (data) => {', type: 'function', indent: 1 },
-  { id: '6', content: '    setLoading(true);', type: 'function', indent: 2 },
-  { id: '7', content: '    setError(null);', type: 'function', indent: 2 },
-  { id: '8', content: '', type: 'normal' },
-  { id: '9', content: '    try {', type: 'keyword', indent: 2 },
-  { id: '10', content: '      const response = await api.post("/payments", data);', type: 'variable', indent: 3 },
-  { id: '11', content: '      return response.data;', type: 'keyword', indent: 3 },
-  { id: '12', content: '    } catch (err) {', type: 'keyword', indent: 2 },
-  { id: '13', content: '      setError(err.message);', type: 'function', indent: 3 },
-  { id: '14', content: '      throw err;', type: 'keyword', indent: 3 },
-  { id: '15', content: '    } finally {', type: 'keyword', indent: 2 },
-  { id: '16', content: '      setLoading(false);', type: 'function', indent: 3 },
-  { id: '17', content: '    }', type: 'normal', indent: 2 },
-  { id: '18', content: '  }, []);', type: 'normal', indent: 1 },
-  { id: '19', content: '', type: 'normal' },
-  { id: '20', content: '  return { processPayment, loading, error };', type: 'keyword', indent: 1 },
-  { id: '21', content: '};', type: 'normal' }
+// 3. L&T Finance - Credit Bureau Integration
+export const creditBureauCode: CodeLine[] = [
+  { id: '1', content: '@Service', type: 'keyword' },
+  { id: '2', content: 'public class CreditBureauService {', type: 'keyword' },
+  { id: '3', content: '', type: 'normal' },
+  { id: '4', content: '    // Multi-bureau credit check aggregator', type: 'comment', indent: 1 },
+  { id: '5', content: '    public CreditReport aggregateCreditScore(', type: 'function', indent: 1 },
+  { id: '6', content: '            LoanApplication application) {', type: 'variable', indent: 3 },
+  { id: '7', content: '', type: 'normal' },
+  { id: '8', content: '        CompletableFuture<Score> experian = ', type: 'variable', indent: 2 },
+  { id: '9', content: '            experianClient.fetchScore(application);', type: 'function', indent: 3 },
+  { id: '10', content: '        CompletableFuture<Score> equifax = ', type: 'variable', indent: 2 },
+  { id: '11', content: '            equifaxClient.fetchScore(application);', type: 'function', indent: 3 },
+  { id: '12', content: '        CompletableFuture<Score> transunion = ', type: 'variable', indent: 2 },
+  { id: '13', content: '            transunionClient.fetchScore(application);', type: 'function', indent: 3 },
+  { id: '14', content: '', type: 'normal' },
+  { id: '15', content: '        // Wait for all responses (timeout: 5s)', type: 'comment', indent: 2 },
+  { id: '16', content: '        CompletableFuture.allOf(experian, equifax, transunion)', type: 'function', indent: 2 },
+  { id: '17', content: '            .get(5, TimeUnit.SECONDS);', type: 'function', indent: 3 },
+  { id: '18', content: '', type: 'normal' },
+  { id: '19', content: '        return CreditReport.builder()', type: 'function', indent: 2 },
+  { id: '20', content: '            .experianScore(experian.get())', type: 'function', indent: 3 },
+  { id: '21', content: '            .equifaxScore(equifax.get())', type: 'function', indent: 3 },
+  { id: '22', content: '            .transunionScore(transunion.get())', type: 'function', indent: 3 },
+  { id: '23', content: '            .build();', type: 'function', indent: 3 },
+  { id: '24', content: '    }', type: 'normal', indent: 1 },
+  { id: '25', content: '}', type: 'normal' }
+];
+
+// 4. VelocIDE - AI Agent Code Generation
+export const aiAgentCode: CodeLine[] = [
+  { id: '1', content: '// AI Agent Service - VelocIDE', type: 'comment' },
+  { id: '2', content: 'class AIAgentService {', type: 'keyword' },
+  { id: '3', content: '  async generateCode(prompt: string, model: string) {', type: 'function', indent: 1 },
+  { id: '4', content: '    const client = this.getClient(model);', type: 'variable', indent: 2 },
+  { id: '5', content: '', type: 'normal' },
+  { id: '6', content: '    // Stream response with 5ms latency', type: 'comment', indent: 2 },
+  { id: '7', content: '    const stream = await client.generate({', type: 'variable', indent: 2 },
+  { id: '8', content: '      prompt,', type: 'variable', indent: 3 },
+  { id: '9', content: '      temperature: 0.7,', type: 'variable', indent: 3 },
+  { id: '10', content: '      maxTokens: 2000', type: 'variable', indent: 3 },
+  { id: '11', content: '    });', type: 'normal', indent: 2 },
+  { id: '12', content: '', type: 'normal' },
+  { id: '13', content: '    // Autonomous file operations', type: 'comment', indent: 2 },
+  { id: '14', content: '    for await (const chunk of stream) {', type: 'keyword', indent: 2 },
+  { id: '15', content: '      if (chunk.action === "CREATE_FILE") {', type: 'keyword', indent: 3 },
+  { id: '16', content: '        await this.fileSystem.create(chunk.path);', type: 'function', indent: 4 },
+  { id: '17', content: '      } else if (chunk.action === "MODIFY_FILE") {', type: 'keyword', indent: 3 },
+  { id: '18', content: '        await this.fileSystem.update(chunk.path, chunk.content);', type: 'function', indent: 4 },
+  { id: '19', content: '      }', type: 'normal', indent: 3 },
+  { id: '20', content: '    }', type: 'normal', indent: 2 },
+  { id: '21', content: '  }', type: 'normal', indent: 1 },
+  { id: '22', content: '}', type: 'normal' }
 ];
 
 export default AnimatedCodeSnippet;

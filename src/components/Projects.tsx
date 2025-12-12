@@ -361,11 +361,16 @@ const Projects = () => {
               Let's connect and discuss how we can build something amazing together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="lg" className="gap-2">
+              <Button variant="secondary" size="lg" className="gap-2 bg-white text-blue-600 hover:bg-gray-100">
                 <Github className="h-5 w-5" />
                 View All Projects
               </Button>
-              <Button variant="outline" size="lg" className="gap-2 border-white text-white hover:bg-white/10">
+              <Button
+                variant="outline"
+                size="lg"
+                className="gap-2 border-2 border-white text-white hover:bg-white hover:text-blue-600 transition-all"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 Get In Touch
               </Button>
             </div>
