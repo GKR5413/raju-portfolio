@@ -4,7 +4,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useRef, useEffect, useState, useCallback } from "react";
 import ParallaxSection from "./ParallaxSection";
 import TextReveal, { AnimatedCounter } from "./TextReveal";
-import MagneticElement from "./MagneticElement";
+import Magnetic from "./Magnetic";
 
 // Character scrolling animation like loading screen
 const StatCharacter = ({ finalChar, onResolved, isVisible }) => {
@@ -255,7 +255,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
         >
-          <MagneticElement strength={0.3}>
+          <Magnetic speed={0.3}>
             <Button
               size="lg"
               className="gap-2 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
@@ -264,8 +264,8 @@ const Hero = () => {
               <Mail className="h-5 w-5" />
               Get In Touch
             </Button>
-          </MagneticElement>
-          <MagneticElement strength={0.25}>
+          </Magnetic>
+          <Magnetic speed={0.25}>
             <Button
               variant="outline"
               size="lg"
@@ -274,7 +274,7 @@ const Hero = () => {
             >
               View My Work
             </Button>
-          </MagneticElement>
+          </Magnetic>
         </motion.div>
 
         {/* Social Links */}
@@ -284,7 +284,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 1.4 }}
           className="flex justify-center gap-6 mb-16"
         >
-          <MagneticElement strength={0.4}>
+          <Magnetic speed={0.4}>
             <Button
               variant="ghost"
               size="icon"
@@ -293,8 +293,8 @@ const Hero = () => {
             >
               <Github className="h-5 w-5" />
             </Button>
-          </MagneticElement>
-          <MagneticElement strength={0.4}>
+          </Magnetic>
+          <Magnetic speed={0.4}>
             <Button
               variant="ghost"
               size="icon"
@@ -303,8 +303,8 @@ const Hero = () => {
             >
               <Linkedin className="h-5 w-5" />
             </Button>
-          </MagneticElement>
-          <MagneticElement strength={0.4}>
+          </Magnetic>
+          <Magnetic speed={0.4}>
             <Button
               variant="ghost"
               size="icon"
@@ -313,7 +313,7 @@ const Hero = () => {
             >
               <Mail className="h-5 w-5" />
             </Button>
-          </MagneticElement>
+          </Magnetic>
         </motion.div>
 
         {/* Scroll Indicator */}
