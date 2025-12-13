@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background with gradient -->
+  <rect x="4" y="4" width="56" height="56" rx="12" ry="12" fill="url(#mainGradient)" filter="url(#shadow)"/>
+  
+  <!-- Inner border for depth -->
+  <rect x="6" y="6" width="52" height="52" rx="10" ry="10" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  
+  <!-- Letter R with custom design -->
+  <g fill="white">
+    <!-- Main vertical line -->
+    <rect x="18" y="16" width="4" height="32" />
+    
+    <!-- Top horizontal line -->
+    <rect x="18" y="16" width="20" height="4" />
+    
+    <!-- Middle horizontal line -->
+    <rect x="18" y="30" width="16" height="4" />
+    
+    <!-- Top right vertical -->
+    <rect x="34" y="16" width="4" height="18" />
+    
+    <!-- Bottom diagonal leg -->
+    <polygon points="30,30 34,30 44,48 38,48" />
+    
+    <!-- Small curve for the P part -->
+    <path d="M 38 20 Q 42 20 42 26 Q 42 30 38 30" stroke="white" stroke-width="4" fill="none"/>
+  </g>
+</svg>
