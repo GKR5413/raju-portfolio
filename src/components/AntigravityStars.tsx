@@ -1,53 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useCustomTheme } from '../App';
 
-// Simplex noise generator for organic, continuous patterns
-const createNoise3D = () => {
-  const perm = new Uint8Array(512);
-  const p = new Uint8Array(256).map((_, i) => i);
 
-  // Shuffle p
-  for (let i = 255; i > 0; i--) {
-    const r = Math.floor(Math.random() * (i + 1));
-    [p[i], p[r]] = [p[r], p[i]];
-  }
-  for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
-
-  const grad3 = [[1,1,0],[-1,1,0],[1,-1,0],[-1,-1,0],[1,0,1],[-1,0,1],[1,0,-1],[-1,0,-1],[0,1,1],[0,-1,1],[0,1,-1],[-1,-1,-1]];
-  const dot = (g: number[], x: number, y: number, z: number) => g[0]*x + g[1]*y + g[2]*z;
-
-  const mix = (a: number, b: number, t: number) => (1 - t) * a + t * b;
-
-  return (x: number, y: number, z: number) => {
-    const X = Math.floor(x) & 255;
-    const Y = Math.floor(y) & 255;
-    const Z = Math.floor(z) & 255;
-    x -= Math.floor(x);
-    y -= Math.floor(y);
-    z -= Math.floor(z);
-    const u = x * x * x * (x * (x * 6 - 15) + 10);
-    const v = y * y * y * (y * (y * 6 - 15) + 10);
-    const w = z * z * z * (z * (z * 6 - 15) + 10);
-    const A = perm[X] + Y, AA = perm[A] + Z, AB = perm[A + 1] + Z;
-    const B = perm[X + 1] + Y, BA = perm[B] + Z, BB = perm[B + 1] + Z;
-
-    return mix(
-      mix(
-        mix(dot(grad3[perm[AA] % 12], x, y, z), dot(grad3[perm[BA] % 12], x - 1, y, z), u),
-        mix(dot(grad3[perm[AB] % 12], x, y - 1, z), dot(grad3[perm[BB] % 12], x - 1, y - 1, z), u),
-        v
-      ),
-      mix(
-        mix(dot(grad3[perm[AA + 1] % 12], x, y, z - 1), dot(grad3[perm[BA + 1] % 12], x - 1, y, z - 1), u),
-        mix(dot(grad3[perm[AB + 1] % 12], x, y - 1, z - 1), dot(grad3[perm[BB + 1] % 12], x - 1, y - 1, z - 1), u),
-        v
-      ),
-      w
-    );
-  };
-};
-
-const noise = createNoise3D();
 
 class Particle {
   x: number;
@@ -61,15 +15,19 @@ class Particle {
   baseRadius: number;
   layerIndex: number;
   color: string;
+  baseR: number;
+  baseG: number;
+  baseB: number;
   lineWidth: number;
   opacity: number;
   baseOpacity: number;
   life: number;
   maxLife: number;
+  currentActivity: number;
 
-  constructor(index: number, layerIndex: number, particlesPerLayer: number) {
+  constructor(index: number, layerIndex: number, particlesPerLayer: number, baseRadius: number) {
     this.angle = (index / particlesPerLayer) * Math.PI * 2;
-    this.baseRadius = 80 + layerIndex * 60;
+    this.baseRadius = baseRadius;
     this.radius = this.baseRadius;
     this.layerIndex = layerIndex;
 
@@ -80,79 +38,125 @@ class Particle {
     this.vx = 0;
     this.vy = 0;
 
-    this.color = Math.random() < 0.3 ? '#4285F4' : '#ADD8E6'; // Muted blue
-    this.lineWidth = Math.random() * 2 + 3; // Increased size
+    // Radial color gradient: bright inner rings → deep outer rings
+    const totalLayers = 10;
+    const t = this.layerIndex / (totalLayers - 1); // Interpolation factor (0 to 1)
+
+    // Inner rings: Bright blue #3B82F6 (59, 130, 246)
+    const innerR = 59, innerG = 130, innerB = 246;
+    // Outer rings: Deep purple-blue #1E40AF (30, 64, 175)
+    const outerR = 30, outerG = 64, outerB = 175;
+
+    // Interpolate colors
+    const r = Math.round(innerR + (outerR - innerR) * t);
+    const g = Math.round(innerG + (outerG - innerG) * t);
+    const b = Math.round(innerB + (outerB - innerB) * t);
+
+    // Store base color components for dynamic color shifting
+    this.baseR = r;
+    this.baseG = g;
+    this.baseB = b;
+    this.color = `rgb(${r}, ${g}, ${b})`;
+    // Particle size variation with smooth curve: tiny inner → large outer
+    const easedT = t * t; // Quadratic easing for smooth, mesmerizing transition
+    this.lineWidth = 1.5 + easedT * 4.2; // 1.5px (inner) → 5.7px (outer)
 
     // Life cycle properties
     this.maxLife = Math.random() * 200 + 150; // Lifespan in frames
     this.life = Math.random() * this.maxLife;
     this.baseOpacity = Math.random() * 0.4 + 0.3; // Base visibility (0.3 to 0.7)
     this.opacity = 0;
+    this.currentActivity = 0;
   }
 
-  update(mouseX: number, mouseY: number, time: number, cursorVx: number, cursorVy: number) {
-    // 1. Life cycle management
+  update(
+    mouse: { magnetic: { x: number, y: number }, real: { x: number, y: number } },
+    time: number,
+    cursorVx: number,
+    cursorVy: number,
+    activity: number
+  ) {
+    // --- MOVEMENT ---
     this.life--;
     if (this.life <= 0) {
       this.life = this.maxLife;
     }
 
-    // Fade in and out
-    const fadeInDuration = this.maxLife * 0.1;
-    const fadeOutDuration = this.maxLife * 0.2;
+    // Subtle anti-clockwise rotation
+    this.angle -= 0.0003; // Very minimal rotation
 
-    if (this.life < fadeInDuration) {
-      this.opacity = (this.life / fadeInDuration) * this.baseOpacity;
-    } else if (this.life > this.maxLife - fadeOutDuration) {
-      this.opacity = ((this.maxLife - this.life) / fadeOutDuration) * this.baseOpacity;
-    } else {
-      this.opacity = this.baseOpacity;
-    }
-
-    // 2. Radius oscillation and dynamic perturbation
-    const oscillationSpeed = 0.02 + this.layerIndex * 0.005;
-    const amplitude = 15;
-    const oscillation = Math.sin(time * oscillationSpeed) * amplitude;
-    
+    const { x: magneticX, y: magneticY } = mouse.magnetic;
+    // Multi-frequency wave pattern for complex, organic movement
+    const phaseOffset = this.angle * 2; // Creates wave pattern around each ring
+    const baseWave = Math.sin(time * 0.02 + phaseOffset) * 20; // Slow, large wave
+    const ripple = Math.sin(time * 0.08 + phaseOffset * 3) * 8; // Fast, small ripple
+    const oscillation = baseWave + ripple; // Combine for complex movement
     let finalRadius = this.baseRadius + oscillation;
-
-    if (this.layerIndex > 0) {
-      const noiseValue = noise(
-        Math.cos(this.angle) * (this.layerIndex + 1) * 0.5,
-        Math.sin(this.angle) * (this.layerIndex + 1) * 0.5,
-        time * 0.002
-      );
-      const perturbation = (this.layerIndex * 30) * noiseValue;
-      finalRadius += perturbation;
-    }
+    
     this.radius = finalRadius;
-
-    // 3. Position update
-    this.targetX = mouseX + Math.cos(this.angle) * this.radius;
-    this.targetY = mouseY + Math.sin(this.angle) * this.radius;
-
+    this.targetX = magneticX + Math.cos(this.angle) * this.radius;
+    this.targetY = magneticY + Math.sin(this.angle) * this.radius;
     const dx = this.targetX - this.x;
     const dy = this.targetY - this.y;
-
-    // 4. Speed modulation based on cursor direction
     const cursorSpeed = Math.sqrt(cursorVx * cursorVx + cursorVy * cursorVy);
-    let springiness = 0.15; // Default springiness
-
+    let springiness = 0.15;
     if (cursorSpeed > 0.1) {
       const cursorDirX = cursorVx / cursorSpeed;
       const cursorDirY = cursorVy / cursorSpeed;
       const particleDirX = Math.cos(this.angle);
       const particleDirY = Math.sin(this.angle);
       const dotProduct = particleDirX * cursorDirX + particleDirY * cursorDirY;
-      const speedFactor = 1 + dotProduct * 0.8; // Range ~0.2 to 1.8
+      const speedFactor = 1 + dotProduct * 0.8;
       springiness *= speedFactor;
     }
-
     this.vx = dx * springiness;
     this.vy = dy * springiness;
-
     this.x += this.vx;
     this.y += this.vy;
+
+    // --- OPACITY (Interpolated) ---
+    // 1. Calculate target opacity based on life cycle and proximity
+    let targetOpacityFactor = 1.0;
+    
+    const fadeInDuration = this.maxLife * 0.1;
+    const fadeOutDuration = this.maxLife * 0.2;
+    if (this.life < fadeInDuration) {
+      targetOpacityFactor = Math.min(targetOpacityFactor, this.life / fadeInDuration);
+    } else if (this.life > this.maxLife - fadeOutDuration) {
+      targetOpacityFactor = Math.min(targetOpacityFactor, (this.maxLife - this.life) / fadeOutDuration);
+    }
+
+    const { x: realX, y: realY } = mouse.real;
+    const dxMouse = this.x - realX;
+    const dyMouse = this.y - realY;
+    const distToMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+    const vanishRadius = 60;
+    if (distToMouse < vanishRadius) {
+      targetOpacityFactor = Math.min(targetOpacityFactor, distToMouse / vanishRadius);
+    }
+    
+    let targetOpacity = this.baseOpacity * targetOpacityFactor;
+
+    // Layer-based opacity: inner rings MUCH MORE visible with strong contrast
+    const layerOpacityFactor = 1.2 - (this.layerIndex / 9) * 0.6; // 1.2 (inner) to 0.6 (outer)
+
+    // During cursor movement, dramatically boost inner ring opacity
+    const activityBoost = activity * (1 - this.layerIndex / 9) * 1.2; // Max 1.2 boost for innermost
+
+    targetOpacity *= (layerOpacityFactor + activityBoost);
+
+    // 2. Determine final target based on activity
+    const minIdleOpacity = 0.15; // A clearly visible minimum
+    if (activity < 0.1) { // If idle
+        // When idle, the target is the *lesser* of its natural opacity and the idle opacity
+        targetOpacity = Math.min(targetOpacity, minIdleOpacity);
+    }
+
+    // 3. Smoothly interpolate current opacity towards the target
+    this.opacity += (targetOpacity - this.opacity) * 0.1;
+
+    // Store current activity for color calculation in draw
+    this.currentActivity = activity;
   }
 
   draw(ctx: CanvasRenderingContext2D) {
@@ -170,7 +174,20 @@ class Particle {
     const endX = this.x + Math.cos(angle) * halfLength;
     const endY = this.y + Math.sin(angle) * halfLength;
 
-    ctx.strokeStyle = this.color;
+    // Dynamic color shifting: inner rings become almost white-blue during cursor movement
+    const colorShiftFactor = this.currentActivity * (1 - this.layerIndex / 9); // 0 to 1 for inner rings
+
+    // Target color for active state: Almost white-blue
+    const whiteBlueR = 220;
+    const whiteBlueG = 240;
+    const whiteBlueB = 255;
+
+    // Interpolate between base color and white-blue based on activity
+    const r = Math.round(this.baseR + (whiteBlueR - this.baseR) * colorShiftFactor);
+    const g = Math.round(this.baseG + (whiteBlueG - this.baseG) * colorShiftFactor);
+    const b = Math.round(this.baseB + (whiteBlueB - this.baseB) * colorShiftFactor);
+
+    ctx.strokeStyle = `rgb(${r}, ${g}, ${b})`;
     ctx.lineWidth = this.lineWidth;
     ctx.globalAlpha = this.opacity;
     ctx.lineCap = 'round';
@@ -190,6 +207,7 @@ const AntigravityStars = () => {
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const magneticMouseRef = useRef({ x: -1000, y: -1000 });
   const prevMagneticMouseRef = useRef({ x: -1000, y: -1000 });
+  const activityRef = useRef(0); // For idle fade effect
   const animationFrameRef = useRef<number>();
   const timeRef = useRef(0);
   const { theme } = useCustomTheme();
@@ -210,17 +228,23 @@ const AntigravityStars = () => {
       particlesRef.current = [];
 
       const layers = [
-        { radius: 80, count: 48, offset: 0 },
-        { radius: 140, count: 72, offset: 11.25 },
-        { radius: 200, count: 96, offset: 5.625 },
-        { radius: 260, count: 120, offset: 0 }
+        { radius: 159, count: 78, offset: 0 },
+        { radius: 204, count: 88, offset: 11.25 },
+        { radius: 249, count: 98, offset: 5.625 },
+        { radius: 294, count: 108, offset: 0 },
+        { radius: 339, count: 118, offset: 11.25 },
+        { radius: 384, count: 128, offset: 5.625 },
+        { radius: 429, count: 138, offset: 0 },
+        { radius: 474, count: 148, offset: 11.25 },
+        { radius: 519, count: 158, offset: 5.625 },
+        { radius: 564, count: 168, offset: 0 }
       ];
 
       layers.forEach((layer, layerIndex) => {
         const angleStep = 360 / layer.count;
         for (let i = 0; i < layer.count; i++) {
           const angle = (i * angleStep + layer.offset) * (Math.PI / 180);
-          const particle = new Particle(i, layerIndex, layer.count);
+          const particle = new Particle(i, layerIndex, layer.count, layer.radius);
           particle.angle = angle;
           particlesRef.current.push(particle);
         }
@@ -235,12 +259,26 @@ const AntigravityStars = () => {
 
       const cursorVx = magneticMouseRef.current.x - prevMagneticMouseRef.current.x;
       const cursorVy = magneticMouseRef.current.y - prevMagneticMouseRef.current.y;
+      const cursorSpeed = Math.sqrt(cursorVx * cursorVx + cursorVy * cursorVy);
+
+      // Update activity level
+      if (cursorSpeed > 1) {
+        activityRef.current = 1;
+      } else {
+        activityRef.current *= 0.95; // Decay activity
+      }
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.globalCompositeOperation = 'screen';
+      ctx.globalCompositeOperation = 'lighter';
 
       particlesRef.current.forEach(particle => {
-        particle.update(magneticMouseRef.current.x, magneticMouseRef.current.y, timeRef.current, cursorVx, cursorVy);
+        particle.update(
+          { magnetic: magneticMouseRef.current, real: mouseRef.current },
+          timeRef.current,
+          cursorVx,
+          cursorVy,
+          activityRef.current
+        );
         particle.draw(ctx);
       });
 

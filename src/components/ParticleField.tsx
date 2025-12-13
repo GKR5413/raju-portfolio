@@ -112,7 +112,7 @@ const ParticleField = () => {
 
     // Initialize particles (100-150 range)
     const initParticles = () => {
-      const numberOfParticles = 120; // Sweet spot for performance
+      const numberOfParticles = 133; // Sweet spot for performance
       particlesRef.current = [];
       for (let i = 0; i < numberOfParticles; i++) {
         particlesRef.current.push(new Particle(canvas.width, canvas.height));
