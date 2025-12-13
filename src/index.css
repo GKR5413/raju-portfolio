@@ -47,7 +47,7 @@ html {
 body {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  cursor: none;
+  /* cursor: none; Temporarily disabled to show default cursor */
   /* Remove position relative that might cause issues */
 }
 

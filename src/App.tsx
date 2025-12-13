@@ -10,8 +10,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoadingScreen from "./components/LoadingScreen";
 import SimpleBackground from "./components/SimpleBackground";
-import AntigravityStars from './components/AntigravityStars';
-import Cursor from "./components/Cursor";
+// import AntigravityStars from './components/AntigravityStars'; // Temporarily disabled
+// import Cursor from "./components/Cursor"; // Temporarily disabled
 import FloatingNavigation from "./components/FloatingNavigation";
 import ThemeTransition from "./components/ThemeTransition";
 import SEOHead from "./components/SEOHead";
@@ -92,8 +92,8 @@ const App = () => {
             <SEOHead />
             <div className={`min-h-screen text-foreground relative ${isTransitioning ? 'theme-transitioning' : ''}`}>
               <SimpleBackground />
-              <AntigravityStars />
-              <Cursor />
+              {/* <AntigravityStars /> Temporarily disabled */}
+              {/* <Cursor /> Temporarily disabled */}
               <Toaster />
               <Sonner />
               {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
