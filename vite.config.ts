@@ -16,7 +16,7 @@ export default defineConfig(({ mode, command }) => {
         },
       },
     },
-    base: "./",
+    base: "/", // Use root path for custom domain (rajugottumukkala.in)
     plugins: [
       react(),
     ],
