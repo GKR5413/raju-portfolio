@@ -36,60 +36,40 @@ const Experience = () => {
       location: "India",
       duration: "Jun 2022 - Jul 2023",
       type: "Full-time",
-      description: "Designed and scaled merchant payment modules supporting 10,000+ global merchants, embedding fault-tolerant error handling and proactive monitoring to maintain 99.99% uptime during peak load.",
+      description: "Designed and scaled payment processing systems supporting 10,000+ global merchants, maintaining 99.99% uptime during peak loads.",
       achievements: [
-        "Implemented 20+ Spring Boot microservices with efficient database queries and caching layers, cutting API latency by 25% and handling 30% YoY growth without system strain",
-        "Orchestrated deployment pipelines with Jenkins, Docker, AWS CodePipeline, Terraform, compressing release cycles to 3 days and enabling 50% faster go-lives with safe rollbacks",
-        "Introduced 15+ modular React/Material-UI components with lazy loading and smarter state handling, driving a 25% boost in frontend performance and smoother merchant onboarding",
-        "Guided and coached 4 junior engineers via pair programming, reviews, and mentoring sessions, accelerating their ramp-up and improving team throughput by 30%",
-        "Expanded automated testing with JUnit, Mockito, Selenium, raising test coverage from 55% → 85%, cutting post-release defects by 40%, and strengthening compliance"
+        "Delivered 20+ Spring Boot microservices with optimized transaction management, caching, and database queries, reducing API latency by 25% and supporting 30% YoY growth",
+        "Architected cloud infrastructure using AWS Lambda, S3, CloudWatch, and SNS for event-driven processing and automated alerting, improving system observability and reducing incident response times by 35%",
+        "Built React and Material-UI components with lazy loading and efficient state handling, improving frontend performance by 25%",
+        "Orchestrated CI/CD pipelines using Jenkins, Docker, AWS CodePipeline, Terraform, enabling 50% faster releases with safe rollbacks",
+        "Expanded automated testing coverage from 55% → 85%, cutting post-release defects by 40%",
+        "Authored API specs and system runbooks, reducing reliance on senior architects by 20%"
       ],
-      technologies: ["Java", "Spring Boot", "React", "Material-UI", "Jenkins", "Docker", "AWS", "PostgreSQL", "Redis", "Terraform"],
+      technologies: ["Java", "Spring Boot", "React", "Material-UI", "AWS Lambda", "AWS S3", "AWS CloudWatch", "AWS SNS", "Jenkins", "Docker", "AWS CodePipeline", "Terraform", "JUnit", "Mockito", "Selenium"],
       impact: {
-        metric: "25%",
-        description: "Performance Improvement"
-      }
-    },
-    {
-      company: "L&T Finance Limited",
-      logo: "/logos/lt-finance.png",
-      position: "Software Developer",
-      location: "India",
-      duration: "Oct 2020 - Jun 2022",
-      type: "Full-time",
-      description: "Delivered full-stack loan management/payment modules using Spring Boot, Java, React, and PostgreSQL for 50,000+ active customers, ensuring frictionless transactions.",
-      achievements: [
-        "Published and tuned REST APIs with auth + rate limiting, trimming API response times by 30% and strengthening security posture",
-        "Built 15+ React components with Redux state flows, standardizing UI patterns and trimming dev effort by 25%",
-        "Deployed automated CI/CD pipelines (Jenkins + Docker), shrinking release cycles from 2 weeks → 1 week and enabling zero-downtime rollouts",
-        "Integrated with payment gateways and credit bureaus to deliver real-time loan approvals and verifications, accelerating customer decisioning",
-        "Refactored SQL queries and applied caching, shrinking reporting runtime from 10s+ to <3s, boosting analyst output"
-      ],
-      technologies: ["Java", "Spring Boot", "React", "Redux", "PostgreSQL", "Jenkins", "Docker", "REST APIs"],
-      impact: {
-        metric: "30%",
-        description: "API Performance"
+        metric: "99.99%",
+        description: "System Uptime"
       }
     },
     {
       company: "KPMG",
       logo: "/logos/kpmg.png",
-      position: "Jr. Software Developer",
+      position: "Software Developer",
       location: "India",
-      duration: "Apr 2019 - Sep 2020",
+      duration: "Apr 2019 - May 2022",
       type: "Full-time",
-      description: "Contributed to internal audit & compliance applications built on Java, Spring Boot, Angular, and MySQL, serving over 5,000 users across multiple business units.",
+      description: "Developed internal audit and compliance applications using Java, Spring Boot, Angular, and MySQL, supporting 5,000+ enterprise users across multiple business units with role-based access controls and audit logging.",
       achievements: [
-        "Delivered 10+ secure APIs with validation and logging, enhancing data reliability and reducing integration issues by 15%",
-        "Applied RBAC and security patches, adhering to ISO 27001 + GDPR standards",
-        "Tuned SQL queries and backend logic, reducing report generation time from 12 seconds to 4 seconds, providing faster access to insights for auditors",
-        "Helped migrate Excel/VBA workflows into dashboards, cutting manual reporting by 40%",
-        "Developed 5+ Angular components for dashboards and forms, unifying UI design and reducing front-end defects by 20%"
+        "Built secure REST APIs with input validation, structured logging, and real-time monitoring dashboards, reducing integration issues by 15% and improving debugging efficiency across distributed services",
+        "Implemented RBAC, AES-256 encryption, and security hardening measures, ensuring compliance with ISO 27001 and GDPR standards while passing internal and external security audits",
+        "Optimized complex SQL queries and refactored backend logic with indexing strategies, reducing report generation time from 12s → 4s for financial compliance dashboards",
+        "Supported early AI/analytics initiatives by designing ETL pipelines, preparing structured datasets, and building rule-based insights for audit dashboards used by senior management",
+        "Implemented Jenkins CI/CD pipelines with automated testing gates and deployment scripts, reducing rollbacks by 10% and freeing 5+ hours/week for feature development"
       ],
-      technologies: ["Java", "Spring Boot", "Angular", "MySQL", "Jenkins", "JUnit", "Mockito"],
+      technologies: ["Java", "Spring Boot", "Angular", "MySQL", "Jenkins", "JUnit", "Mockito", "RBAC", "AES-256", "ISO 27001", "GDPR"],
       impact: {
-        metric: "40%",
-        description: "Manual Work Reduction"
+        metric: "5K+",
+        description: "Enterprise Users"
       }
     },
   ];
