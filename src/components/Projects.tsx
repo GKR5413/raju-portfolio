@@ -361,7 +361,7 @@ const Projects = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="gap-2 border-2 border-white bg-transparent text-white hover:bg-white hover:text-blue-600 transition-all"
+                className="gap-2 border-2 !border-white !bg-transparent !text-white hover:!bg-white hover:!text-blue-600 transition-all"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Get In Touch
