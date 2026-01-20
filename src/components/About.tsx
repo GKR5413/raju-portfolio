@@ -1,6 +1,4 @@
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { Code, Database, Cloud, Brain, Shield, Users, GraduationCap, Award, Server, Layers, Zap, Eye } from "lucide-react";
 import SkillBubbles from "./SkillBubbles";
 import { sampleSkills } from "@/data/skills";
@@ -22,18 +20,14 @@ const About = () => {
     { name: "Monitoring & Observability", level: 83, icon: Eye },
   ];
 
-  const technologies = [
-    "Java", "Spring Boot", "Spring Cloud", "Spring Security", "Spring Data JPA", "Python", "JavaScript", "TypeScript", "React", "Node.js", "Vue", "Angular",
-    "PostgreSQL", "MongoDB", "MySQL", "Redis", "DuckDB", "Apache Kafka", "Elasticsearch",
-    "AWS (EKS, EC2, S3, Lambda, RDS)", "Azure", "Docker", "Kubernetes", "Terraform", "Helm",
-    "Jenkins", "GitHub Actions", "GitLab CI/CD", "Git", "Maven", "Gradle",
-    "Prometheus", "Grafana", "ELK Stack", "Jaeger",
-    "JUnit", "Mockito", "Selenium", "Postman", "Swagger", "REST APIs", "GraphQL", "gRPC", "SOAP", "OAuth 2.0", "JWT Authentication",
-    "nginx", "Memcached", "Tailwind CSS",
-    "Machine Learning", "TensorFlow", "Scikit-learn", "Pandas", "NumPy", "Jupyter", "Google Gemini 3 Pro", "Claude 4.5", "Llama 3", "Ollama",
-    "Monaco Editor", "IntelliJ IDEA", "Visual Studio Code",
-    "Microservices", "API Gateway", "Circuit Breaker", "CQRS", "Event Sourcing", "Google Maps API"
-  ];
+  const techStack = {
+    "Languages": ["Java", "Python", "JavaScript", "TypeScript"],
+    "Frameworks": ["Spring Boot", "React", "Node.js", "Angular", "Vue"],
+    "Cloud": ["AWS", "GCP", "Azure"],
+    "DevOps": ["Docker", "Kubernetes", "Terraform", "Jenkins", "GitHub Actions"],
+    "Databases": ["PostgreSQL", "MySQL", "Redis", "MongoDB", "Kafka"],
+    "AI/ML": ["Gemini", "Claude", "Llama 3", "TensorFlow", "Cursor"]
+  };
 
   const highlights = [
     {
@@ -215,20 +209,28 @@ const About = () => {
           <SkillBubbles skills={sampleSkills} className="min-h-[400px]" />
         </div>
 
-        {/* Technologies */}
-        <div className="text-center">
-          <h3 className="text-2xl font-semibold text-foreground mb-8">
-            Technologies & Tools
-          </h3>
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-            {technologies.map((tech, index) => (
-              <Badge
-                key={index}
-                variant="secondary"
-                className="px-3 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-medium hover-lift"
-              >
-                {tech}
-              </Badge>
+        {/* Tech Stack - Clean Grid */}
+        <div className="mt-16">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-semibold text-foreground mb-2">
+              Tech Stack
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-5xl mx-auto">
+            {Object.entries(techStack).map(([category, skills]) => (
+              <div key={category} className="text-center">
+                <h4 className="text-xs font-semibold text-primary uppercase tracking-widest mb-4">
+                  {category}
+                </h4>
+                <ul className="space-y-2">
+                  {skills.map((skill, index) => (
+                    <li key={index} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         </div>
