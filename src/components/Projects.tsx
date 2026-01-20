@@ -38,26 +38,26 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: "IntelliFlow AI Platform",
-      category: "Fintech",
-      description: "Designed a fraud detection API with ML + LLM integration, sustaining ~55ms p95 latency at 414 requests per second (RPS) with zero errors on 8-core/16GB infra.",
+      title: "Resume Builder - Sandbox Support for Gemini LLM",
+      category: "AI/ML",
+      description: "Developed containerized platform enabling Gemini 2.5 Pro to autonomously compile files in isolated Docker sandboxes, solving the limitation that LLMs cannot natively execute code or generate binary files.",
       image: "/api/placeholder/400/250",
-      technologies: ["Python", "ML", "LLMs", "Docker", "Kubernetes", "Terraform", "Prometheus", "Grafana", "Ollama", "Mistral"],
+      technologies: ["Docker", "Python", "Alpine Linux", "Google Gemini 2.5 Pro", "Bash", "Security"],
       features: [
-        "Real-time fraud detection",
-        "ML+LLM integration",
-        "Containerized deployment",
-        "Automated ML pipelines"
+        "Autonomous code execution",
+        "15-category command blacklisting",
+        "60-second timeouts",
+        "Iterative self-correction (15 cycles)"
       ],
       metrics: {
-        performance: "414 RPS",
-        latency: "~55ms p95",
-        accuracy: "0 errors",
-        concurrent: "20+ req",
-        system: "8-core/16GB"
+        performance: "15 cycles",
+        latency: "60s timeout",
+        accuracy: "Self-correct",
+        concurrent: "Isolated",
+        system: "Alpine Linux"
       },
       links: {
-        github: "https://github.com/GKR5413/intelliflow-ai-platform",
+        github: "https://github.com/GKR5413/resume-builder",
         live: "#",
         demo: "#"
       },
@@ -279,7 +279,7 @@ const Projects = () => {
                   </div>
                 )}
 
-                {project.title.includes("IntelliFlow") && (
+                {project.title.includes("Resume Builder") && (
                   <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-6 mb-6 border border-primary/20">
                     <h5 className="font-bold text-foreground mb-4 flex items-center gap-3 text-lg">
                       <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
@@ -291,29 +291,22 @@ const Projects = () => {
                       <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
                         <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <span className="font-semibold text-foreground">Deployed containerized services on Docker + Kubernetes with Terraform IaC</span>
-                          <span className="text-muted-foreground"> standardizing 100% of deployments and reducing environment drift to 0%</span>
+                          <span className="font-semibold text-foreground">Implemented secure autonomous execution</span>
+                          <span className="text-muted-foreground"> with 15-category command blacklisting (fork bombs, privilege escalation, network exploits), 60-second timeouts, and iterative self-correction across up to 15 cycles</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
                         <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <span className="font-semibold text-foreground">Built automated ML pipelines covering feature engineering, retraining, and deployment</span>
-                          <span className="text-muted-foreground"> cutting manual intervention by 80% and release cycles by 40%</span>
+                          <span className="font-semibold text-foreground">Built Docker isolation layer using Alpine Linux</span>
+                          <span className="text-muted-foreground"> with non-root execution, environment detection, and bidirectional stdout/stderr streaming enabling Gemini to autonomously debug compilation failures without human intervention</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
                         <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <span className="font-semibold text-foreground">Integrated Mistral LLMs for intelligent verification</span>
-                          <span className="text-muted-foreground"> improving fraud detection accuracy by 15% while reducing false positives by 20%</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 bg-card/50 rounded-lg border border-border">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        <div>
-                          <span className="font-semibold text-foreground">Monitored systems with Prometheus + Grafana</span>
-                          <span className="text-muted-foreground"> sustaining sub-100ms latency across all mission-critical APIs under continuous load</span>
+                          <span className="font-semibold text-foreground">Solved LLM limitation for code execution</span>
+                          <span className="text-muted-foreground"> enabling Gemini 2.5 Pro to autonomously compile files and generate binary files in isolated sandboxes</span>
                         </div>
                       </div>
                     </div>

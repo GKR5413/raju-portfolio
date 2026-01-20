@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://rajugottumukkala.in/sitemap.xml
+Sitemap: https://rajugottumukkala.com/sitemap.xml
 
 # Additional instructions for search engines
 User-agent: Googlebot
@@ -34,4 +34,4 @@ User-agent: DotBot
 Disallow: /
 
 # Host directive
-Host: https://rajugottumukkala.in
+Host: https://rajugottumukkala.com

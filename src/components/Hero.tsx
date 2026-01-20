@@ -243,7 +243,7 @@ const Hero = () => {
             className="mb-12"
           >
             <div className="text-sm text-gray-500 dark:text-gray-500 font-mono">
-              rajugottumukkala.in
+              rajugottumukkala.com
             </div>
           </motion.div>
         </motion.div>

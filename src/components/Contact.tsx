@@ -131,8 +131,8 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "rajugottumukkala986@gmail.com",
-      href: "mailto:rajugottumukkala986@gmail.com"
+      value: "gottumukkala5413@gmail.com",
+      href: "mailto:gottumukkala5413@gmail.com"
     },
     {
       icon: Phone,
@@ -170,7 +170,7 @@ const Contact = () => {
     {
       name: "Portfolio",
       icon: Globe,
-      href: "https://rajugottumukkala.in",
+      href: "https://rajugottumukkala.com",
       description: "Personal website"
     }
   ];

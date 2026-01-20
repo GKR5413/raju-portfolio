@@ -87,10 +87,10 @@ const About = () => {
           </div>
           
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Software engineer with 5+ years of experience developing and deploying scalable fintech solutions and AI platforms.
-            Expertise includes cloud-native deployment (AWS, Docker, Kubernetes, Terraform), CI/CD automation, and secure API integrations,
-            leading to reduce API response times by 25% and cutting release cycles in half. Led the construction of a web IDE integrating
-            Gemini, Claude, and Llama 3 models, which can handle concurrent loads response times.
+            Software engineer with 5 years of experience designing, building, and scaling enterprise-grade applications across fintech,
+            payments, and consulting domains. Deliver high-availability backend systems, modern frontend interfaces, and cloud-native
+            platforms supporting thousands of users and high-volume transactions. Strong expertise in Java, Spring Boot, React, Node.js,
+            AWS, and Microservices, with hands-on experience automating CI/CD pipelines and improving system reliability.
           </p>
         </div>
 
@@ -103,7 +103,7 @@ const About = () => {
               </h3>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  With over 5 years of hands-on experience in software development, I specialize in
+                  With 5 years of hands-on experience in software development, I specialize in
                   creating robust, scalable fintech solutions and AI platforms using Java, Spring Boot,
                   and cloud-native technologies. My passion lies in solving complex problems and building
                   systems that can handle real-world scale.

@@ -20,7 +20,7 @@ export const sampleSkills: Skill[] = [
     level: 95,
     category: 'backend',
     description: 'Expert in Java development with Spring Boot, microservices architecture, and enterprise applications.',
-    experience: '4+ years',
+    experience: '5 years',
     projects: ['Fintech Platform', 'Payment Gateway', 'Trading System'],
     color: { primary: '#007396', secondary: '#f89820', accent: '#5382a1' }
   },
@@ -60,7 +60,7 @@ export const sampleSkills: Skill[] = [
     level: 88,
     category: 'database',
     description: 'Advanced SQL, query optimization, and database design.',
-    experience: '4+ years',
+    experience: '5 years',
     projects: ['Financial DB', 'Analytics DB', 'User Management'],
     color: { primary: '#336791', secondary: '#ffffff', accent: '#8cc8ff' }
   },

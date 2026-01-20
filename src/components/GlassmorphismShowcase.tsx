@@ -107,7 +107,7 @@ const GlassmorphismShowcase = () => {
                   </div>
                   <div className="bg-white/20 p-3 rounded-lg">
                     <h5 className="font-semibold mb-1">Experience</h5>
-                    <p className="text-sm">4+ years building modern web applications</p>
+                    <p className="text-sm">5 years building modern web applications</p>
                   </div>
                 </div>
               }

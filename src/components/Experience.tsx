@@ -10,21 +10,23 @@ const Experience = () => {
       company: "DXC Technology",
       logo: "/logos/dxc-technology.png",
       position: "Software Engineer",
-      location: "Plano, TX",
-      duration: "May 2025 - present",
+      location: "Plano, TX (Remote)",
+      duration: "May 2025 - Present",
       type: "Full-time",
-      description: "Delivered a workflow management platform with Spring Boot, Node.js, and React, deployed via AWS Elastic Beanstalk and RDS, which accelerated team project.",
+      description: "Built and scaled a workflow management platform using Spring Boot, Node.js, and React, deployed on AWS Elastic Beanstalk and RDS, improving delivery velocity by 30%.",
       achievements: [
-        "Automated subscription workflows through Stripe webhooks, removing 40% of manual tasks and cutting customer support resolution time by 25%",
-        "Increased transaction success rate by 5% through refined Stripe API flows, reducing charge failures and saving the business $5K monthly",
-        "Coordinated with product managers and QA under Agile sprints, ensuring 100% on-time feature releases aligned with stakeholder expectations",
-        "Expanded test coverage from 55% to 80% by implementing JUnit, Mockito, and Jest test suites, lowering production issues by 30%",
-        "Containerized services using Docker and streamlined deployments with CI/CD pipelines in GitHub Actions, reducing deployment time from 30 minutes to under 10 minutes"
+        "Automated subscription, billing, and transaction workflows via Stripe webhooks, removing 40% of manual operations and cutting support resolution time by 25%",
+        "Improved transaction success rates by 5% through optimized Stripe API flows and better error handling and retry logic, saving ~$5K/month",
+        "Integrated AI-driven capabilities using LLM APIs (ChatGPT, Claude) for workflow recommendations, anomaly summaries, and operational insights",
+        "Used Cursor and AI-assisted coding tools to accelerate feature development, refactoring, and test creation",
+        "Increased test coverage from 55% → 80%, reducing production issues by 30%",
+        "Containerized services with Docker and Kubernetes, and streamlined deployments with GitHub Actions CI/CD, cutting deployment time to under 10 minutes",
+        "Worked in Agile sprints with product and QA teams, delivering 100% of committed features on time"
       ],
-      technologies: ["Java", "Spring Boot", "Node.js", "React", "AWS Elastic Beanstalk", "AWS RDS", "Stripe API", "Docker", "GitHub Actions", "JUnit", "Mockito", "Jest"],
+      technologies: ["Spring Boot", "Node.js", "React", "AWS Elastic Beanstalk", "AWS RDS", "Stripe API", "LLM APIs", "ChatGPT", "Claude", "Cursor", "Docker", "Kubernetes", "GitHub Actions", "JUnit", "Mockito", "Jest"],
       impact: {
-        metric: "40%",
-        description: "Manual Task Reduction"
+        metric: "30%",
+        description: "Delivery Velocity Boost"
       }
     },
     {

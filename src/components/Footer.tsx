@@ -53,8 +53,8 @@ const Footer = () => {
   const socialLinks = [
     { name: "GitHub", icon: Github, href: "https://github.com/gkr5413" },
     { name: "LinkedIn", icon: Linkedin, href: "https://linkedin.com/in/gkr5413/" },
-    { name: "Email", icon: Mail, href: "mailto:gottumukkala.kanakaraju@gmail.com" },
-    { name: "Website", icon: Globe, href: "https://rajugottumukkala.in" },
+    { name: "Email", icon: Mail, href: "mailto:gottumukkala5413@gmail.com" },
+    { name: "Website", icon: Globe, href: "https://rajugottumukkala.com" },
     { name: "Instagram", icon: Instagram, href: "https://instagram.com/raju_gottumukkala" },
     { name: "Facebook", icon: FacebookIcon, href: "https://www.facebook.com/gkr5413/" },
     { name: "Twitter", icon: Twitter, href: "https://x.com/Raju_twt_" },
@@ -128,7 +128,7 @@ const Footer = () => {
               <h4 className="font-semibold text-foreground mb-4">Get In Touch</h4>
               <div className="space-y-2 text-muted-foreground">
                 <p>Kansas City, MO</p>
-                <p>gottumukkala.kanakaraju@gmail.com</p>
+                <p>gottumukkala5413@gmail.com</p>
                 <p>Available for opportunities</p>
               </div>
               

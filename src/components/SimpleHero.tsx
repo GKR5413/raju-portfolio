@@ -38,7 +38,7 @@ const SimpleHero = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-10">
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">2+</div>
+            <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">5</div>
             <div className="text-sm text-gray-600">Years Experience</div>
           </div>
           <div className="text-center">
