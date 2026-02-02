@@ -2,7 +2,7 @@
 
 ## GitHub Pages with Custom Domain Setup
 
-This project is configured to deploy to GitHub Pages with a custom domain (rajugottumukkala.in).
+This project is configured to deploy to GitHub Pages with a custom domain (rajugottumukkala.com).
 
 ### Configuration Files
 
@@ -42,7 +42,7 @@ Value: 185.199.111.153
 
 Type: CNAME
 Name: www
-Value: rajugottumukkala.in
+Value: rajugottumukkala.com
 ```
 
 ### Troubleshooting

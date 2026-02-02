@@ -1,9 +1,9 @@
-# 🚀 Quick Start: Deploy to rajugottumukkala.in
+# 🚀 Quick Start: Deploy to rajugottumukkala.com
 
 ## ✅ Pre-Flight Checklist
 
 Your repository is already configured with:
-- ✅ CNAME file: `public/CNAME` → `rajugottumukkala.in`
+- ✅ CNAME file: `public/CNAME` → `rajugottumukkala.com`
 - ✅ GitHub Actions workflow: `.github/workflows/deploy.yml`
 - ✅ Vite config: `base: "/"` (optimized for custom domain)
 - ✅ Build script: `npm run build:custom`
@@ -26,7 +26,7 @@ Type: A, Name: @, Value: 185.199.111.153
 
 **CNAME Record (for www):**
 ```
-Type: CNAME, Name: www, Value: rajugottumukkala.in
+Type: CNAME, Name: www, Value: rajugottumukkala.com
 ```
 
 **Where to add:** Your domain registrar's DNS management panel (GoDaddy, Namecheap, etc.)
@@ -37,7 +37,7 @@ Type: CNAME, Name: www, Value: rajugottumukkala.in
 
 1. Go to: `https://github.com/GKR5413/raju-portfolio/settings/pages`
 2. Under **Source**: Select **GitHub Actions**
-3. Under **Custom domain**: Enter `rajugottumukkala.in`
+3. Under **Custom domain**: Enter `rajugottumukkala.com`
 4. Click **Save**
 5. Check **Enforce HTTPS** (after DNS propagates)
 
@@ -70,9 +70,9 @@ git push origin main
 
 After DNS propagates:
 
-1. **Root domain**: `http://rajugottumukkala.in`
-2. **WWW subdomain**: `http://www.rajugottumukkala.in`
-3. **HTTPS**: `https://rajugottumukkala.in` (after certificate is issued)
+1. **Root domain**: `http://rajugottumukkala.com`
+2. **WWW subdomain**: `http://www.rajugottumukkala.com`
+3. **HTTPS**: `https://rajugottumukkala.com` (after certificate is issued)
 
 ---
 
@@ -80,12 +80,12 @@ After DNS propagates:
 
 Use these tools to check if DNS is ready:
 
-1. **DNS Checker**: https://dnschecker.org/#A/rajugottumukkala.in
+1. **DNS Checker**: https://dnschecker.org/#A/rajugottumukkala.com
 2. **MXToolbox**: https://mxtoolbox.com/DNSLookup.aspx
 
 **Command line:**
 ```bash
-dig rajugottumukkala.in +short
+dig rajugottumukkala.com +short
 # Should return 4 IP addresses
 ```
 
@@ -125,13 +125,13 @@ For detailed step-by-step instructions, see:
 - [ ] Code pushed to GitHub
 - [ ] GitHub Actions deployment successful
 - [ ] DNS propagated (check with dnschecker.org)
-- [ ] Website loads at rajugottumukkala.in
+- [ ] Website loads at rajugottumukkala.com
 - [ ] HTTPS works (may take 24-48 hours)
 
 ---
 
 **Repository**: https://github.com/GKR5413/raju-portfolio  
-**Domain**: rajugottumukkala.in  
+**Domain**: rajugottumukkala.com  
 **Actions**: https://github.com/GKR5413/raju-portfolio/actions
 
 

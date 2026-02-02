@@ -3,7 +3,7 @@
 ## 📋 Prerequisites
 
 - GitHub account
-- Domain name: `rajugottumukkala.in`
+- Domain name: `rajugottumukkala.com`
 - Access to your domain's DNS settings
 - Repository: `https://github.com/GKR5413/raju-portfolio`
 
@@ -14,21 +14,21 @@
 ### **Step 1: Verify Repository Configuration**
 
 Your repository is already configured with:
-- ✅ CNAME file in `public/CNAME` with `rajugottumukkala.in`
+- ✅ CNAME file in `public/CNAME` with `rajugottumukkala.com`
 - ✅ GitHub Actions workflow for automatic deployment
 - ✅ Build scripts configured
 
 **Verify CNAME file exists:**
 ```bash
 cat public/CNAME
-# Should output: rajugottumukkala.in
+# Should output: rajugottumukkala.com
 ```
 
 ---
 
 ### **Step 2: Configure DNS Records**
 
-You need to add DNS records at your domain registrar (where you bought `rajugottumukkala.in`).
+You need to add DNS records at your domain registrar (where you bought `rajugottumukkala.com`).
 
 #### **2.1 Login to Your Domain Registrar**
 
@@ -46,7 +46,7 @@ Add **4 A records** pointing to GitHub Pages IP addresses:
 | A | @ | 185.199.111.153 | 3600 (or default) |
 
 **Note:** Some registrars use different notation:
-- **Name/Host = @** means root domain (`rajugottumukkala.in`)
+- **Name/Host = @** means root domain (`rajugottumukkala.com`)
 - **Name/Host = blank/empty** also means root domain
 - **Name/Host = * (asterisk)** means wildcard (don't use this)
 
@@ -56,9 +56,9 @@ Add **1 CNAME record** for the www subdomain:
 
 | Type | Name/Host | Value | TTL |
 |------|-----------|-------|-----|
-| CNAME | www | rajugottumukkala.in | 3600 (or default) |
+| CNAME | www | rajugottumukkala.com | 3600 (or default) |
 
-**Note:** The value should be your root domain (`rajugottumukkala.in`), NOT `GKR5413.github.io`.
+**Note:** The value should be your root domain (`rajugottumukkala.com`), NOT `GKR5413.github.io`.
 
 #### **2.4 Remove Conflicting Records**
 
@@ -88,7 +88,7 @@ Add **1 CNAME record** for the www subdomain:
 
 2. Under **Custom domain**, enter:
    ```
-   rajugottumukkala.in
+   rajugottumukkala.com
    ```
 
 3. Check **Enforce HTTPS** (recommended, but may take time to enable)
@@ -99,7 +99,7 @@ Add **1 CNAME record** for the www subdomain:
 
 GitHub will automatically create/update a CNAME file. Verify it contains:
 ```
-rajugottumukkala.in
+rajugottumukkala.com
 ```
 
 ---
@@ -150,11 +150,11 @@ DNS changes can take **5 minutes to 48 hours** to propagate globally.
 Use online tools to verify your DNS records:
 
 1. **MXToolbox**: https://mxtoolbox.com/DNSLookup.aspx
-   - Enter: `rajugottumukkala.in`
+   - Enter: `rajugottumukkala.com`
    - Check A records show the 4 GitHub IPs
 
 2. **DNS Checker**: https://dnschecker.org/
-   - Enter: `rajugottumukkala.in`
+   - Enter: `rajugottumukkala.com`
    - Select record type: **A**
    - Verify all 4 IPs appear globally
 
@@ -162,12 +162,12 @@ Use online tools to verify your DNS records:
 
 ```bash
 # Check A records
-dig rajugottumukkala.in +short
+dig rajugottumukkala.com +short
 # Should return: 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153
 
 # Check CNAME for www
-dig www.rajugottumukkala.in +short
-# Should return: rajugottumukkala.in
+dig www.rajugottumukkala.com +short
+# Should return: rajugottumukkala.com
 ```
 
 ---
@@ -178,16 +178,16 @@ dig www.rajugottumukkala.in +short
 
 Open in browser:
 ```
-http://rajugottumukkala.in
-https://rajugottumukkala.in (after HTTPS is enabled)
+http://rajugottumukkala.com
+https://rajugottumukkala.com (after HTTPS is enabled)
 ```
 
 #### **7.2 Test WWW Subdomain**
 
 Open in browser:
 ```
-http://www.rajugottumukkala.in
-https://www.rajugottumukkala.in
+http://www.rajugottumukkala.com
+https://www.rajugottumukkala.com
 ```
 
 #### **7.3 Verify HTTPS**
@@ -208,7 +208,7 @@ https://www.rajugottumukkala.in
    - Verify `vite.config.ts` has `base: "/"` for custom domain
 
 2. **CNAME file missing**
-   - Ensure `public/CNAME` exists with `rajugottumukkala.in`
+   - Ensure `public/CNAME` exists with `rajugottumukkala.com`
    - Check `dist/CNAME` after build
 
 **Solution:**
@@ -216,7 +216,7 @@ https://www.rajugottumukkala.in
 # Rebuild and verify CNAME is in dist/
 npm run build
 ls dist/CNAME  # Should exist
-cat dist/CNAME  # Should show: rajugottumukkala.in
+cat dist/CNAME  # Should show: rajugottumukkala.com
 ```
 
 ---
@@ -270,9 +270,9 @@ cat dist/CNAME  # Should show: rajugottumukkala.in
 2. CNAME value incorrect
 
 **Solution:**
-1. Verify CNAME record: `www` → `rajugottumukkala.in`
+1. Verify CNAME record: `www` → `rajugottumukkala.com`
 2. Wait for DNS propagation
-3. Test: `dig www.rajugottumukkala.in`
+3. Test: `dig www.rajugottumukkala.com`
 
 ---
 
@@ -287,8 +287,8 @@ Before considering setup complete, verify:
 - [ ] CNAME file exists in `public/CNAME`
 - [ ] GitHub Actions workflow runs successfully
 - [ ] DNS propagation complete (check with dnschecker.org)
-- [ ] Website loads at `http://rajugottumukkala.in`
-- [ ] Website loads at `http://www.rajugottumukkala.in`
+- [ ] Website loads at `http://rajugottumukkala.com`
+- [ ] Website loads at `http://www.rajugottumukkala.com`
 - [ ] HTTPS works (may take 24-48 hours)
 - [ ] All assets load correctly (images, CSS, JS)
 - [ ] No console errors in browser
@@ -313,8 +313,8 @@ git commit -m "Your message"
 git push origin main
 
 # Check DNS
-dig rajugottumukkala.in +short
-dig www.rajugottumukkala.in +short
+dig rajugottumukkala.com +short
+dig www.rajugottumukkala.com +short
 ```
 
 ---
@@ -334,8 +334,8 @@ dig www.rajugottumukkala.in +short
 
 Your setup is complete when:
 
-1. ✅ `rajugottumukkala.in` loads your portfolio
-2. ✅ `www.rajugottumukkala.in` redirects to root domain
+1. ✅ `rajugottumukkala.com` loads your portfolio
+2. ✅ `www.rajugottumukkala.com` redirects to root domain
 3. ✅ HTTPS works with green padlock
 4. ✅ All pages and assets load correctly
 5. ✅ No console errors in browser
@@ -357,6 +357,6 @@ If you encounter issues:
 
 **Last Updated:** Based on current repository configuration
 **Repository:** https://github.com/GKR5413/raju-portfolio
-**Domain:** rajugottumukkala.in
+**Domain:** rajugottumukkala.com
 
 

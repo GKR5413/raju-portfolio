@@ -14,7 +14,7 @@ A modern, responsive portfolio website showcasing my work as a Software Engineer
 - **Navigation Enhancement**: Improved FloatingNavigation component with better click handling and mobile responsiveness
 - **Mobile Theme Toggle**: Added floating theme toggle button for mobile users with iOS liquid glass styling
 
-**🌐 Live Website**: [rajugottumukkala.in](https://rajugottumukkala.in)
+**🌐 Live Website**: [rajugottumukkala.com](https://rajugottumukkala.com)
 
 ## ✨ Features
 
@@ -141,7 +141,7 @@ The theme system uses CSS custom properties defined in `src/index.css`. You can 
 - **Phone**: +1 (816) 352-4975
 - **LinkedIn**: [linkedin.com/in/gkr5413](https://linkedin.com/in/gkr5413/)
 - **GitHub**: [github.com/gkr5413](https://github.com/gkr5413)
-- **Website**: [rajugottumukkala.in](https://rajugottumukkala.in)
+- **Website**: [rajugottumukkala.com](https://rajugottumukkala.com)
 
 ## 📄 License
 
